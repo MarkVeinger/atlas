@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workout Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#AAFF00;--bg:#0C0C0C;--bg2:#141414;--bg3:#1C1C1C;--bg4:#252525;--text:#F0F0F0;--muted:#888;--border:rgba(255,255,255,.07);--r:12px;--rl:20px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;cursor:none;overflow-x:hidden;}
+
+/* Cursor */
+#cur{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s;}
+#ring{width:34px;height:34px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4;transition:width .2s,height .2s,opacity .2s;}
+
+/* Header */
+header{position:sticky;top:0;z-index:200;height:60px;background:rgba(12,12,12,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:20px;}
+.logo{font-size:16px;font-weight:900;letter-spacing:-.5px;white-space:nowrap;}
+.logo em{color:var(--accent);font-style:normal;}
+.sw{flex:1;max-width:320px;position:relative;}
+.sw svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;}
+.sw input{width:100%;height:36px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0 12px 0 32px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;}
+.sw input:focus{border-color:rgba(170,255,0,.5);}
+.sw input::placeholder{color:var(--muted);}
+.hstat{font-size:12px;color:var(--muted);white-space:nowrap;}
+.hstat strong{color:var(--accent);}
+.new-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;background:var(--accent);color:#000;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:none;border:none;transition:opacity .15s;white-space:nowrap;margin-left:auto;}
+.new-btn:hover{opacity:.85;}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:224px 1fr;min-height:calc(100vh - 60px);}
+
+/* Sidebar */
+.sidebar{background:var(--bg2);border-right:1px solid var(--border);padding:22px 0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+.sbs{padding:0 12px;margin-bottom:26px;}
+.sbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;padding:0 8px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:none;transition:background .15s,color .15s;margin-bottom:1px;user-select:none;}
+.nav-item:hover{background:var(--bg3);color:var(--text);}
+.nav-item.active{background:rgba(170,255,0,.1);color:var(--accent);}
+.ni{font-size:15px;width:20px;text-align:center;}
+.nc{margin-left:auto;background:var(--bg4);border-radius:20px;padding:1px 7px;font-size:11px;font-weight:600;color:var(--muted);}
+.nav-item.active .nc{background:rgba(170,255,0,.15);color:var(--accent);}
+.chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 8px;}
+.chip{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:none;transition:all .15s;user-select:none;}
+.chip:hover,.chip.active{border-color:var(--accent);color:var(--accent);background:rgba(170,255,0,.08);}
+
+/* Main */
+.main{padding:28px 32px;}
+.pgh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px;}
+.pgt{font-size:24px;font-weight:800;letter-spacing:-.5px;}
+.pgt em{color:var(--accent);font-style:normal;}
+.pgc{font-size:12px;color:var(--muted);}
+.sorts{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap;}
+.sbtn{padding:5px 13px;border-radius:7px;font-size:12px;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Inter',sans-serif;cursor:none;transition:all .15s;}
+.sbtn:hover,.sbtn.active{border-color:var(--accent);color:var(--accent);}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:13px;}
+
+/* Card */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:20px;cursor:none;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden;user-select:none;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);opacity:0;transition:opacity .2s;}
+.card:hover{border-color:rgba(170,255,0,.28);transform:translateY(-2px);box-shadow:0 10px 36px rgba(0,0,0,.45);}
+.card:hover::before{opacity:1;}
+.card-edit{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:6px;background:var(--bg4);border:1px solid var(--border);color:var(--muted);font-size:13px;cursor:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:all .15s;font-family:'Inter',sans-serif;z-index:2;}
+.card:hover .card-edit{opacity:1;}
+.card-edit:hover{border-color:var(--accent);color:var(--accent);background:rgba(170,255,0,.1);}
+.ctop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.badge{font-size:9.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+.bs{background:rgba(239,68,68,.15);color:#ef4444;}
+.be{background:rgba(59,130,246,.15);color:#3b82f6;}
+.bm{background:rgba(34,197,94,.15);color:#22c55e;}
+.bc{background:rgba(249,115,22,.15);color:#f97316;}
+.bw{background:rgba(168,85,247,.15);color:#a855f7;}
+.bh{background:rgba(170,255,0,.15);color:var(--accent);}
+.ddot{width:8px;height:8px;border-radius:50%;margin-top:4px;}
+.de{background:#22c55e;}.dm{background:#f59e0b;}.dh{background:#ef4444;}.dx{background:#ec4899;}
+.ctitle{font-size:15px;font-weight:700;letter-spacing:-.3px;line-height:1.35;margin-bottom:6px;}
+.cdesc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.cmeta{display:flex;gap:13px;margin-bottom:12px;}
+.cm{display:flex;align-items:center;gap:4px;font-size:11.5px;color:var(--muted);}
+.ctags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;background:var(--bg4);color:var(--muted);border:1px solid var(--border);}
+
+/* View Modal */
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);display:flex;align-items:flex-start;justify-content:center;padding:36px 20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .25s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);width:100%;max-width:700px;transform:translateY(18px);transition:transform .25s;}
+.overlay.open .modal{transform:translateY(0);}
+.mhd{padding:24px 28px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+.mtitle{font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:8px;}
+.mmeta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.xbtn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:16px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;font-family:'Inter',sans-serif;}
+.xbtn:hover{border-color:var(--accent);color:var(--accent);}
+.mbody{padding:24px 28px;}
+.mdesc{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:20px;}
+.eqb{background:var(--bg3);border-radius:var(--r);padding:13px 16px;margin-bottom:20px;}
+.eql{font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.eqi{display:flex;flex-wrap:wrap;gap:5px;}
+.eqitem{font-size:11.5px;font-weight:500;padding:3px 9px;border-radius:6px;background:var(--bg4);border:1px solid var(--border);color:var(--text);}
+.ph{margin-bottom:20px;}
+.phn{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.phn::after{content:'';flex:1;height:1px;background:var(--border);}
+.ext{width:100%;border-collapse:collapse;}
+.ext th{text-align:left;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:5px 10px;border-bottom:1px solid var(--border);}
+.ext td{padding:8px 10px;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:top;}
+.ext tr:last-child td{border-bottom:none;}
+.ext tbody tr:hover td{background:rgba(255,255,255,.02);}
+.exn{font-weight:600;}
+.exno{font-size:11px;color:var(--muted);font-style:italic;margin-top:3px;line-height:1.4;}
+.acc{color:var(--accent);font-weight:700;}
+.dim{color:var(--muted);}
+
+/* Edit Modal */
+.eoverlay{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);display:flex;align-items:flex-start;justify-content:center;padding:28px 20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .25s;}
+.eoverlay.open{opacity:1;pointer-events:all;}
+.emodal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);width:100%;max-width:820px;transform:translateY(16px);transition:transform .25s;}
+.eoverlay.open .emodal{transform:translateY(0);}
+.ehd{padding:20px 26px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.ehdtitle{font-size:17px;font-weight:800;}
+.ebody{padding:22px 26px;}
+.efoot{padding:16px 26px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.efoot-right{display:flex;gap:8px;}
+
+/* Form elements */
+.flabel{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;display:block;}
+.finput,.fselect,.ftextarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 11px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:rgba(170,255,0,.5);}
+.ftextarea{resize:vertical;min-height:66px;line-height:1.5;}
+.fselect{cursor:none;}
+.fselect option{background:var(--bg3);}
+.frow{display:grid;gap:11px;margin-bottom:14px;}
+.frow.c4{grid-template-columns:3fr 1fr 1fr 1fr;}
+.frow.c2{grid-template-columns:1fr 1fr;}
+.frow.c1{grid-template-columns:1fr;}
+.ffield{display:flex;flex-direction:column;}
+
+/* Phase blocks in edit */
+.ephases{margin-top:4px;}
+.ephase{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;}
+.ephasehd{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--bg4);border-bottom:1px solid var(--border);}
+.ephasehd .finput{background:transparent;border:1px solid transparent;padding:4px 8px;font-weight:700;font-size:13px;border-radius:4px;flex:1;}
+.ephasehd .finput:focus{border-color:rgba(170,255,0,.4);}
+.exrows{padding:8px 12px 4px;}
+.exrow-hdr{display:flex;gap:6px;padding:0 0 4px;border-bottom:1px solid var(--border);margin-bottom:4px;}
+.exrow-hdr span{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.exrow-hdr .span-name{flex:3;min-width:130px;}
+.exrow-hdr .span-sm{flex:1;min-width:52px;}
+.exrow-hdr .span-note{flex:3;min-width:120px;}
+.exrow-hdr .span-del{width:28px;}
+.exrow{display:flex;gap:5px;align-items:center;margin-bottom:5px;}
+.exrow .finput{padding:5px 7px;font-size:12px;border-radius:6px;}
+.exrow .finput.inp-name{flex:3;min-width:130px;}
+.exrow .finput.inp-sm{flex:1;min-width:52px;}
+.exrow .finput.inp-note{flex:3;min-width:120px;}
+.ephaseft{padding:6px 12px 10px;}
+.gbtn{background:transparent;border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;color:var(--muted);font-family:'Inter',sans-serif;cursor:none;transition:all .15s;}
+.gbtn:hover{border-color:var(--accent);color:var(--accent);}
+.rmbtn{width:24px;height:24px;border-radius:4px;background:transparent;border:1px solid transparent;color:var(--muted);font-size:12px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:'Inter',sans-serif;flex-shrink:0;}
+.rmbtn:hover{border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.1);}
+.add-phase-btn{width:100%;background:transparent;border:1px dashed var(--border);border-radius:var(--r);padding:9px;text-align:center;font-size:12px;font-weight:600;color:var(--muted);font-family:'Inter',sans-serif;cursor:none;transition:all .15s;margin-top:4px;}
+.add-phase-btn:hover{border-color:var(--accent);color:var(--accent);}
+.btn-primary{padding:9px 20px;border-radius:8px;background:var(--accent);color:#000;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:none;border:none;transition:opacity .15s;}
+.btn-primary:hover{opacity:.85;}
+.btn-sec{padding:9px 20px;border-radius:8px;background:transparent;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:none;border:1px solid var(--border);transition:all .15s;}
+.btn-sec:hover{border-color:var(--text);}
+.btn-del{padding:9px 20px;border-radius:8px;background:transparent;color:#ef4444;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:none;border:1px solid rgba(239,68,68,.3);transition:all .15s;}
+.btn-del:hover{background:rgba(239,68,68,.1);border-color:#ef4444;}
+.section-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+.section-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* Empty */
+.empty{text-align:center;padding:80px 40px;color:var(--muted);grid-column:1/-1;}
+.empty-icon{font-size:44px;margin-bottom:14px;}
+.empty h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px;}
+
+@media(max-width:780px){.layout{grid-template-columns:1fr;}.sidebar{display:none;}header{padding:0 14px;}.main{padding:18px 14px;}.grid{grid-template-columns:1fr;}.frow.c4{grid-template-columns:1fr 1fr;}.frow.c2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="ring"></div>
+
+<header>
+  <div class="logo">WORKOUT<em>BANK</em></div>
+  <div class="sw">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input id="searchInput" type="text" placeholder="Search workouts, exercises…" autocomplete="off">
+  </div>
+  <div class="hstat"><strong id="totalCount">0</strong> workouts</div>
+  <button class="new-btn" onclick="openNew()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    New Workout
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sbs">
+      <div class="sbl">Categories</div>
+      <div class="nav-item active" data-cat="all" onclick="setCat('all')"><span class="ni">⊞</span>All Workouts<span class="nc" id="c-all">0</span></div>
+      <div class="nav-item" data-cat="strength" onclick="setCat('strength')"><span class="ni">🏋️</span>Strength<span class="nc" id="c-strength">0</span></div>
+      <div class="nav-item" data-cat="endurance" onclick="setCat('endurance')"><span class="ni">🏃</span>Endurance<span class="nc" id="c-endurance">0</span></div>
+      <div class="nav-item" data-cat="mobility" onclick="setCat('mobility')"><span class="ni">🧘</span>Mobility<span class="nc" id="c-mobility">0</span></div>
+      <div class="nav-item" data-cat="metcon" onclick="setCat('metcon')"><span class="ni">⚡</span>Metcons<span class="nc" id="c-metcon">0</span></div>
+      <div class="nav-item" data-cat="weightlifting" onclick="setCat('weightlifting')"><span class="ni">🥇</span>Olympic WL<span class="nc" id="c-weightlifting">0</span></div>
+      <div class="nav-item" data-cat="hyrox" onclick="setCat('hyrox')"><span class="ni">🔥</span>Hyrox<span class="nc" id="c-hyrox">0</span></div>
+    </div>
+    <div class="sbs">
+      <div class="sbl">Difficulty</div>
+      <div class="chips">
+        <div class="chip active" data-diff="all" onclick="setDiff('all')">All</div>
+        <div class="chip" data-diff="easy" onclick="setDiff('easy')">Easy</div>
+        <div class="chip" data-diff="moderate" onclick="setDiff('moderate')">Moderate</div>
+        <div class="chip" data-diff="hard" onclick="setDiff('hard')">Hard</div>
+        <div class="chip" data-diff="max effort" onclick="setDiff('max effort')">Max</div>
+      </div>
+    </div>
+    <div class="sbs">
+      <div class="sbl">Duration</div>
+      <div class="chips">
+        <div class="chip active" data-dur="all" onclick="setDur('all')">Any</div>
+        <div class="chip" data-dur="20" onclick="setDur('20')">≤20 min</div>
+        <div class="chip" data-dur="30" onclick="setDur('30')">≤30 min</div>
+        <div class="chip" data-dur="60" onclick="setDur('60')">≤60 min</div>
+        <div class="chip" data-dur="90" onclick="setDur('90')">≤90 min</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="pgh">
+      <div class="pgt" id="pgTitle">All <em>Workouts</em></div>
+      <div class="pgc" id="pgCount"></div>
+    </div>
+    <div class="sorts">
+      <button class="sbtn active" onclick="setSort('default',this)">Default</button>
+      <button class="sbtn" onclick="setSort('dur-asc',this)">Shortest first</button>
+      <button class="sbtn" onclick="setSort('dur-desc',this)">Longest first</button>
+      <button class="sbtn" onclick="setSort('alpha',this)">A–Z</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+
+<!-- View Modal -->
+<div class="overlay" id="viewOverlay" onclick="maybeCloseView(event)">
+  <div class="modal">
+    <div class="mhd">
+      <div>
+        <div class="mtitle" id="mTitle"></div>
+        <div class="mmeta" id="mMeta"></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0;">
+        <button class="xbtn" id="editFromView" onclick="editFromViewModal()" title="Edit workout" style="font-size:14px;">✏</button>
+        <button class="xbtn" onclick="closeView()">✕</button>
+      </div>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="eoverlay" id="editOverlay" onclick="maybeCloseEdit(event)">
+  <div class="emodal">
+    <div class="ehd">
+      <div class="ehdtitle" id="eTitle">New Workout</div>
+      <button class="xbtn" onclick="closeEdit()">✕</button>
+    </div>
+    <div class="ebody">
+      <div class="frow c4">
+        <div class="ffield"><label class="flabel">Title</label><input class="finput" id="ef-title" placeholder="Workout name…"></div>
+        <div class="ffield"><label class="flabel">Category</label>
+          <select class="fselect" id="ef-cat">
+            <option value="strength">Strength</option>
+            <option value="endurance">Endurance</option>
+            <option value="mobility">Mobility</option>
+            <option value="metcon">Metcon</option>
+            <option value="weightlifting">Olympic WL</option>
+            <option value="hyrox">Hyrox</option>
+          </select>
+        </div>
+        <div class="ffield"><label class="flabel">Duration (min)</label><input class="finput" id="ef-dur" type="number" min="5" max="300" placeholder="60"></div>
+        <div class="ffield"><label class="flabel">Difficulty</label>
+          <select class="fselect" id="ef-diff">
+            <option value="easy">Easy</option>
+            <option value="moderate">Moderate</option>
+            <option value="hard">Hard</option>
+            <option value="max effort">Max Effort</option>
+          </select>
+        </div>
+      </div>
+      <div class="frow c2">
+        <div class="ffield"><label class="flabel">Subcategory</label><input class="finput" id="ef-sub" placeholder="e.g. Lower Body, Zone 2…"></div>
+        <div class="ffield"><label class="flabel">Tags <span style="font-size:9px;font-weight:400;text-transform:none;letter-spacing:0">(comma-separated)</span></label><input class="finput" id="ef-tags" placeholder="squat, deadlift, strength…"></div>
+      </div>
+      <div class="frow c1">
+        <div class="ffield"><label class="flabel">Description</label><textarea class="ftextarea" id="ef-desc" placeholder="Brief description of the workout…"></textarea></div>
+      </div>
+      <div class="frow c1">
+        <div class="ffield"><label class="flabel">Equipment <span style="font-size:9px;font-weight:400;text-transform:none;letter-spacing:0">(comma-separated)</span></label><input class="finput" id="ef-gear" placeholder="Barbell, Plates, Pull-up bar…"></div>
+      </div>
+
+      <div class="section-lbl">Phases & Exercises</div>
+      <div class="ephases" id="ef-phases"></div>
+      <button class="add-phase-btn" onclick="addPhase()">+ Add Phase</button>
+    </div>
+    <div class="efoot">
+      <button class="btn-del" id="eDelBtn" onclick="deleteWorkout()">🗑 Delete</button>
+      <div class="efoot-right">
+        <button class="btn-sec" onclick="closeEdit()">Cancel</button>
+        <button class="btn-primary" onclick="saveWorkout()">Save Workout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Default Data ─────────────────────────────────────────────
+const DEFAULT_DB = [
+// ═══════════════ STRENGTH ═══════════════
+{id:1,title:"Lower Body Power Block",cat:"strength",sub:"Lower Body",dur:90,diff:"hard",
+tags:["deadlift","squat","Bulgarian split squat","plyometrics","ATG"],
+desc:"Heavy lower body session combining compound lifts with plyometric work. Priority on deadlift → squat → mobility-strength compounds.",
+gear:["Barbell","Plates","Dumbbells","Plyometric box","Erg machine"],
+phases:[
+  {name:"Warm-Up",ex:[
+    {n:"Erg machine",s:"1",r:"5 min",w:"",rest:"",note:"Get blood flowing"},
+    {n:"Squat sit",s:"1",r:"2 min",w:"",rest:""},
+    {n:"World's greatest stretch + knee push",s:"1",r:"10",w:"",rest:""},
+    {n:"90/90 hip flow",s:"1",r:"10",w:"",rest:""},
+    {n:"ATG stretch",s:"1",r:"10",w:"",rest:""}]},
+  {name:"Main Lifts",ex:[
+    {n:"Deadlift",s:"4",r:"5",w:"130 kg",rest:"2:00"},
+    {n:"Back squat / Front squat",s:"4",r:"5",w:"120 kg",rest:"2:00"},
+    {n:"Bulgarian split squat",s:"4",r:"6-10",w:"60 kg",rest:"1:30"},
+    {n:"BB ATG split squat",s:"3",r:"8-10",w:"30-40 kg",rest:"1:00"},
+    {n:"BB Seated good morning",s:"3",r:"8-10",w:"30-40 kg",rest:"1:00"},
+    {n:"DB Dragon squat",s:"2",r:"8-10",w:"10 kg",rest:"1:00"},
+    {n:"DB Kozak squat + hip rotation",s:"2",r:"8-10",w:"10 kg",rest:"1:00"}]},
+  {name:"Plyometrics",ex:[
+    {n:"Depth jumps",s:"2",r:"5",w:"BW",rest:"1:00",note:"Only when fully recovered"},
+    {n:"Box jumps",s:"2",r:"5",w:"BW",rest:"1:00"},
+    {n:"Seated box jumps",s:"2",r:"5",w:"BW",rest:"1:00"}]}
+]},
+
+{id:2,title:"Upper Body Strength",cat:"strength",sub:"Upper Body",dur:90,diff:"hard",
+tags:["bench press","pull-ups","dips","overhead press","rows","shoulder health"],
+desc:"Comprehensive upper body session with eccentric shoulder health accessories. Heavy pressing and pulling patterns.",
+gear:["Barbell","Plates","Dumbbells","Pull-up bar","Dip bars","Erg machine"],
+phases:[
+  {name:"Warm-Up",ex:[
+    {n:"Erg / heart rate",s:"1",r:"5 min",note:"Get blood flowing"},
+    {n:"Light mobility + active stretch",s:"1",r:"5 min"}]},
+  {name:"Main Lifts",ex:[
+    {n:"Incline bench press",s:"5",r:"6-8",w:"80 kg",rest:"2:00"},
+    {n:"Weighted pull-ups",s:"5",r:"5-6",w:"30 kg",rest:"1:30-2:00"},
+    {n:"Weighted dips",s:"4",r:"6-8",w:"30 kg",rest:"1:30-2:00"},
+    {n:"BB row",s:"4",r:"6-8",w:"60 kg",rest:"1:30-2:00"},
+    {n:"Roman chair",s:"3",r:"8-10",w:"BW",rest:"1:00"},
+    {n:"OH press",s:"4",r:"6",w:"55 kg",rest:"1:30-2:00"}]},
+  {name:"Shoulder Health (Eccentric)",ex:[
+    {n:"External rotator",s:"3",r:"6-8",w:"6 kg",rest:"1:00",note:"4 sec eccentric"},
+    {n:"Powell rise",s:"3",r:"6-8",w:"4 kg",rest:"1:00",note:"4 sec eccentric"},
+    {n:"Trap 3",s:"3",r:"6-8",w:"4 kg",rest:"1:00",note:"4 sec eccentric"}]}
+]},
+
+{id:3,title:"Wave Loading: 3/2/1",cat:"strength",sub:"Full Body",dur:55,diff:"hard",
+tags:["deadlift","bench press","wave loading","progressive overload"],
+desc:"Wave loading protocol — repeat after rep 1, increase weight 2nd round. Goal: +5 lb each week. Learn the skill of being strong.",
+gear:["Barbell","Plates","Resistance band","Dumbbells"],
+phases:[
+  {name:"Main Work",ex:[
+    {n:"Deadlift 3/2/1",s:"2 waves",r:"3, 2, 1",w:"Increase each wave",rest:"2-3 min",note:"Increase weight from last week"},
+    {n:"Bench press 3/2/1",s:"2 waves",r:"3, 2, 1",w:"Increase each wave",rest:"2-3 min"}]},
+  {name:"Accessory",ex:[
+    {n:"Banded good mornings",s:"3",r:"Max",w:"Band",rest:"60s"},
+    {n:"DB push press",s:"3",r:"Max",w:"50/35 lb",rest:"60s"}]}
+]},
+
+{id:4,title:"Zercher Lunges + Weighted Chins",cat:"strength",sub:"Full Body",dur:60,diff:"hard",
+tags:["Zercher lunge","weighted pull-ups","row","ski erg","ascending"],
+desc:"Ascending weight strength block followed by threshold conditioning. Increase load each round — finish heavier than you started.",
+gear:["Barbell","Plates","Pull-up bar","Row erg / Ski erg"],
+phases:[
+  {name:"Strength",ex:[
+    {n:"Alternating reverse Zercher lunges",s:"4",r:"12/8/6/4",w:"Ascending",rest:"90s",note:"Increase weight each round"},
+    {n:"Weighted pull-ups",s:"4",r:"10/8/6/4",w:"Ascending",rest:"90s",note:"Increase weight each round"}]},
+  {name:"Conditioning",ex:[
+    {n:"500m row or ski",s:"11-12",r:"500m",rest:"60s",note:"10-15s faster than time trial pace"},
+    {n:"Cool-down jog",s:"1",r:"10-15 min"}]}
+]},
+
+{id:5,title:"Hamstring & Posterior Chain",cat:"strength",sub:"Lower Body",dur:75,diff:"hard",
+tags:["Romanian deadlift","sumo deadlift","Nordic curl","hip thrust","leg curl","posterior chain"],
+desc:"Posterior chain focus — RDLs, hip hinge variations, and Nordic curls. Builds the strength base for running and pulling.",
+gear:["Barbell","Plates","Dumbbells","GHD or Nordic curl setup","Cable machine"],
+phases:[
+  {name:"Warm-Up",ex:[
+    {n:"Hip circles + leg swings",s:"1",r:"2 min"},
+    {n:"Banded glute bridge",s:"2",r:"15"}]},
+  {name:"Main Work",ex:[
+    {n:"Sumo deadlift",s:"4",r:"4",w:"Heavy",rest:"2:30"},
+    {n:"Romanian deadlift",s:"4",r:"8",w:"Moderate",rest:"1:30",note:"Slow eccentric, feel the stretch"},
+    {n:"DB hip thrust",s:"4",r:"10-12",w:"Heavy",rest:"1:30"},
+    {n:"Nordic curl",s:"3",r:"5-8",w:"BW",rest:"2:00",note:"Slow descent, explosive up"},
+    {n:"Lying leg curl",s:"3",r:"12-15",w:"Moderate",rest:"60s"}]},
+  {name:"Accessory",ex:[
+    {n:"Cable pull-through",s:"3",r:"15",rest:"60s"},
+    {n:"Seated calf raise",s:"3",r:"20",rest:"60s"}]}
+]},
+
+{id:6,title:"Pull Day — Back & Biceps",cat:"strength",sub:"Upper Body",dur:70,diff:"hard",
+tags:["barbell row","lat pulldown","face pull","bicep curl","rear delt","pull"],
+desc:"Back-dominant pull day. Lat width, upper back thickness, and bicep volume. Great for posture and pulling strength.",
+gear:["Barbell","Pull-up bar","Cable machine","Dumbbells","Resistance band"],
+phases:[
+  {name:"Warm-Up",ex:[
+    {n:"Band pull-aparts",s:"3",r:"15"},
+    {n:"Dead hang",s:"2",r:"30s"}]},
+  {name:"Main Work",ex:[
+    {n:"Barbell row (pronated grip)",s:"4",r:"6-8",w:"70-80 kg",rest:"2:00"},
+    {n:"Weighted pull-ups (neutral grip)",s:"4",r:"5-6",w:"20-30 kg",rest:"2:00"},
+    {n:"Seated cable row (wide grip)",s:"3",r:"10-12",rest:"90s"},
+    {n:"Lat pulldown (close grip)",s:"3",r:"10-12",rest:"90s"},
+    {n:"Face pull",s:"3",r:"15-20",rest:"60s"}]},
+  {name:"Biceps",ex:[
+    {n:"DB curl",s:"3",r:"10-12",rest:"60s"},
+    {n:"Hammer curl",s:"3",r:"10-12",rest:"60s"},
+    {n:"Incline DB curl",s:"2",r:"12-15",rest:"60s"}]}
+]},
+
+{id:7,title:"Push Day — Chest, Shoulders, Triceps",cat:"strength",sub:"Upper Body",dur:70,diff:"hard",
+tags:["bench press","overhead press","lateral raise","dips","triceps","push"],
+desc:"Horizontal and vertical push patterns. Flat bench for pec strength, OHP for shoulder development, lateral raises for width.",
+gear:["Barbell","Plates","Dumbbells","Cable machine","Dip bars"],
+phases:[
+  {name:"Main Lifts",ex:[
+    {n:"Flat bench press",s:"4",r:"6-8",w:"85-90 kg",rest:"2:00"},
+    {n:"Overhead press",s:"4",r:"6-8",w:"60 kg",rest:"2:00"},
+    {n:"Incline DB press",s:"3",r:"10-12",w:"30-35 kg",rest:"90s"},
+    {n:"Lateral raise",s:"4",r:"15-20",w:"12-15 kg",rest:"60s"}]},
+  {name:"Triceps",ex:[
+    {n:"Weighted dips",s:"3",r:"8-10",w:"20 kg",rest:"90s"},
+    {n:"Skull crusher",s:"3",r:"10-12",rest:"60s"},
+    {n:"Cable pushdown",s:"3",r:"12-15",rest:"60s"}]}
+]},
+
+{id:8,title:"Overhead Strength Day",cat:"strength",sub:"Upper Body",dur:60,diff:"hard",
+tags:["push press","strict press","BTN press","Arnold press","upright row","overhead"],
+desc:"Overhead pressing focus. Push press for power, strict press for strength, accessory for shoulder stability and size.",
+gear:["Barbell","Plates","Dumbbells","Cable machine"],
+phases:[
+  {name:"Main Lifts",ex:[
+    {n:"Push press",s:"5",r:"3",w:"Heavy",rest:"2:30",note:"Explosive leg drive"},
+    {n:"Strict press",s:"4",r:"5-6",w:"Moderate-heavy",rest:"2:00"},
+    {n:"Arnold press",s:"3",r:"10-12",w:"Light-moderate",rest:"90s"}]},
+  {name:"Accessory",ex:[
+    {n:"BTN press (behind-the-neck)",s:"3",r:"8",w:"Light",rest:"90s",note:"Full range, control descent"},
+    {n:"Lateral raise",s:"3",r:"15",rest:"60s"},
+    {n:"Face pull",s:"3",r:"15-20",rest:"60s"},
+    {n:"Upright row",s:"3",r:"10-12",rest:"60s"}]}
+]},
+
+{id:9,title:"Full Body 5×5",cat:"strength",sub:"Full Body",dur:60,diff:"moderate",
+tags:["squat","bench","row","deadlift","5x5","Stronglifts","compound"],
+desc:"Classic 5×5 strength program. Alternating A/B sessions. Progressive overload each week. Simple, proven, effective.",
+gear:["Barbell","Plates","Rack"],
+phases:[
+  {name:"Session A",ex:[
+    {n:"Back squat",s:"5",r:"5",w:"Progressive",rest:"3:00"},
+    {n:"Bench press",s:"5",r:"5",w:"Progressive",rest:"3:00"},
+    {n:"Barbell row",s:"5",r:"5",w:"Progressive",rest:"3:00"}]},
+  {name:"Session B (alternate)",ex:[
+    {n:"Back squat",s:"5",r:"5",w:"Progressive",rest:"3:00"},
+    {n:"Overhead press",s:"5",r:"5",w:"Progressive",rest:"3:00"},
+    {n:"Deadlift",s:"1",r:"5",w:"Progressive",rest:"3:00",note:"Deadlift is 1×5, not 5×5"}]}
+]},
+
+{id:10,title:"Squat Intensive",cat:"strength",sub:"Lower Body",dur:75,diff:"hard",
+tags:["back squat","pause squat","belt squat","leg press","leg extension","quad"],
+desc:"High-volume squat session. Work up to heavy triples, then accumulate volume on quad isolation and accessory work.",
+gear:["Barbell","Plates","Rack","Belt squat or Leg press","Cable machine"],
+phases:[
+  {name:"Main Lift",ex:[
+    {n:"Back squat",s:"6",r:"3",w:"85-92%",rest:"3:00",note:"Work up progressively"},
+    {n:"Pause squat (3s)",s:"3",r:"3",w:"70%",rest:"2:00"}]},
+  {name:"Accessory",ex:[
+    {n:"Belt squat or Leg press",s:"3",r:"12-15",rest:"90s"},
+    {n:"Leg extension",s:"3",r:"15-20",rest:"60s"},
+    {n:"Walking lunge",s:"3",r:"20 steps",rest:"90s"},
+    {n:"Calf raise",s:"4",r:"20",rest:"60s"}]}
+]},
+
+{id:11,title:"Arms & Core Finisher",cat:"strength",sub:"Accessory",dur:45,diff:"moderate",
+tags:["bicep curl","tricep","plank","ab rollout","core","arms"],
+desc:"Arms and core specialization block. Use as a session finisher or standalone on deload weeks. High reps, short rest.",
+gear:["Dumbbells","Cable machine","Pull-up bar","Ab wheel"],
+phases:[
+  {name:"Arms",ex:[
+    {n:"DB curl",s:"4",r:"10-12",rest:"60s"},
+    {n:"Tricep pushdown",s:"4",r:"10-12",rest:"60s"},
+    {n:"Concentration curl",s:"3",r:"12",rest:"60s"},
+    {n:"Overhead tricep extension",s:"3",r:"12",rest:"60s"},
+    {n:"21s (curl variation)",s:"2",r:"21",rest:"90s"}]},
+  {name:"Core",ex:[
+    {n:"Plank",s:"3",r:"60s",rest:"45s"},
+    {n:"Ab rollout",s:"3",r:"10",rest:"60s"},
+    {n:"L-sit",s:"3",r:"20s",rest:"45s"},
+    {n:"Dead bug",s:"3",r:"10 each side",rest:"45s"}]}
+]},
+
+// ═══════════════ ENDURANCE ═══════════════
+{id:12,title:"30-Min Max Distance Test",cat:"endurance",sub:"Running Test",dur:50,diff:"max effort",
+tags:["baseline","time trial","aerobic","HR monitor"],
+desc:"Aerobic capacity test. Record total distance. Wear HR monitor. Negative split — don't blow up the first half.",
+gear:["Running shoes","GPS watch or treadmill"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Easy run",s:"1",r:"10 min",note:"Gradually increase pace"}]},
+  {name:"Test",ex:[{n:"Max distance run",s:"1",r:"30 min",note:"Negative split. Record distance."}]},
+  {name:"Cool Down",ex:[{n:"Easy jog",s:"1",r:"10 min"}]}
+]},
+
+{id:13,title:"Negative Split Run",cat:"endurance",sub:"Tempo",dur:50,diff:"moderate",
+tags:["negative split","tempo","progressive","pacing"],
+desc:"Every 5-10 min, increase pace. Don't kill yourself first 30 min. Last 20 should feel like a race. Cover more miles each time you do this.",
+gear:["Running shoes","GPS watch"],
+phases:[
+  {name:"Run",ex:[{n:"Negative split run",s:"1",r:"50 min",note:"Ex: min 0-10 @ 9 min/mi → min 40-50 above time trial pace"}]}
+]},
+
+{id:14,title:"Long Aerobic Run",cat:"endurance",sub:"Zone 2",dur:90,diff:"easy",
+tags:["zone 2","long run","aerobic base","LSD"],
+desc:"Long slow distance. Keep HR below 70% max. Last mile max effort. Build the aerobic engine.",
+gear:["Running shoes","HR monitor"],
+phases:[
+  {name:"Run",ex:[{n:"Long run",s:"1",r:"80-90 min",note:"Below 70% effort. Last mile at max effort."}]}
+]},
+
+{id:15,title:"Speed Play Intervals (Fartlek)",cat:"endurance",sub:"Threshold",dur:45,diff:"hard",
+tags:["intervals","fartlek","5k pace","threshold","speed"],
+desc:"1 min hard / 1 min easy. Hard at 5k pace, easy at marathon pace. Don't fall off the easy minutes — that's the skill.",
+gear:["Running shoes","GPS watch"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Easy run",s:"1",r:"10 min"}]},
+  {name:"Intervals",ex:[{n:"1 min hard / 1 min easy",s:"10-14 rounds",r:"1:1",note:"Hard: 5k pace. Easy: marathon pace."}]},
+  {name:"Cool Down",ex:[{n:"Easy jog or walk",s:"1",r:"10-15 min"}]}
+]},
+
+{id:16,title:"500m Row / Ski Intervals",cat:"endurance",sub:"Rowing",dur:40,diff:"hard",
+tags:["row","ski erg","500m","lactate threshold","intervals"],
+desc:"Classic lactate threshold erg work. Each piece 10-15s faster than time trial pace. Consistent splits.",
+gear:["Row erg or Ski erg"],
+phases:[
+  {name:"Intervals",ex:[
+    {n:"500m row or ski",s:"11-12",r:"500m",rest:"60s",note:"10-15s faster than time trial pace per set"},
+    {n:"Cool-down jog",s:"1",r:"10-15 min"}]}
+]},
+
+{id:17,title:"Tempo Run — Steady State",cat:"endurance",sub:"Tempo",dur:40,diff:"moderate",
+tags:["tempo","steady state","threshold","comfortably hard","lactate"],
+desc:"Sustained effort at comfortably hard pace — you can speak a word, not a sentence. Builds lactate threshold and economy.",
+gear:["Running shoes","HR monitor"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Easy run",s:"1",r:"8 min",note:"Progressive pace"}]},
+  {name:"Tempo",ex:[{n:"Steady-state tempo run",s:"1",r:"20-25 min",note:"~75-85% max HR. 6:15-7:00/mile. Comfortably hard — can say a word, not a sentence."}]},
+  {name:"Cool Down",ex:[{n:"Easy jog",s:"1",r:"8 min"}]}
+]},
+
+{id:18,title:"Hill Repeats",cat:"endurance",sub:"Threshold / Power",dur:45,diff:"hard",
+tags:["hills","power","VO2max","running","high effort"],
+desc:"Short explosive efforts uphill. Builds running power, quad strength, and VO2max. Jog back down as recovery.",
+gear:["Running shoes","GPS watch","A hill"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Easy flat run",s:"1",r:"10 min"}]},
+  {name:"Hill Repeats",ex:[{n:"Hard uphill sprint",s:"8-10",r:"60-90s",rest:"Jog back down",note:"90-95% effort on the way up. Full recovery descent."}]},
+  {name:"Cool Down",ex:[{n:"Easy flat jog",s:"1",r:"10 min"}]}
+]},
+
+{id:19,title:"400m Track Intervals",cat:"endurance",sub:"Speed / VO2max",dur:50,diff:"hard",
+tags:["400m","track","VO2max","speed","intervals"],
+desc:"Classic 400m repeats at 5k-3k pace. One of the most effective VO2max training methods. Consistent splits key.",
+gear:["Running shoes","Track or GPS watch"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Easy run + drills + strides",s:"1",r:"12 min"}]},
+  {name:"Intervals",ex:[{n:"400m repeat",s:"8-12",r:"400m",rest:"90s",note:"5k-3k race pace. Last 2 reps should be very hard but doable."}]},
+  {name:"Cool Down",ex:[{n:"Easy jog",s:"1",r:"10 min"}]}
+]},
+
+{id:20,title:"Easy Recovery Run + Strides",cat:"endurance",sub:"Recovery",dur:40,diff:"easy",
+tags:["recovery","zone 1","strides","easy","active recovery"],
+desc:"Easy conversational run followed by short strides to maintain neuromuscular sharpness without accumulating fatigue.",
+gear:["Running shoes"],
+phases:[
+  {name:"Run",ex:[{n:"Easy run",s:"1",r:"30 min",note:"Conversational pace, zone 1-2, <65% HR max"}]},
+  {name:"Strides",ex:[{n:"20s acceleration strides",s:"4-6",r:"20s",rest:"Full walk back",note:"Build to 90% over 5s, hold, coast down. Feel fast and relaxed."}]}
+]},
+
+{id:21,title:"Zone 2 Bike Session",cat:"endurance",sub:"Cycling",dur:75,diff:"easy",
+tags:["zone 2","bike","cycling","aerobic","low impact"],
+desc:"Steady-state zone 2 cycling. Low impact aerobic base-building. Great on recovery days or when legs are sore from lifting.",
+gear:["Bike or indoor trainer"],
+phases:[
+  {name:"Ride",ex:[{n:"Steady-state cycling",s:"1",r:"60-90 min",note:"60-70% max HR. Can hold a full conversation. Focus on consistency over the full duration."}]}
+]},
+
+// ═══════════════ MOBILITY — Torokhtiy Full-Body Mobility for Weightlifting (36 sessions, 12 weeks) ═══════════════
+{id:22,title:"Session 1/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["ankle","knee","squat","hip","PVC","lower body"],
+desc:"Week 1 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: ankle, knee, and squat mechanics. Mobilization → Activation → Integration.",
+gear:["PVC pipe","Plate"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC sole mobilization",s:"1",r:"1 min"},
+    {n:"Knee mobilization",s:"1",r:"10"},
+    {n:"Floor ankle stretch",s:"1",r:"10"},
+    {n:"Deep squat stretch",s:"1",r:"10 each drill"},
+    {n:"Squat toes rolls",s:"1",r:"10"},
+    {n:"90/90 to spread hip flow",s:"1",r:"10"},
+    {n:"Quad + hamstring stretch",s:"1",r:"10"},
+    {n:"Toe touch to squat",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Capsular ankle rotations",s:"1",r:"10"},
+    {n:"Sciatic nerve glide",s:"1",r:"10"},
+    {n:"Quadruped hip rotations",s:"1",r:"10"},
+    {n:"Seated leg barrier raise",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Prisoner squat",s:"1",r:"15"}]}
+]},
+
+{id:23,title:"Session 2/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["shoulder","neck","wrist","chest","overhead","OHS"],
+desc:"Week 1 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: neck, chest, wrists, and shoulder overhead position.",
+gear:["Plates","Barbell","Rubber band","Mini band","Rack","PVC pipe"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Neck mobilization with plate",s:"1",r:"12"},
+    {n:"Chest massage with plate",s:"1",r:"12"},
+    {n:"Kneeling wrists mobilization",s:"1",r:"12"},
+    {n:"Kneeling Chest Opener",s:"1",r:"12"},
+    {n:"Diagonal child pose",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Mini band plank walk",s:"1",r:"12"},
+    {n:"Sleeping armwrestler",s:"1",r:"12"},
+    {n:"3-position arm abduction in quadrangle",s:"1",r:"8 each"},
+    {n:"Bar elbow stretch",s:"1",r:"8"},
+    {n:"Rubber band rack lat pull",s:"1",r:"15"}]},
+  {name:"Integration",ex:[
+    {n:"Weighted alternating dead bug",s:"1",r:"20"},
+    {n:"Plate Good Mornings",s:"1",r:"12"},
+    {n:"Floor seated PVC press",s:"1",r:"12"}]}
+]},
+
+{id:24,title:"Session 3/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["calf","hip","inner thigh","knee","frog","wall stretch"],
+desc:"Week 1 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: calf, hip, inner thigh mobility. Wall and floor work.",
+gear:["Soft pad","Foam roller"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Dynamic calf stretch",s:"1",r:"10 each drill"},
+    {n:"Half middle split",s:"1",r:"10"},
+    {n:"Legs up the wall",s:"1",r:"1 min hold"},
+    {n:"Wall slide four",s:"1",r:"1 min hold"},
+    {n:"Frog Stretch",s:"1",r:"15"},
+    {n:"Squat knee touches",s:"1",r:"10"},
+    {n:"Half kneeling glides",s:"1",r:"10"},
+    {n:"Narrow squat toes rolls",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Plie back to wall",s:"1",r:"10"},
+    {n:"Wall sit calf raise",s:"1",r:"10"},
+    {n:"90/90 wall internal rotation",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Prisoner squat",s:"1",r:"15"}]}
+]},
+
+{id:25,title:"Session 4/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["spine","lats","chest","triceps","scapula","shoulder"],
+desc:"Week 2 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: thoracic spine, lats, chest, and shoulder activation.",
+gear:["Rack","Plate","PVC pipe","Barbell","Small plates","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"10"},
+    {n:"Rack lats stretch",s:"1",r:"10"},
+    {n:"Rack chest stretch",s:"1",r:"40s"},
+    {n:"Bar triceps stretch",s:"1",r:"40s"},
+    {n:"Kneeling Chest Mobilization",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Kneeling scapula activation",s:"1",r:"10 each position"},
+    {n:"4-point kneeling shoulder rotation",s:"1",r:"10"},
+    {n:"3-position arm abduction in quadrangle",s:"1",r:"8 each"},
+    {n:"Shoulder rotation outside lying",s:"1",r:"20"},
+    {n:"Vertex press laying",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Weighted alternating dead bug",s:"1",r:"20"},
+    {n:"Plate Good Mornings",s:"1",r:"12"},
+    {n:"Floor seated PVC press",s:"1",r:"12"}]}
+]},
+
+{id:26,title:"Session 5/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["front rack","wrist","chest","upper back","elbow","clean"],
+desc:"Week 2 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: wrist, chest, upper back, and front rack position.",
+gear:["Barbell","Plates","Mini band","PVC pipe","Rack"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Kneeling wrists mobilization",s:"1",r:"8"},
+    {n:"Kneeling Chest Opener",s:"1",r:"12"},
+    {n:"Knees and backbone mobilization",s:"1",r:"12"}]},
+  {name:"Activation",ex:[
+    {n:"Sleeping armwrestler",s:"1",r:"12"},
+    {n:"Bar elbow stretch",s:"1",r:"8"},
+    {n:"Upper back activation",s:"1",r:"12"},
+    {n:"Support 90/90 Hip Rotation",s:"1",r:"20"}]},
+  {name:"Integration",ex:[
+    {n:"Duck walk",s:"1",r:"12"},
+    {n:"Rack elbows rotation",s:"1",r:"8"},
+    {n:"Front squat",s:"1",r:"12"}]}
+]},
+
+{id:27,title:"Session 6/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["neck","chest","wrist","scapula","shoulder","sitting press"],
+desc:"Week 2 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: neck, chest, wrist, and scapular control. Sitting press progression.",
+gear:["Rack","Plates","PVC pipe","Barbell","Small plates","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Neck mobilization with plate",s:"1",r:"12"},
+    {n:"Chest massage with plate",s:"1",r:"12"},
+    {n:"Kneeling wrists mobilization",s:"1",r:"12"},
+    {n:"Kneeling Deep Chest Opener",s:"1",r:"12"},
+    {n:"Diagonal child pose",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Halo",s:"1",r:"10"},
+    {n:"Kneeling scapula activation",s:"1",r:"10 each"},
+    {n:"Chest stretch & activation",s:"1",r:"10"},
+    {n:"3-position arm abduction in tripod",s:"1",r:"8 each"},
+    {n:"Horizontal banded sitting press",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Weighted alternating dead bug",s:"1",r:"20"},
+    {n:"Sitting good morning",s:"1",r:"12"},
+    {n:"Sitting press on 5 plates",s:"1",r:"12"}]}
+]},
+
+{id:28,title:"Session 7/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["spine","lats","chest","elbow","shoulder","ankle","front rack"],
+desc:"Week 3 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: spine, lats, elbow, shoulder, and ankle for front rack.",
+gear:["Barbell","Rack","Plates","PVC pipe","Small plates","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"10"},
+    {n:"Rack lats stretch",s:"1",r:"10"},
+    {n:"Rack chest stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Kneeling scapula activation",s:"1",r:"10 each position"},
+    {n:"Elbow Band STRETCH",s:"1",r:"40s"},
+    {n:"Behind Back Shoulder Band STRETCH",s:"1",r:"40s"},
+    {n:"Body Weight Ankle STRETCH",s:"1",r:"40s"}]},
+  {name:"Integration",ex:[
+    {n:"Duck walk",s:"1",r:"12"},
+    {n:"Rack elbows rotation",s:"1",r:"8"},
+    {n:"Front squat",s:"1",r:"12"}]}
+]},
+
+{id:29,title:"Session 8/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["ankle","knee","hip flexor","squat","OHS","lower body"],
+desc:"Week 3 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: ankle, knee, hip flexor. Progresses to air overhead squat.",
+gear:["PVC pipe","Plate"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC sole mobilization",s:"1",r:"1 min"},
+    {n:"Knee mobilization",s:"1",r:"10"},
+    {n:"Floor ankle stretch",s:"1",r:"10"},
+    {n:"Deep squat stretch",s:"1",r:"10 each"},
+    {n:"Quad + hamstring stretch",s:"1",r:"10"},
+    {n:"Dynamic hip flexor stretch",s:"1",r:"10"},
+    {n:"90/90 to spread hip flow",s:"1",r:"10"},
+    {n:"Dowel internal rotation lunge",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Supported leg kick with hip rotation",s:"1",r:"10"},
+    {n:"Deficit calf raises",s:"1",r:"15"},
+    {n:"Supported step forward",s:"1",r:"10"},
+    {n:"Supported barrier hip rotations",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Air overhead squats",s:"1",r:"15"}]}
+]},
+
+{id:30,title:"Session 9/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["wrist","chest","arm abduction","lat","ankle","front rack"],
+desc:"Week 3 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: wrist, chest, arm abduction in tripod, lat band, and ankle.",
+gear:["Barbell","Mini band","PVC pipe","Rack","Plates"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Kneeling wrists mobilization with bar",s:"1",r:"8"},
+    {n:"Kneeling Chest Opener",s:"1",r:"12"},
+    {n:"Knees and backbone mobilization",s:"1",r:"12"}]},
+  {name:"Activation",ex:[
+    {n:"Chest stretch & activation",s:"1",r:"10"},
+    {n:"3-position arm abduction in tripod",s:"1",r:"8 each"},
+    {n:"Lat Band STRETCH",s:"1",r:"40s"},
+    {n:"Body Weight Ankle STRETCH",s:"1",r:"40s"}]},
+  {name:"Integration",ex:[
+    {n:"Duck walk",s:"1",r:"12"},
+    {n:"Rack elbows rotation + Front Rack hold",s:"1",r:"8"},
+    {n:"Front squat",s:"1",r:"12"}]}
+]},
+
+{id:31,title:"Session 10/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["calf","hip","inner thigh","KB march","air OHS","lower body"],
+desc:"Week 4 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: calf, hip, inner thigh with kettlebell marches. Air overhead squat.",
+gear:["Plates","Kettlebells","Rack","Soft pad","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Dynamic calf stretch",s:"1",r:"10 each drill"},
+    {n:"Half middle split",s:"1",r:"10"},
+    {n:"Wall slide four",s:"1",r:"1 min hold"},
+    {n:"Dynamic quad stretch",s:"1",r:"10"},
+    {n:"Frog Stretch",s:"1",r:"15"},
+    {n:"90/90 good mornings",s:"1",r:"10"},
+    {n:"Narrow squat toes rolls",s:"1",r:"10"},
+    {n:"Half kneeling glides",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Standing KB marches",s:"1",r:"10"},
+    {n:"Face down leg barrier raise",s:"1",r:"10"},
+    {n:"Hip external rotation lift overs",s:"1",r:"10"},
+    {n:"Side banded butterfly",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Air overhead squats",s:"1",r:"15"}]}
+]},
+
+{id:79,title:"Session 11/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["spine","shoulder stability","birddog","upper back","overhead"],
+desc:"Week 4 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: spine, shoulder stability with rubber bands and birddog.",
+gear:["Barbell","Rack","Plates","Bench","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"10"},
+    {n:"Rack lats stretch",s:"1",r:"10"},
+    {n:"Rack chest stretch",s:"1",r:"40s"},
+    {n:"Bar triceps stretch",s:"1",r:"40s"},
+    {n:"Rack triceps stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Shoulder spins with rubber bands",s:"1",r:"15"},
+    {n:"Banded birddog",s:"1",r:"15"},
+    {n:"4-point kneeling shoulder rotation",s:"1",r:"12"},
+    {n:"Shoulder rotation outside lying",s:"1",r:"20"},
+    {n:"Full squat upper back activation",s:"1",r:"15"}]},
+  {name:"Integration",ex:[
+    {n:"Weighted alternating dead bug",s:"1",r:"20"},
+    {n:"Sitting good morning",s:"1",r:"12"},
+    {n:"Sitting press on 5 plates",s:"1",r:"12"}]}
+]},
+
+{id:80,title:"Session 12/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["ankle","knee","hip","banded OHS","lower body"],
+desc:"Week 4 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: ankle, knee, hip. Progresses to banded overhead squat.",
+gear:["Mini band","Plate","PVC pipe"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC sole mobilization",s:"1",r:"1 min"},
+    {n:"Knee mobilization",s:"1",r:"10"},
+    {n:"Floor ankle stretch",s:"1",r:"10"},
+    {n:"Deep squat stretch",s:"1",r:"10 each"},
+    {n:"Quad + hamstring stretch",s:"1",r:"10"},
+    {n:"Dynamic hip flexor stretch",s:"1",r:"10"},
+    {n:"90/90 to spread hip flow",s:"1",r:"10"},
+    {n:"Dowel internal rotation lunge",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Capsular ankle rotations",s:"1",r:"10"},
+    {n:"Sciatic nerve glide",s:"1",r:"10"},
+    {n:"Quadruped hip rotations",s:"1",r:"10"},
+    {n:"Seated leg barrier raise",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Banded overhead squats",s:"1",r:"15"}]}
+]},
+
+{id:81,title:"Session 13/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["neck","wrist","chest","scapula","overhead","incline press"],
+desc:"Week 5 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: neck, wrist, chest progression. Incline behind-the-neck press integration.",
+gear:["Plates","Barbell","Rubber band","Mini band","Rack","PVC pipe"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Neck mobilization with plate",s:"1",r:"10"},
+    {n:"Kneeling wrists mobilization",s:"1",r:"10"},
+    {n:"Kneeling Chest Opener",s:"1",r:"10"},
+    {n:"Diagonal child pose",s:"1",r:"40s"},
+    {n:"Kneeling Chest Mobilization",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Mini band plank walk",s:"1",r:"10"},
+    {n:"Sleeping armwrestler",s:"1",r:"10"},
+    {n:"3-position arm abduction in quadrangle",s:"1",r:"8 each"},
+    {n:"Bar elbow stretch",s:"1",r:"8"},
+    {n:"Rubber band rack lat pull",s:"1",r:"15"}]},
+  {name:"Integration",ex:[
+    {n:"Legs dead bug",s:"1",r:"20"},
+    {n:"Incline behind-the-neck press",s:"1",r:"12"},
+    {n:"Sitting press on 4 plates",s:"1",r:"12"}]}
+]},
+
+{id:82,title:"Session 14/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["shoulder","elbow","triceps","hip","front rack"],
+desc:"Week 5 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: shoulder rotation, triceps band stretch, 90/90 hip rotation.",
+gear:["Barbell","Rack","Mini band","Plates"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"10"},
+    {n:"Rack lats stretch",s:"1",r:"10"},
+    {n:"Rack chest stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Shoulder rotation outside lying",s:"1",r:"20"},
+    {n:"Triceps Band STRETCH",s:"1",r:"40s"},
+    {n:"Support 90/90 Hip Rotation",s:"1",r:"20"},
+    {n:"Full squat upper back activation",s:"1",r:"12"}]},
+  {name:"Integration",ex:[
+    {n:"Duck walk",s:"1",r:"12"},
+    {n:"Rack elbows rotation",s:"1",r:"8"},
+    {n:"Front squat",s:"1",r:"12"}]}
+]},
+
+{id:83,title:"Session 15/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["PVC shoulder","arm abduction","elbow rotation","sitting press","overhead"],
+desc:"Week 5 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC shoulder circles, arm abduction in tripod, sitting press progression.",
+gear:["Barbell","Plates","PVC pipe","Rack","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC shoulder circle up",s:"1",r:"10"},
+    {n:"PVC lunge position rotation",s:"1",r:"10"},
+    {n:"PVC shoulder rotators stretch",s:"1",r:"10"},
+    {n:"Knees & backbone mobilization",s:"1",r:"10"},
+    {n:"Kneeling triceps PVC stretch",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"3-position arm abduction in tripod",s:"1",r:"8 each"},
+    {n:"Vertex press laying",s:"1",r:"10"},
+    {n:"PVC raise laying",s:"1",r:"20"},
+    {n:"Elbow Rotation",s:"1",r:"10"},
+    {n:"Horizontal banded sitting press",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Legs dead bug",s:"1",r:"20"},
+    {n:"Incline behind-the-neck press",s:"1",r:"12"},
+    {n:"Sitting press on 4 plates",s:"1",r:"12"}]}
+]},
+
+{id:84,title:"Session 16/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["wrist","chest","elbow","hip","muscle clean","box squat"],
+desc:"Week 6 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: wrist, chest, elbow. Introduces PVC overhead duck walk and box front squat.",
+gear:["Box","PVC pipe","Rack","Barbell","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Kneeling wrists mobilization",s:"1",r:"12"},
+    {n:"Kneeling Chest Opener",s:"1",r:"12"},
+    {n:"Knees and backbone mobilization",s:"1",r:"12"}]},
+  {name:"Activation",ex:[
+    {n:"Sleeping armwrestler",s:"1",r:"15"},
+    {n:"Bar elbow stretch",s:"1",r:"8"},
+    {n:"Rubber band rack lat pull",s:"1",r:"20"},
+    {n:"90/90 Hip Rotation",s:"1",r:"12"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Overhead Duck Walk",s:"1",r:"12"},
+    {n:"PVC Tall Muscle Clean",s:"1",r:"12"},
+    {n:"Box Front Squat",s:"1",r:"12"}]}
+]},
+
+{id:85,title:"Session 17/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["hip","pigeon","hamstring","knee stability","banded OHS"],
+desc:"Week 6 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: hip, pigeon, hamstring, knee stability. Banded OHS integration.",
+gear:["Bench","Kettlebells","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"90/90 heel taps",s:"1",r:"10"},
+    {n:"Narrow squat toes rolls",s:"1",r:"10"},
+    {n:"Side lunge mobilization",s:"1",r:"10"},
+    {n:"90/90 hip + good morning",s:"1",r:"10"},
+    {n:"Pigeon rotation",s:"1",r:"10"},
+    {n:"Hamstring/Hip flexor stretch",s:"1",r:"10"},
+    {n:"Squat with rotation",s:"1",r:"10"},
+    {n:"Wide squat push aways",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Incline toe raises",s:"1",r:"10"},
+    {n:"Single leg bench squat",s:"1",r:"10"},
+    {n:"Weighted squat knee touches",s:"1",r:"10"},
+    {n:"Weighted butterfly",s:"1",r:"20"}]},
+  {name:"Integration",ex:[
+    {n:"Banded overhead squats",s:"1",r:"15"}]}
+]},
+
+{id:86,title:"Session 18/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["PVC rotators","lats","arm abduction","shoulder","hip","clean"],
+desc:"Week 6 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC rotators, lats, arm abduction. Continues PVC duck walk and box front squat.",
+gear:["Box","PVC pipe","Rack","Barbell","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC shoulder rotators stretch",s:"1",r:"10"},
+    {n:"PVC lats mobilization",s:"1",r:"40s"},
+    {n:"Knees and backbone mobilization",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"3-position arm abduction in tripod",s:"1",r:"8 each"},
+    {n:"Shoulder Band STRETCH",s:"1",r:"40s"},
+    {n:"Vertex press laying",s:"1",r:"12"},
+    {n:"90/90 Hip Rotation",s:"1",r:"12"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Overhead Duck Walk",s:"1",r:"12"},
+    {n:"PVC Tall Muscle Clean",s:"1",r:"12"},
+    {n:"Box Front Squat",s:"1",r:"12"}]}
+]},
+
+{id:87,title:"Session 19/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["ankle","knee","hip","squat","inside band OHS"],
+desc:"Week 7 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: ankle, knee, squat patterns. Progresses to inside-band overhead squat.",
+gear:["Mini band","Plate","PVC pipe"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC sole mobilization",s:"1",r:"1 min"},
+    {n:"Knee mobilization",s:"1",r:"10"},
+    {n:"Floor ankle stretch",s:"1",r:"10"},
+    {n:"Squat toes rolls",s:"1",r:"10"},
+    {n:"Quad + hamstring stretch",s:"1",r:"10"},
+    {n:"Dynamic hip flexor stretch",s:"1",r:"10"},
+    {n:"Dowel internal rotation lunge",s:"1",r:"10"},
+    {n:"Toe touch to squat",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Supported leg kick with hip rotation",s:"1",r:"10"},
+    {n:"Deficit calf raises",s:"1",r:"15"},
+    {n:"Supported step forward",s:"1",r:"10"},
+    {n:"Supported barrier hip rotations",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Inside band OHS",s:"1",r:"15"}]}
+]},
+
+{id:88,title:"Session 20/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["PVC mobility","chest","shoulder","sitting press","overhead"],
+desc:"Week 7 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC frontal rotation, shoulder mobility, sitting press on 3 plates.",
+gear:["PVC pipe","Plates","Rack","Barbell","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC frontal rotation",s:"1",r:"10"},
+    {n:"PVC shoulders mobilization",s:"1",r:"10"},
+    {n:"PVC shoulder rotators stretch",s:"1",r:"10"},
+    {n:"PVC lats rotation stretching",s:"1",r:"40s"},
+    {n:"PVC upper body stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Chest stretch & activation",s:"1",r:"10"},
+    {n:"Bar elbow stretch",s:"1",r:"8"},
+    {n:"Sleeping armwrestler",s:"1",r:"15"},
+    {n:"3-position arm abduction in tripod",s:"1",r:"8 each"},
+    {n:"Horizontal banded sitting press",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Legs dead bug",s:"1",r:"20"},
+    {n:"Good Morning",s:"1",r:"12"},
+    {n:"Sitting press on 3 plates",s:"1",r:"12"}]}
+]},
+
+{id:89,title:"Session 21/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["hip","ankle","squat","Kosak squat","inside band OHS"],
+desc:"Week 7 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: hip, ankle, squat with Kosak shifts. Inside band OHS integration.",
+gear:["Plate","Rack","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"90/90 heel taps",s:"1",r:"10"},
+    {n:"Toe extension lunges",s:"1",r:"10"},
+    {n:"Narrow squat toes rolls",s:"1",r:"10"},
+    {n:"Side lunge mobilization",s:"1",r:"10"},
+    {n:"90/90 hip + good morning",s:"1",r:"10"},
+    {n:"Pigeon rotation",s:"1",r:"10"},
+    {n:"Hamstring/Hip flexor stretch",s:"1",r:"10"},
+    {n:"Slow resisted squats",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Kneeling leg cross lift",s:"1",r:"10"},
+    {n:"Soleus squat",s:"1",r:"15"},
+    {n:"Quadruped hip side flexion",s:"1",r:"10"},
+    {n:"Kosak squat shifts",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Inside band OHS",s:"1",r:"15"}]}
+]},
+
+{id:90,title:"Session 22/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["PVC upper body","IYT","halo","overhead press","OHS"],
+desc:"Week 8 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC circles, I-Y-T lead springs, halo, and press strength.",
+gear:["Plates","Barbell","PVC pipe","Rack","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC shoulder circle up",s:"1",r:"10"},
+    {n:"PVC lunge position rotation",s:"1",r:"10"},
+    {n:"Knees & backbone mobilization",s:"1",r:"10"},
+    {n:"Kneeling triceps PVC stretch",s:"1",r:"10"},
+    {n:"Kneeling Chest Mobilization",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"I-Y-T lead springs lying",s:"1",r:"8 each"},
+    {n:"Elbow Rotation",s:"1",r:"10"},
+    {n:"Halo",s:"1",r:"10"},
+    {n:"PVC press behind neck laying",s:"1",r:"10"},
+    {n:"Horizontal banded sitting press",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Legs dead bug",s:"1",r:"20"},
+    {n:"Good Morning",s:"1",r:"12"},
+    {n:"Sitting press on 3 plates",s:"1",r:"12"}]}
+]},
+
+{id:91,title:"Session 23/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["wrist","PVC shoulder","chest","lat","deep squat","front rack"],
+desc:"Week 8 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: wrist, PVC shoulder, lat band, weighted deep squat stretch.",
+gear:["Box","PVC pipe","Rack","Mini band","Barbell","Plate"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Kneeling wrists mobilization with bar",s:"1",r:"12"},
+    {n:"PVC shoulders mobilization",s:"1",r:"12"},
+    {n:"Kneeling Deep Chest Opener",s:"1",r:"12"}]},
+  {name:"Activation",ex:[
+    {n:"Bar elbow stretch",s:"1",r:"8"},
+    {n:"Sleeping armwrestler",s:"1",r:"15"},
+    {n:"Lat Band STRETCH",s:"1",r:"40s"},
+    {n:"Weighted Deep Squat STRETCH",s:"1",r:"40s"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Overhead Duck Walk",s:"1",r:"12"},
+    {n:"PVC Tall Muscle Clean",s:"1",r:"12"},
+    {n:"Box Front Squat",s:"1",r:"12"}]}
+]},
+
+{id:92,title:"Session 24/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["spine","scapula","shoulder","YT barrier","Sots Press","overhead"],
+desc:"Week 8 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: spine, scapula stability, Y-T barrier. Introduces Clean Sots Press.",
+gear:["Rack","Plates","PVC pipe","Small dumbbells","Barbell","Small plates","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"12"},
+    {n:"Rack lats stretch",s:"1",r:"12"},
+    {n:"Rack chest stretch",s:"1",r:"40s"},
+    {n:"Bar triceps stretch",s:"1",r:"40s"},
+    {n:"Rack triceps stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Kneeling scapula activation",s:"1",r:"10 each"},
+    {n:"4-point kneeling shoulder rotation",s:"1",r:"12"},
+    {n:"Shoulder rotation outside lying",s:"1",r:"20"},
+    {n:"Laying barrier Y's and T's",s:"1",r:"12"},
+    {n:"Horizontal banded sitting press",s:"1",r:"12"}]},
+  {name:"Integration",ex:[
+    {n:"2-arm 2-leg dead bug",s:"1",r:"20"},
+    {n:"Clean good morning sitting",s:"1",r:"12"},
+    {n:"Clean Sots Press",s:"1",r:"12"}]}
+]},
+
+{id:93,title:"Session 25/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["PVC rotators","IYT","shoulder","deep squat","rack hip muscle clean"],
+desc:"Week 9 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC rotators, I-Y-T, advanced rack hip muscle clean + front squat.",
+gear:["Box","PVC pipe","Rack","Barbell","Mini band","Plate"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC shoulder rotators stretch",s:"1",r:"12"},
+    {n:"PVC lats mobilization",s:"1",r:"40s"},
+    {n:"Knees & backbone mobilization",s:"1",r:"12"}]},
+  {name:"Activation",ex:[
+    {n:"Adams thing",s:"1",r:"8"},
+    {n:"I-Y-T lead springs lying",s:"1",r:"8 each"},
+    {n:"Behind Back Shoulder Band STRETCH",s:"1",r:"40s"},
+    {n:"Weighted Deep Squat STRETCH",s:"1",r:"40s"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Overhead Duck Walk",s:"1",r:"12"},
+    {n:"PVC Rack Hip Muscle Clean + Front Squat",s:"1",r:"8 each"},
+    {n:"Box Front Squat",s:"1",r:"12"}]}
+]},
+
+{id:94,title:"Session 26/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["calf","hip","inner thigh","plie","plate OHS"],
+desc:"Week 9 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: calf, hip, inner thigh with plie variations. Plate overhead squat.",
+gear:["Plate","Foam roller"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Dynamic calf stretch",s:"1",r:"10 each drill"},
+    {n:"Half middle split",s:"1",r:"10"},
+    {n:"Legs up the wall",s:"1",r:"1 min hold"},
+    {n:"Dynamic quad stretch",s:"1",r:"10"},
+    {n:"Frog Stretch",s:"1",r:"15"},
+    {n:"90/90 good mornings",s:"1",r:"10"},
+    {n:"Narrow squat toes rolls",s:"1",r:"10"},
+    {n:"Half kneeling glides",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Plie back to wall",s:"1",r:"10"},
+    {n:"Plie chest to wall",s:"1",r:"10"},
+    {n:"Wall sit calf raise",s:"1",r:"10"},
+    {n:"90/90 wall internal rotation",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"Overhead squats with plate",s:"1",r:"15"}]}
+]},
+
+{id:95,title:"Session 27/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["spine","shoulder","YT","elbow","ankle","half clean","straps"],
+desc:"Week 9 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: spine, shoulder Y-T, elbow band, ankle. Introduces front squat with straps.",
+gear:["Rack","Plates","PVC pipe","Barbell","Small dumbbells","Straps","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"10"},
+    {n:"Rack lats stretch",s:"1",r:"10"},
+    {n:"Rack chest stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"4-point kneeling shoulder rotation",s:"1",r:"12"},
+    {n:"Laying barrier Y's and T's",s:"1",r:"12"},
+    {n:"Elbow Band STRETCH",s:"1",r:"40s"},
+    {n:"Barbell Ankle STRETCH",s:"1",r:"40s"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Front Rack Duck Walk",s:"1",r:"12"},
+    {n:"PVC 1/2 Tall Clean",s:"1",r:"8"},
+    {n:"Front Squat with straps",s:"1",r:"12"}]}
+]},
+
+{id:96,title:"Session 28/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["hip","hamstring","knee","plate OHS","lower body"],
+desc:"Week 10 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: hip, hamstring, knee. Plate overhead squat.",
+gear:["Bench","Kettlebells","Plate"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"90/90 heel taps",s:"1",r:"10"},
+    {n:"Toe extension lunges",s:"1",r:"10"},
+    {n:"Narrow squat toes rolls",s:"1",r:"10"},
+    {n:"Side lunge mobilization",s:"1",r:"10"},
+    {n:"90/90 hip + good morning",s:"1",r:"10"},
+    {n:"Hamstring/Hip flexor stretch",s:"1",r:"10"},
+    {n:"Squat with rotation",s:"1",r:"10"},
+    {n:"Wide squat push aways",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Incline toe raises",s:"1",r:"10"},
+    {n:"Single leg bench squat",s:"1",r:"10"},
+    {n:"Weighted squat knee touches",s:"1",r:"10"},
+    {n:"Weighted butterfly",s:"1",r:"1 min hold"}]},
+  {name:"Integration",ex:[
+    {n:"Overhead squats with plate",s:"1",r:"15"}]}
+]},
+
+{id:97,title:"Session 29/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["PVC","arm abduction","Sots Press","upper back","overhead"],
+desc:"Week 10 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC upper body, arm abduction, Adams thing. Clean Sots Press progression.",
+gear:["Plates","Rack","PVC pipe","Barbell","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC frontal rotation",s:"1",r:"10"},
+    {n:"PVC shoulder circle up",s:"1",r:"10"},
+    {n:"PVC shoulders mobilization",s:"1",r:"10"},
+    {n:"PVC shoulder rotators stretch",s:"1",r:"10"},
+    {n:"PVC lats rotation stretching",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"3-position arm abduction in tripod",s:"1",r:"8 each"},
+    {n:"Adams thing",s:"1",r:"8"},
+    {n:"PVC raise laying",s:"1",r:"15"},
+    {n:"Elbow Rotation",s:"1",r:"10"},
+    {n:"Full squat upper back activation",s:"1",r:"15"}]},
+  {name:"Integration",ex:[
+    {n:"2-arm 2-leg dead bug",s:"1",r:"20"},
+    {n:"Clean good morning sitting",s:"1",r:"12"},
+    {n:"Clean Sots Press",s:"1",r:"12"}]}
+]},
+
+{id:98,title:"Session 30/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["calf","hip","inner thigh","KB march","PVC OHS","comprehensive"],
+desc:"Week 10 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Comprehensive 10-exercise lower body mobilization. PVC overhead squat integration.",
+gear:["Soft pad","Kettlebells","Plate","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Dynamic calf stretch",s:"1",r:"10 each drill"},
+    {n:"Half middle split",s:"1",r:"10"},
+    {n:"Legs up the wall",s:"1",r:"1 min hold"},
+    {n:"Wall slide four",s:"1",r:"1 min hold"},
+    {n:"Dynamic quad stretch",s:"1",r:"10"},
+    {n:"Frog Stretch",s:"1",r:"15"},
+    {n:"90/90 good mornings",s:"1",r:"10"},
+    {n:"Squat knee touches",s:"1",r:"10"},
+    {n:"Narrow squat toes rolls",s:"1",r:"10"},
+    {n:"Half kneeling glides",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Standing KB marches",s:"1",r:"10"},
+    {n:"Face down leg barrier raise",s:"1",r:"10"},
+    {n:"Hip external rotation lift overs",s:"1",r:"10"},
+    {n:"Side banded butterfly",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"PVC overhead squats",s:"1",r:"15"}]}
+]},
+
+{id:99,title:"Session 31/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["spine","shoulder endurance","birddog","IYT","clean good morning"],
+desc:"Week 11 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: spine, shoulder endurance with I-Y-T. Clean good morning and floor seated press.",
+gear:["Barbell","Rack","Bench","Plates","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"12"},
+    {n:"Rack lats stretch",s:"1",r:"12"},
+    {n:"Rack chest stretch",s:"1",r:"40s"},
+    {n:"Bar triceps stretch",s:"1",r:"40s"},
+    {n:"Rack triceps stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Shoulder spins with rubber bands",s:"1",r:"15"},
+    {n:"Banded birddog",s:"1",r:"15"},
+    {n:"4-point kneeling shoulder rotation",s:"1",r:"12"},
+    {n:"I-Y-T lead springs lying",s:"1",r:"8 each"},
+    {n:"Full squat upper back activation",s:"1",r:"15"}]},
+  {name:"Integration",ex:[
+    {n:"2-arm 2-leg dead bug",s:"1",r:"20"},
+    {n:"Clean good morning",s:"1",r:"12"},
+    {n:"Floor seated press",s:"1",r:"12"}]}
+]},
+
+{id:100,title:"Session 32/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["PVC rotators","lats","shoulder","hip recovery","straps","clean"],
+desc:"Week 11 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC rotators, shoulder band, upper back activation. Front squat with straps.",
+gear:["Rack","Plates","PVC pipe","Mini band","Barbell","Straps"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC shoulder rotators stretch",s:"1",r:"10"},
+    {n:"PVC lats mobilization",s:"1",r:"40s"},
+    {n:"Knees & backbone mobilization",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"3-position arm abduction in tripod",s:"1",r:"8 each"},
+    {n:"Shoulder Band STRETCH",s:"1",r:"40s"},
+    {n:"Upper back activation",s:"1",r:"15"},
+    {n:"90/90 Hip Rotation Recovery",s:"1",r:"12"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Front Rack Duck Walk",s:"1",r:"12"},
+    {n:"PVC Tall Clean",s:"1",r:"8"},
+    {n:"Front Squat with straps",s:"1",r:"12"}]}
+]},
+
+{id:101,title:"Session 33/36 — Overhead Mobility",cat:"mobility",sub:"Overhead",dur:30,diff:"easy",
+tags:["PVC upper body","IYT","halo","deep squat press","floor press"],
+desc:"Week 11 · Session 3. Torokhtiy Full-Body Mobility for Weightlifting. Focus: PVC mobility, I-Y-T, halo, horizontal banded deep squat press.",
+gear:["Plates","Rack","PVC pipe","Barbell","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC shoulders mobilization",s:"1",r:"10"},
+    {n:"PVC lunge position rotation",s:"1",r:"10"},
+    {n:"Knees & backbone mobilization",s:"1",r:"10"},
+    {n:"Kneeling triceps PVC stretch",s:"1",r:"10"},
+    {n:"PVC upper body stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Adams thing",s:"1",r:"8"},
+    {n:"I-Y-T lead springs lying",s:"1",r:"8 each"},
+    {n:"Halo",s:"1",r:"12"},
+    {n:"PVC press behind neck laying",s:"1",r:"15"},
+    {n:"Horizontal banded deep squat press",s:"1",r:"12"}]},
+  {name:"Integration",ex:[
+    {n:"2-arm 2-leg dead bug",s:"1",r:"12"},
+    {n:"Clean good morning",s:"1",r:"12"},
+    {n:"Floor seated press",s:"1",r:"12"}]}
+]},
+
+{id:102,title:"Session 34/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["spine","triceps","YT barrier","hip recovery","barbell clean","straps"],
+desc:"Week 12 · Session 1. Torokhtiy Full-Body Mobility for Weightlifting. Focus: spine, triceps band, Y-T barrier, hip recovery. Barbell tall clean.",
+gear:["Rack","Plates","PVC pipe","Barbell","Small dumbbells","Straps","Mini band"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Backbone mobilization",s:"1",r:"10"},
+    {n:"Rack lats stretch",s:"1",r:"10"},
+    {n:"Rack chest stretch",s:"1",r:"40s"}]},
+  {name:"Activation",ex:[
+    {n:"Triceps Band STRETCH",s:"1",r:"40s"},
+    {n:"Laying barrier Y's and T's",s:"1",r:"12"},
+    {n:"90/90 Hip Rotation Recovery",s:"1",r:"12"},
+    {n:"Full squat upper back activation",s:"1",r:"15"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Front Rack Duck Walk",s:"1",r:"12"},
+    {n:"Barbell Tall Clean",s:"1",r:"8"},
+    {n:"Front Squat with straps",s:"1",r:"12"}]}
+]},
+
+{id:103,title:"Session 35/36 — Lower Body Mobility",cat:"mobility",sub:"Lower Body",dur:30,diff:"easy",
+tags:["hip","squat","ankle","Kosak squat","PVC OHS","lower body"],
+desc:"Week 12 · Session 2. Torokhtiy Full-Body Mobility for Weightlifting. Final lower body session. Hip, squat, and ankle patterns with PVC overhead squat.",
+gear:["Plate","Rack","PVC pipe"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"Narrow squat toes rolls",s:"1",r:"10"},
+    {n:"Side lunge mobilization",s:"1",r:"10"},
+    {n:"90/90 hip + good morning",s:"1",r:"10"},
+    {n:"Pigeon rotation",s:"1",r:"10"},
+    {n:"Hamstring/Hip flexor stretch",s:"1",r:"10"},
+    {n:"Squat with rotation",s:"1",r:"10"},
+    {n:"Slow resisted squats",s:"1",r:"10"},
+    {n:"Wide squat push aways",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Kneeling leg cross lift",s:"1",r:"10"},
+    {n:"Soleus squat",s:"1",r:"15"},
+    {n:"Quadruped hip side flexion",s:"1",r:"10"},
+    {n:"Kosak squat shifts",s:"1",r:"10"}]},
+  {name:"Integration",ex:[
+    {n:"PVC overhead squats",s:"1",r:"15"}]}
+]},
+
+{id:104,title:"Session 36/36 — Front Rack Mobility",cat:"mobility",sub:"Front Rack",dur:20,diff:"easy",
+tags:["PVC rotators","shoulder","barbell clean","straps","front rack","FINAL"],
+desc:"Week 12 · Session 3 — FINAL SESSION. Torokhtiy Full-Body Mobility for Weightlifting. Complete the 12-week program. PVC rotators, Adams thing, barbell tall clean.",
+gear:["Rack","Plates","PVC pipe","Mini band","Barbell","Straps"],
+phases:[
+  {name:"Mobilization",ex:[
+    {n:"PVC shoulder rotators stretch",s:"1",r:"10"},
+    {n:"PVC lats mobilization",s:"1",r:"40s"},
+    {n:"Knees & backbone mobilization",s:"1",r:"10"}]},
+  {name:"Activation",ex:[
+    {n:"Adams thing",s:"1",r:"8"},
+    {n:"PVC press behind neck laying",s:"1",r:"15"},
+    {n:"Behind Back Shoulder Band STRETCH",s:"1",r:"40s"},
+    {n:"Barbell Ankle STRETCH",s:"1",r:"40s"}]},
+  {name:"Integration",ex:[
+    {n:"PVC Front Rack Duck Walk",s:"1",r:"12"},
+    {n:"Barbell Tall Clean",s:"1",r:"8"},
+    {n:"Front Squat with straps",s:"1",r:"12"}]}
+]},
+
+// ═══════════════ METCON ═══════════════
+{id:32,title:"Lactate Buffer EMOM",cat:"metcon",sub:"EMOM",dur:20,diff:"hard",
+tags:["EMOM","row","wall balls","box jumps","lactate"],
+desc:"16-min EMOM targeting lactate buffering. Hard but manageable — increase each round. Find your limit on the last round.",
+gear:["Row erg","Wall ball","Plyometric box"],
+phases:[
+  {name:"16-min EMOM × 4 rounds",ex:[
+    {n:"Min 1: Row",s:"4",r:"10-20 cal"},
+    {n:"Min 2: Wall balls",s:"4",r:"10-25"},
+    {n:"Min 3: Box jumps 24/20\"",s:"4",r:"10-20"},
+    {n:"Min 4: Rest",s:"4",r:"Full minute",note:"Increase each round. Find your limit last round."}]}
+]},
+
+{id:33,title:"The Beast — 45-Min AMRAP",cat:"metcon",sub:"AMRAP",dur:45,diff:"max effort",
+tags:["AMRAP","running","pull-ups","sandbag","front carry","45 min"],
+desc:"Grueling 45-minute AMRAP. Go to war on the heavy carry.",
+gear:["Running track","Plyometric box","Sandbag 50/35 lb","Pull-up bar","Barbell 200/150 lb"],
+phases:[
+  {name:"AMRAP 45 min",ex:[
+    {n:"800m run",s:"—",r:"per round"},
+    {n:"Box step over with sandbag",s:"—",r:"20",w:"50/35 lb"},
+    {n:"Strict pull-ups (C2B optional)",s:"—",r:"15"},
+    {n:"Heavy front load carry",s:"—",r:"20m",w:"200/150 lb",note:"Go to war on this!"}]}
+]},
+
+{id:34,title:"Ski School — 10-Min AMRAP",cat:"metcon",sub:"AMRAP",dur:25,diff:"hard",
+tags:["ski erg","deadlift","hang clean","push press","AMRAP"],
+desc:"10-min AMRAP with ski erg and DB complex. Keep HR at 80% — always able to pick up the pace.",
+gear:["Ski erg","Dumbbells"],
+phases:[
+  {name:"10-min AMRAP",ex:[
+    {n:"Cal ski erg",s:"—",r:"15"},
+    {n:"DB deadlift",s:"—",r:"12"},
+    {n:"DB hang clean",s:"—",r:"9"},
+    {n:"DB push press",s:"—",r:"6",note:"Move hard and under control. Always able to pick up pace."}]}
+]},
+
+{id:35,title:"Conditioning Chipper",cat:"metcon",sub:"Chipper",dur:35,diff:"hard",
+tags:["chipper","ski erg","sled push","row","burpee broad jump","pacing"],
+desc:"Classic pacing chipper. Find your sweet spot and hold it.",
+gear:["Ski erg","Sled","Row erg"],
+phases:[
+  {name:"For Time",ex:[
+    {n:"Ski erg",s:"1",r:"1000m"},
+    {n:"Sled push",s:"1",r:"50m"},
+    {n:"Row",s:"1",r:"1000m"},
+    {n:"Burpee broad jump",s:"1",r:"100m",note:"Pace yourself. Find sweet spot then hold."}]}
+]},
+
+{id:36,title:"EMOmania",cat:"metcon",sub:"EMOM",dur:30,diff:"hard",
+tags:["EMOM","burpees","wall balls","shuttle run","toes to bar"],
+desc:"Double 12-min alternating EMOM. Push rep count each round. Score: level achieved.",
+gear:["Wall ball","Pull-up bar","Cones"],
+phases:[
+  {name:"Alternating EMOM 12 min",ex:[
+    {n:"Min 1: Burpees to target",s:"6",r:"L1:10 | L2:12 | L3:14 | L4:15+"},
+    {n:"Min 2: Wall balls",s:"6",r:"L1:10 | L2:12 | L3:18 | L4:20"}]},
+  {name:"Alternating EMOM 12 min",ex:[
+    {n:"Min 1: Shuttle runs",s:"6",r:"L1:5 | L2:6 | L3:7 | L4:8"},
+    {n:"Min 2: Toes to bar",s:"6",r:"L1:10 | L2:12 | L3:18 | L4:20",note:"Score: level achieved."}]}
+]},
+
+{id:37,title:"\"Tristan\" — 2:00 on / 1:00 off",cat:"metcon",sub:"Intervals",dur:30,diff:"hard",
+tags:["deadlift","ski erg","burpees","strength endurance","2:1 intervals"],
+desc:"4 rounds: 7 deadlifts + 14 cal ski + max burpees. 2 min work / 1 min rest. Last rounds extend to 3 min.",
+gear:["Barbell 275/185 lb","Plates","Ski erg"],
+phases:[
+  {name:"Intervals × 4",ex:[
+    {n:"Deadlift",s:"4",r:"7",w:"275/185 lb"},
+    {n:"Cal ski erg",s:"4",r:"14 cal"},
+    {n:"Burpees",s:"4",r:"Max remaining",note:"2 min work / 1 min rest. Rounds 3-4: extend to 3 min."}]}
+]},
+
+{id:38,title:"\"Fran\" — CrossFit Classic",cat:"metcon",sub:"For Time",dur:12,diff:"max effort",
+tags:["Fran","thrusters","pull-ups","21-15-9","CrossFit benchmark"],
+desc:"The queen of benchmark WODs. 21-15-9 thrusters and pull-ups. Fast and brutal. Sub-3 min is elite.",
+gear:["Barbell 95/65 lb","Plates","Pull-up bar"],
+phases:[
+  {name:"21-15-9 for time",ex:[
+    {n:"Thrusters",s:"21-15-9",r:"Unbroken if possible",w:"95/65 lb",note:"Front squat to push press in one motion"},
+    {n:"Pull-ups",s:"21-15-9",r:"Kipping OK",note:"Scale to jumping pull-ups or ring rows if needed"}]}
+]},
+
+{id:39,title:"\"Cindy\" — 20-Min AMRAP",cat:"metcon",sub:"AMRAP",dur:20,diff:"hard",
+tags:["Cindy","pull-ups","push-ups","air squat","AMRAP","bodyweight"],
+desc:"Classic benchmark AMRAP. 5 pull-ups + 10 push-ups + 15 air squats. Good: 15 rounds. Elite: 25+ rounds.",
+gear:["Pull-up bar"],
+phases:[
+  {name:"AMRAP 20 min",ex:[
+    {n:"Pull-ups",s:"—",r:"5",note:"Kipping or strict"},
+    {n:"Push-ups",s:"—",r:"10",note:"Chest to deck every rep"},
+    {n:"Air squats",s:"—",r:"15",note:"Full depth, hip crease below knee"}]}
+]},
+
+{id:40,title:"\"Helen\" — 3 Rounds for Time",cat:"metcon",sub:"For Time",dur:15,diff:"hard",
+tags:["Helen","KB swing","pull-ups","running","3 rounds","CrossFit benchmark"],
+desc:"3 rounds: 400m run + 21 KB swings + 12 pull-ups. Should be 9-12 minutes. Unbroken on the swings is the goal.",
+gear:["KB 53/35 lb","Pull-up bar","400m running space"],
+phases:[
+  {name:"3 Rounds for Time",ex:[
+    {n:"400m run",s:"3",r:"400m"},
+    {n:"KB swings",s:"3",r:"21",w:"53/35 lb",note:"American (overhead). Go unbroken."},
+    {n:"Pull-ups",s:"3",r:"12",note:"Kipping allowed"}]}
+]},
+
+{id:41,title:"Tabata Classic",cat:"metcon",sub:"Tabata",dur:35,diff:"hard",
+tags:["Tabata","20/10","HIIT","row","push-ups","squats","pull-ups"],
+desc:"Tabata intervals across 4 stations. 8 rounds of 20s work / 10s rest per station. Score is lowest round at each.",
+gear:["Row erg","Pull-up bar"],
+phases:[
+  {name:"8 Rounds Each: 20s on / 10s off",ex:[
+    {n:"Station 1: Row",s:"8",r:"20s max cal",rest:"10s"},
+    {n:"Station 2: Push-ups",s:"8",r:"Max reps",rest:"10s"},
+    {n:"Station 3: Air squats",s:"8",r:"Max reps",rest:"10s"},
+    {n:"Station 4: Pull-ups",s:"8",r:"Max reps",rest:"10s",note:"Score = lowest round at each station. Rest 2 min between stations."}]}
+]},
+
+// ═══════════════ OLYMPIC WEIGHTLIFTING ═══════════════
+{id:42,title:"C&J + Snatch Complex",cat:"weightlifting",sub:"Full Session",dur:60,diff:"hard",
+tags:["power clean","squat clean","hang clean","power snatch","hang snatch","E3MOM"],
+desc:"High-volume Olympic complexes. Every 3 min. Clean complex → snatch balance → snatch complex. Build positions and turnover.",
+gear:["Barbell","Plates","Rack"],
+phases:[
+  {name:"Warm-Up",ex:[
+    {n:"Ergs / heart rate",s:"1",r:"5 min"},
+    {n:"Empty bar: Deadlift + Front squat + OH press + Snatch balance",s:"1",r:"2 min"}]},
+  {name:"Clean Complex",ex:[{n:"Power clean + Squat clean + Hang power clean + Hang squat clean",s:"5",r:"E3MOM × 1",w:"70 kg"}]},
+  {name:"Snatch Accessory",ex:[{n:"Snatch balance + OHS",s:"3",r:"3+3",w:"60 kg",rest:"2:00"}]},
+  {name:"Snatch Complex",ex:[{n:"Power snatch + Hang squat snatch",s:"5",r:"E3MOM × 1",w:"50 kg"}]}
+]},
+
+{id:43,title:"C&J Hang Focus — % Work",cat:"weightlifting",sub:"Clean & Jerk",dur:70,diff:"hard",
+tags:["squat clean","hang clean","split jerk","back squat","percentages"],
+desc:"Percentage-based C&J with hang emphasis. Back squats after lifting. AMRAP conditioning to flush.",
+gear:["Barbell","Plates","Rack","Row erg / Bike"],
+phases:[
+  {name:"Warm-Up",ex:[
+    {n:"Row or Bike easy",s:"1",r:"3 min"},
+    {n:"Empty bar: Front squat + Hang squat clean + Split jerk + Push press",s:"1",r:"5+3+3+3"}]},
+  {name:"Lift (10:00–22:00)",ex:[{n:"Squat clean + Hang squat clean + Jerk",s:"6",r:"Every 2:00",w:"75/78/82%",note:"Sets 1-2: 75% | 3-4: 78% | 5-6: 82%"}]},
+  {name:"Strength (28:00–43:00)",ex:[{n:"Back squat",s:"5",r:"3",w:"80-90% of 5RM",rest:"Every 3:00",note:"Sets 1-2: 80-83% | 3-4: 85-88% | Set 5: 90%"}]},
+  {name:"Conditioning",ex:[{n:"AMRAP 12 min: 14 DB snatches + 10 box jump overs + 6 burpee box jumps + 2 wall walks",s:"1",r:"12 min"}]}
+]},
+
+{id:44,title:"Snatch — Slow Pull Focus",cat:"weightlifting",sub:"Snatch",dur:60,diff:"hard",
+tags:["snatch lift off","slow pull","squat snatch","OHS","Sotts press"],
+desc:"Technically demanding. Slow pull structures the full squat snatch. First 2 reps build the third.",
+gear:["Barbell","Plates","Rack","Row erg / Bike"],
+phases:[
+  {name:"Warm-Up",ex:[
+    {n:"Empty bar: Snatch RDL + High pull + Muscle snatch + OHS",s:"1",r:"5 each"}]},
+  {name:"Lift",ex:[{n:"Snatch lift off + Slow-pull squat snatch + Squat snatch",s:"6",r:"Every 2:00",w:"75-80%+",note:"Sets 1-2: 75% | 3-4: 78% | 5-6: ±80%+"}]},
+  {name:"Conditioning",ex:[{n:"E4:00 × 4-5: Cal row + 10 power snatches + bar-facing burpees + 10 OHS",s:"4-5",r:"E4:00",note:"Score: slowest round"}]},
+  {name:"Successory",ex:[
+    {n:"Sotts press",s:"4",r:"10",note:"Heavier than last week"},
+    {n:"Hollow hold",s:"4",r:"45s"}]}
+]},
+
+{id:45,title:"Push Press / Jerk + Deadlift",cat:"weightlifting",sub:"Mixed",dur:70,diff:"hard",
+tags:["push press","push jerk","deadlift","AMRAP","KB swing"],
+desc:"Olympic jerk work paired with heavy deadlifts and long conditioning.",
+gear:["Barbell","Plates","Rack","Ski erg / Row erg","Kettlebell"],
+phases:[
+  {name:"Lift",ex:[{n:"Push press + Push jerk (2+2)",s:"5",r:"Every 2:00",w:"~80% of push press",note:"Feel drive in push press, translate to jerk"}]},
+  {name:"Strength",ex:[{n:"Deadlift 5-5-3-3-1",s:"5",r:"5/5/3/3/1",rest:"Every 2:30",note:"Go as heavy as form allows"}]},
+  {name:"Conditioning",ex:[{n:"AMRAP 18 min: 500m row + 50 DUs + 20 cal bike + 15 KB swings",s:"1",r:"18 min",note:"All rounds feel the same. Score: total reps."}]}
+]},
+
+{id:46,title:"Clean Pull + Snatch Pull",cat:"weightlifting",sub:"Pulls / Technique",dur:50,diff:"moderate",
+tags:["clean pull","snatch pull","shrug","power position","pulling mechanics"],
+desc:"Pulling strength session. Build the foundation of the clean and snatch with heavy pulls. Bar path and timing.",
+gear:["Barbell","Plates"],
+phases:[
+  {name:"Clean Pulls",ex:[
+    {n:"Clean pull",s:"5",r:"3",w:"100-110% of 1RM clean",rest:"2:00",note:"Full extension, high elbows at top"},
+    {n:"Clean high pull",s:"3",r:"5",w:"80%",rest:"90s"}]},
+  {name:"Snatch Pulls",ex:[
+    {n:"Snatch pull",s:"5",r:"3",w:"100-110% of 1RM snatch",rest:"2:00"},
+    {n:"Snatch high pull",s:"3",r:"5",w:"80%",rest:"90s"}]},
+  {name:"Technique",ex:[
+    {n:"Tall clean (from standing, no knee bend)",s:"3",r:"5",w:"Light"},
+    {n:"Tall snatch",s:"3",r:"5",w:"Light",note:"Focus on fast pull-under"}]}
+]},
+
+{id:47,title:"Pause Clean Session",cat:"weightlifting",sub:"Clean Technique",dur:60,diff:"hard",
+tags:["pause clean","front squat","power clean","hang clean","tempo"],
+desc:"Pause work builds body awareness and strength in the bottom position. Slower is harder.",
+gear:["Barbell","Plates","Rack"],
+phases:[
+  {name:"Pause Work",ex:[
+    {n:"Pause squat clean (2s below knee)",s:"5",r:"2",w:"75-80%",rest:"2:00",note:"2s pause at knee, then explosive"},
+    {n:"Pause front squat (3s bottom)",s:"4",r:"3",w:"75-80%",rest:"2:00"}]},
+  {name:"Main Work",ex:[
+    {n:"Power clean + squat clean",s:"4",r:"(1+1)",w:"80-85%",rest:"2:00"},
+    {n:"Hang squat clean (above knee)",s:"4",r:"3",w:"75%",rest:"90s"}]}
+]},
+
+{id:48,title:"Jerk Balance + BTN Press",cat:"weightlifting",sub:"Jerk",dur:50,diff:"moderate",
+tags:["jerk balance","BTN jerk","split jerk","push press","jerk recovery"],
+desc:"Jerk footwork and receiving position. Balance drills to find the correct landing, then BTN for overhead strength.",
+gear:["Barbell","Plates","Rack"],
+phases:[
+  {name:"Jerk Technique",ex:[
+    {n:"Jerk balance",s:"5",r:"3",w:"40-50%",note:"Step forward into split, catch with locked elbows"},
+    {n:"Behind-the-neck split jerk",s:"4",r:"3",w:"60-70%",rest:"2:00"},
+    {n:"Jerk recovery",s:"3",r:"3",w:"Moderate",note:"Start in split, bring feet together"}]},
+  {name:"Strength",ex:[
+    {n:"Push press",s:"4",r:"4",w:"75-80%",rest:"2:00"},
+    {n:"Sotts press",s:"3",r:"8",w:"Light",note:"From squat, strict press overhead — humbling"}]}
+]},
+
+{id:49,title:"Power Position Drills",cat:"weightlifting",sub:"Technique",dur:45,diff:"moderate",
+tags:["power position","muscle clean","muscle snatch","hang","hip extension"],
+desc:"Work from the power position (mid-thigh) to perfect hip extension and turnover timing. High volume, light weight.",
+gear:["Barbell","Plates"],
+phases:[
+  {name:"Clean Drills",ex:[
+    {n:"Muscle clean from power position",s:"4",r:"5",w:"40-50%",note:"No re-bend — pure upper body turnover"},
+    {n:"High-hang squat clean (power pos)",s:"5",r:"3",w:"70-75%",rest:"90s"},
+    {n:"Snatch-grip deadlift to power pos + shrug",s:"3",r:"5",w:"Light"}]},
+  {name:"Snatch Drills",ex:[
+    {n:"Muscle snatch from power position",s:"4",r:"5",w:"30-40%"},
+    {n:"High-hang squat snatch (power pos)",s:"5",r:"3",w:"60-65%",rest:"90s"}]}
+]},
+
+{id:50,title:"Snatch from Blocks",cat:"weightlifting",sub:"Snatch",dur:60,diff:"hard",
+tags:["snatch blocks","OHS","snatch balance","mid-shin","positional"],
+desc:"Blocks eliminate the first pull and isolate positions 2 and 3. Build confidence under heavy snatch loads.",
+gear:["Barbell","Plates","Blocks (mid-shin height)"],
+phases:[
+  {name:"Snatch from Blocks",ex:[
+    {n:"Snatch from blocks (mid-shin)",s:"6",r:"2",w:"80-85%",rest:"2:00"},
+    {n:"Snatch deadlift from blocks",s:"3",r:"4",w:"90-100%",rest:"2:00"}]},
+  {name:"Overhead",ex:[
+    {n:"Overhead squat",s:"5",r:"3",w:"80-85%",rest:"2:00"},
+    {n:"Snatch balance",s:"4",r:"3",w:"75%",rest:"90s"}]}
+]},
+
+{id:51,title:"Clean Deadlift + Front Squat",cat:"weightlifting",sub:"Strength",dur:55,diff:"hard",
+tags:["clean deadlift","front squat","pause front squat","strength base","posterior chain"],
+desc:"Strength foundation for the clean. Heavy pulls and front squats build the base. Critical for plateau-breaking.",
+gear:["Barbell","Plates","Rack"],
+phases:[
+  {name:"Pulls",ex:[
+    {n:"Clean deadlift",s:"5",r:"3",w:"100-110% of clean",rest:"2:30",note:"Same grip/position as clean"},
+    {n:"Clean pull",s:"3",r:"4",w:"95%",rest:"2:00"}]},
+  {name:"Front Squat",ex:[
+    {n:"Front squat",s:"6",r:"2",w:"85-92%",rest:"2:30"},
+    {n:"Pause front squat (3s)",s:"3",r:"3",w:"70%",rest:"2:00",note:"Elbows up, pause at bottom"}]}
+]},
+
+// ═══════════════ HYROX ═══════════════
+{id:52,title:"Sled Day — Heavy",cat:"hyrox",sub:"Sled",dur:60,diff:"hard",
+tags:["sled push","sled pull","running","HR management"],
+desc:"Heavy sled work with runs between sets. Train strength and HR management simultaneously. Use race shoes.",
+gear:["Sled","Running track"],
+phases:[
+  {name:"Sled Work",ex:[
+    {n:"Sled push",s:"4",r:"15-20m",w:"Max unbroken weight",rest:"60s or 400m run",note:"Heavy but controllable"},
+    {n:"Sled pull",s:"4",r:"15-20m",w:"Max weight",rest:"60s or 400m run"}]},
+  {name:"PM — Recovery",ex:[
+    {n:"Recovery run",s:"1",r:"35-40 min",note:"60% or less. Flush out legs."}]}
+]},
+
+{id:53,title:"Full HYROX Simulation",cat:"hyrox",sub:"Race Simulation",dur:90,diff:"max effort",
+tags:["HYROX","race simulation","all stations","running"],
+desc:"Full race simulation. Create conditions as close to race day as possible. Warm up exactly as on race day.",
+gear:["Sled","Ski erg","Row erg","Wall ball","Box","KB / Farmer carry handles","Sandbag"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Race day warm-up",s:"1",r:"Full",note:"Get HR to racing levels before starting clock"}]},
+  {name:"Race Format",ex:[
+    {n:"1km run + 1000m Ski erg",s:"1",r:"Round 1"},
+    {n:"1km run + 50m Sled push",s:"1",r:"Round 2"},
+    {n:"1km run + 50m Sled pull",s:"1",r:"Round 3"},
+    {n:"1km run + 1000m Row",s:"1",r:"Round 4"},
+    {n:"1km run + 80m Burpee broad jump",s:"1",r:"Round 5"},
+    {n:"1km run + 200m Farmer carry",s:"1",r:"Round 6"},
+    {n:"1km run + 100m Sandbag lunges",s:"1",r:"Round 7"},
+    {n:"1km run + 100 Wall balls",s:"1",r:"Round 8",note:"Hit it like race day. Record total time."}]}
+]},
+
+{id:54,title:"HYROX Strength Endurance",cat:"hyrox",sub:"Strength Endurance",dur:60,diff:"hard",
+tags:["Bulgarian split squat","weighted chin-ups","row","ski erg","threshold"],
+desc:"HYROX-specific strength endurance. Heavy ascending compounds followed by machine intervals.",
+gear:["Barbell","Plates","Pull-up bar","Dumbbells","Row erg / Ski erg"],
+phases:[
+  {name:"Strength",ex:[
+    {n:"DB Bulgarian split squat",s:"4",r:"12/8/6/4 per leg",w:"Ascending",rest:"90s"},
+    {n:"Weighted chin-ups",s:"4",r:"10/8/6/4",w:"Ascending",rest:"90s"}]},
+  {name:"Conditioning",ex:[
+    {n:"1000m row or ski",s:"5-7",r:"1000m",rest:"90s",note:"10-15s faster than time trial pace"},
+    {n:"Cool-down jog",s:"1",r:"10-15 min"}]}
+]},
+
+{id:55,title:"Deload — Row Sprints",cat:"hyrox",sub:"Deload",dur:35,diff:"moderate",
+tags:["deload","row","sprint intervals","5000m","recovery"],
+desc:"30s max / 30s complete rest. Target 5000m total. Elite male: <26 rounds. Don't go harder than necessary.",
+gear:["Row erg"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Easy row",s:"1",r:"5 min"}]},
+  {name:"Sprint Intervals",ex:[{n:"30s max row / 30s complete rest",s:"~30",r:"30s",note:"Sprint as hard as possible during work. Stop completely during rest. Target: 5000m."}]},
+  {name:"Cool Down",ex:[{n:"Easy jog",s:"1",r:"10 min"}]}
+]},
+
+{id:56,title:"Farmer Carry Intervals",cat:"hyrox",sub:"Carry Training",dur:45,diff:"hard",
+tags:["farmer carry","KB","grip","running","carry"],
+desc:"Race-specific farmer carry training with running intervals. Builds grip endurance and the ability to hold form under fatigue.",
+gear:["KB or Farmer carry handles","Running track"],
+phases:[
+  {name:"Carries",ex:[
+    {n:"Farmer carry",s:"6",r:"50m",w:"Race weight or heavier",rest:"90s",note:"Tight grip, upright posture, don't let shoulders round"},
+    {n:"200m run after each carry",s:"6",r:"200m",note:"Transition practice — pick up pace after setting down"}]},
+  {name:"Finisher",ex:[
+    {n:"Max distance farmer carry",s:"1",r:"Until form breaks",w:"Race weight",note:"Benchmark: aim for 150m+ without stopping"}]}
+]},
+
+{id:57,title:"Sandbag Lunge Training",cat:"hyrox",sub:"Sandbag",dur:40,diff:"hard",
+tags:["sandbag","lunge","front rack","carry","running"],
+desc:"Sandbag lunge practice. HYROX requires 100m — train for it. Build the legs and core to hold form through fatigue.",
+gear:["Sandbag 10-20 kg","Running track"],
+phases:[
+  {name:"Main Work",ex:[
+    {n:"Sandbag front rack lunge",s:"5",r:"20m",w:"Race weight",rest:"90s",note:"Elbows high, knee kisses ground"},
+    {n:"400m run after sets 2 and 4",s:"2",r:"400m",note:"Practice transition pace"}]},
+  {name:"Accessory",ex:[
+    {n:"Sandbag squat",s:"3",r:"10",w:"Moderate-heavy"},
+    {n:"DB step-up",s:"3",r:"12 each leg",rest:"60s"},
+    {n:"Sandbag over shoulder",s:"3",r:"10",note:"Power and conditioning"}]}
+]},
+
+{id:58,title:"Wall Ball Endurance",cat:"hyrox",sub:"Wall Balls",dur:30,diff:"hard",
+tags:["wall balls","endurance","100 reps","consistency","HYROX station"],
+desc:"Build the capacity to do 100 wall balls unbroken (or near it). The last HYROX station — must do them after 7 others.",
+gear:["Wall ball 6-9 kg","Wall / target"],
+phases:[
+  {name:"Volume Sets",ex:[
+    {n:"Wall balls",s:"5",r:"50",rest:"90s",note:"Focus on rhythm and breathing. Don't rush."},
+    {n:"Rest 3 min, then:"},
+    {n:"Wall balls",s:"1",r:"100",note:"Benchmark attempt. Break only if form deteriorates."}]}
+]},
+
+{id:59,title:"Ski Erg Steady State",cat:"hyrox",sub:"Ski Erg",dur:45,diff:"easy",
+tags:["ski erg","zone 2","steady state","technique","HYROX"],
+desc:"Extended ski erg at conversational pace. Builds aerobic capacity specific to the ski movement pattern. Focus on technique.",
+gear:["Ski erg"],
+phases:[
+  {name:"Session",ex:[
+    {n:"Steady-state ski erg",s:"1",r:"30-40 min",note:"Zone 2, 60-70% HR max. Consistent pull rate ~28-32 SPM. Drive hips back then arms. Don't overreach."}]}
+]},
+
+{id:60,title:"Burpee Broad Jump Intervals",cat:"hyrox",sub:"Burpee Broad Jump",dur:25,diff:"hard",
+tags:["burpee broad jump","intervals","HYROX","80m","sprint"],
+desc:"HYROX requires 80m of burpee broad jumps. Train for distance and pace under fatigue.",
+gear:["Running track or open space"],
+phases:[
+  {name:"Intervals",ex:[
+    {n:"100m burpee broad jump",s:"5",r:"100m",rest:"3 min",note:"Sub 3:30/100m is competitive. Explode forward on jump."},
+    {n:"400m run after sets 2 and 4",s:"2",r:"400m",note:"Practice re-entering running after the station"}]}
+]},
+
+{id:61,title:"HYROX Weak Station Rotation",cat:"hyrox",sub:"Station Specific",dur:60,diff:"hard",
+tags:["station rotation","weakness training","ski","row","sled","specific"],
+desc:"Pick 2-3 weak HYROX stations. Do 5-6 targeted sets each with a 200m run between. Fix your weakness before race day.",
+gear:["Ski erg","Row erg","Sled","Wall ball","KB"],
+phases:[
+  {name:"Station Work (pick 2-3 weaknesses)",ex:[
+    {n:"Weak station 1: 5-6 targeted sets",s:"5-6",r:"Race distance",rest:"200m run between sets",note:"Identify and fix your weak link"},
+    {n:"Weak station 2: 5-6 targeted sets",s:"5-6",r:"Race distance",rest:"200m run between sets"},
+    {n:"Weak station 3 (optional)",s:"4-5",r:"Race distance",rest:"200m run between sets"}]},
+  {name:"Transition Practice",ex:[
+    {n:"Run 200m → station → run 200m",s:"3",r:"Full",note:"Practice the transition from run into station and back out"}]}
+]},
+
+// ═══════════════ METCON — CrossFit Benchmarks (web-sourced) ═══════════════
+{id:62,title:"\"Murph\" — Hero WOD",cat:"metcon",sub:"Hero WOD",dur:60,diff:"max effort",
+tags:["Murph","hero WOD","pull-ups","push-ups","squats","running","vest optional"],
+desc:"The most iconic Hero WOD. Named in honor of Lt. Michael Murphy. Optional 20 lb vest. Partition the middle 400 reps however you like — 20 rounds of 5/10/15 is popular.",
+gear:["Pull-up bar","Weight vest (optional)"],
+phases:[
+  {name:"For Time",ex:[
+    {n:"1-mile run",s:"1",r:"1 mile"},
+    {n:"Pull-ups",s:"—",r:"100",note:"Partition however you like, e.g. 20 × (5+10+15)"},
+    {n:"Push-ups",s:"—",r:"200"},
+    {n:"Air squats",s:"—",r:"300"},
+    {n:"1-mile run",s:"1",r:"1 mile",note:"With vest if prescribed. Good times: sub-35 min. Elite: sub-25 min."}]}
+]},
+
+{id:63,title:"\"DT\" — Hero WOD",cat:"metcon",sub:"Hero WOD",dur:15,diff:"hard",
+tags:["DT","hero WOD","deadlift","hang power clean","push jerk","barbell","155 lb"],
+desc:"Honor U.S. Air Force SSgt Timothy P. Davis. 5 rounds, one barbell, 135 reps total. Grip and barbell stamina are the limiting factors. Good: sub-10 min. Elite: sub-7 min.",
+gear:["Barbell","Plates (155/105 lb)"],
+phases:[
+  {name:"5 Rounds For Time",ex:[
+    {n:"Deadlift",s:"5",r:"12",w:"155/105 lb",note:"Touch-and-go or quick reset"},
+    {n:"Hang power clean",s:"5",r:"9",w:"155/105 lb",note:"From just below the knee"},
+    {n:"Push jerk",s:"5",r:"6",w:"155/105 lb",note:"Full lockout overhead each rep"}]}
+]},
+
+{id:64,title:"\"Grace\" — 30 Clean & Jerks",cat:"metcon",sub:"For Time",dur:8,diff:"max effort",
+tags:["Grace","clean and jerk","barbell","benchmark","cycling","135 lb"],
+desc:"30 clean & jerks for time. Tests barbell cycling efficiency under fatigue. Sub-2 min is elite. Sub-4 min is very good. Power clean + push jerk is fastest.",
+gear:["Barbell","Plates (135/95 lb)"],
+phases:[
+  {name:"For Time",ex:[
+    {n:"Clean & Jerk",s:"1",r:"30",w:"135/95 lb",note:"Any style. Power clean + push jerk fastest. Don't drop the bar early."}]}
+]},
+
+{id:65,title:"\"Isabel\" — 30 Snatches",cat:"metcon",sub:"For Time",dur:8,diff:"max effort",
+tags:["Isabel","snatch","barbell","benchmark","cycling","135 lb"],
+desc:"30 snatches for time. Tests snatch cycling ability at heavy-ish load. Harder than Grace — demands better technique. Sub-2 min is elite. Any snatch style allowed.",
+gear:["Barbell","Plates (135/95 lb)"],
+phases:[
+  {name:"For Time",ex:[
+    {n:"Snatch",s:"1",r:"30",w:"135/95 lb",note:"Power snatch acceptable. Don't sacrifice form for speed. Sub-2 min elite, sub-4 min very good."}]}
+]},
+
+{id:66,title:"\"Angie\" — 400 Reps For Time",cat:"metcon",sub:"For Time",dur:25,diff:"hard",
+tags:["Angie","pull-ups","push-ups","sit-ups","squats","bodyweight","400 reps"],
+desc:"100 each of pull-ups, push-ups, sit-ups, and air squats — in order, for time. Must complete all 100 of each before moving on. Tests pure volume capacity.",
+gear:["Pull-up bar"],
+phases:[
+  {name:"For Time — In Order",ex:[
+    {n:"Pull-ups",s:"1",r:"100",note:"Complete all 100 before moving on"},
+    {n:"Push-ups",s:"1",r:"100",note:"Chest to deck"},
+    {n:"Sit-ups",s:"1",r:"100"},
+    {n:"Air squats",s:"1",r:"100",note:"Good: sub-20 min. Elite: sub-15 min."}]}
+]},
+
+{id:67,title:"\"Annie\" — 50-40-30-20-10",cat:"metcon",sub:"For Time",dur:12,diff:"hard",
+tags:["Annie","double-unders","sit-ups","benchmark","50-40-30-20-10"],
+desc:"50-40-30-20-10 reps of double-unders and sit-ups, for time. Deceptively hard — DUs demand rhythm under fatigue and sit-ups accumulate fast. Good: sub-10 min.",
+gear:["Jump rope"],
+phases:[
+  {name:"For Time: 50-40-30-20-10",ex:[
+    {n:"Double-unders",s:"5 rounds descending",r:"50/40/30/20/10",note:"If no DUs: scale to 3× single-unders (150-120-90-60-30)"},
+    {n:"Sit-ups",s:"5 rounds descending",r:"50/40/30/20/10",note:"Anchored is fine. Good: sub-10 min. Elite: sub-6 min."}]}
+]},
+
+{id:68,title:"\"Diane\" — 21-15-9",cat:"metcon",sub:"For Time",dur:8,diff:"hard",
+tags:["Diane","deadlift","handstand push-ups","21-15-9","benchmark","225 lb"],
+desc:"21-15-9 deadlifts and handstand push-ups. Explosive and gymnastics. Don't sandbag the deadlifts — they should feel light. HSPUs are the limiting factor for most.",
+gear:["Barbell","Plates (225/155 lb)","Wall space"],
+phases:[
+  {name:"For Time: 21-15-9",ex:[
+    {n:"Deadlift",s:"3 rounds",r:"21/15/9",w:"225/155 lb",note:"Should be light and fast. Touch-and-go."},
+    {n:"Handstand push-ups",s:"3 rounds",r:"21/15/9",note:"Strict or kipping. Head to ground. Good: sub-5 min. Elite: sub-2:30."}]}
+]},
+
+{id:69,title:"\"Jackie\" — Row + Thrusters + Pull-ups",cat:"metcon",sub:"For Time",dur:12,diff:"hard",
+tags:["Jackie","row","thrusters","pull-ups","benchmark","45 lb"],
+desc:"1000m row + 50 thrusters + 30 pull-ups, for time. The row must be aggressive. The light thrusters test lungs more than legs. Good: sub-10 min. Elite: sub-7 min.",
+gear:["Row erg","Barbell (45/35 lb)","Pull-up bar"],
+phases:[
+  {name:"For Time",ex:[
+    {n:"Row",s:"1",r:"1000m",note:"Go aggressive — avg split should be near 2k PR pace"},
+    {n:"Thrusters",s:"1",r:"50",w:"45/35 lb",note:"Should be done in large sets. Weight is very light."},
+    {n:"Pull-ups",s:"1",r:"30",note:"Kipping allowed. Good: sub-10 min. Elite: sub-7 min."}]}
+]},
+
+{id:70,title:"\"Karen\" — 150 Wall Balls",cat:"metcon",sub:"For Time",dur:15,diff:"hard",
+tags:["Karen","wall balls","150 reps","benchmark","20 lb","endurance"],
+desc:"150 wall balls for time. Tests shoulder endurance and pacing. The hardest part is staying unbroken past 50. Good: sub-10 min. Elite: sub-7 min.",
+gear:["Wall ball (20/14 lb)","Wall / target at 10/9 ft"],
+phases:[
+  {name:"For Time",ex:[
+    {n:"Wall balls",s:"1",r:"150",w:"20/14 lb",note:"Pace early. Breathe at the top of each rep. Don't break if you can avoid it. Sub-7 min elite."}]}
+]},
+
+{id:71,title:"\"Nancy\" — 5 Rounds: Run + OHS",cat:"metcon",sub:"For Time",dur:18,diff:"hard",
+tags:["Nancy","400m run","overhead squat","5 rounds","benchmark","95 lb"],
+desc:"5 rounds of 400m run + 15 OHS @95/65 lb. An endurance test, not a sprint. Run hard enough to challenge, not so hard you break on the squats. Good: sub-15 min.",
+gear:["Barbell","Plates (95/65 lb)"],
+phases:[
+  {name:"5 Rounds For Time",ex:[
+    {n:"400m run",s:"5",r:"400m",note:"Find a sustainable pace — fast but controlled"},
+    {n:"Overhead squat",s:"5",r:"15",w:"95/65 lb",note:"Should be unbroken first 3 rounds. Good: sub-15 min. Elite: sub-10 min."}]}
+]},
+
+{id:72,title:"\"Fight Gone Bad\"",cat:"metcon",sub:"Max Reps",dur:20,diff:"hard",
+tags:["Fight Gone Bad","wall balls","SDHP","box jumps","push press","row","FGB"],
+desc:"3 rounds, 5 stations, 1 min each, 1 min rest. Max total reps. Each station flows straight into the next. Originally designed to simulate the time domain of a UFC fight.",
+gear:["Wall ball 20/14 lb","Barbell 75/55 lb","Box 20\"","Row erg"],
+phases:[
+  {name:"3 Rounds — Score: Total Reps",ex:[
+    {n:"Wall ball shots",s:"3",r:"1 min max reps",w:"20/14 lb, 10/9 ft target"},
+    {n:"Sumo deadlift high-pull",s:"3",r:"1 min max reps",w:"75/55 lb"},
+    {n:"Box jumps",s:"3",r:"1 min max reps",w:"20\" box"},
+    {n:"Push press",s:"3",r:"1 min max reps",w:"75/55 lb"},
+    {n:"Row (calories)",s:"3",r:"1 min max cal"},
+    {n:"Rest",s:"3",r:"1 min",note:"Move through stations with no rest except the designated minute. Score = total reps+cals."}]}
+]},
+
+{id:73,title:"\"King Kong\" — 3 Rounds Extreme",cat:"metcon",sub:"For Time",dur:20,diff:"max effort",
+tags:["King Kong","deadlift","muscle-ups","squat clean","HSPU","extreme","455 lb"],
+desc:"One of the hardest CrossFit benchmark WODs. Elite athletes only. 3 rounds of 1 max-effort deadlift + 2 muscle-ups + 3 squat cleans + 4 HSPU. Test of pure strength and gymnastics.",
+gear:["Barbell","Plates (455/320 lb)","Rings or bar for muscle-ups","Wall space"],
+phases:[
+  {name:"3 Rounds For Time",ex:[
+    {n:"Deadlift",s:"3",r:"1",w:"455/320 lb",note:"Max effort single"},
+    {n:"Muscle-ups",s:"3",r:"2",note:"Ring or bar"},
+    {n:"Squat clean",s:"3",r:"3",w:"250/175 lb"},
+    {n:"Handstand push-ups",s:"3",r:"4",note:"Strict. Scale all weights if needed — this is extreme."}]}
+]},
+
+// ═══════════════ OLYMPIC WEIGHTLIFTING — Web-sourced ═══════════════
+{id:74,title:"OWL Accessory Block",cat:"weightlifting",sub:"Accessory",dur:50,diff:"moderate",
+tags:["snatch grip RDL","clean grip OHS","tempo front squat","accessory","stability","Invictus"],
+desc:"Accessory work targeting the weak links in the Olympic lifts. Tempo RDLs build pull timing, clean-grip OHS builds overhead stability, tempo front squats force positional strength.",
+gear:["Barbell","Plates","Rack"],
+phases:[
+  {name:"Snatch Accessories",ex:[
+    {n:"Snatch-grip RDL (tempo 3-1-1)",s:"4",r:"5",w:"60-70% of snatch",rest:"90s",note:"3s down, 1s hold at bottom, 1s up. Upper back and lats engaged."},
+    {n:"Snatch-grip Romanian deadlift",s:"3",r:"6",w:"Moderate",rest:"90s"}]},
+  {name:"Clean Accessories",ex:[
+    {n:"Clean-grip overhead squat",s:"4",r:"3",w:"50-60% of snatch",rest:"2:00",note:"Activate upper back. Can use as snatch warm-up or strength drill."},
+    {n:"Tempo front squat (2-1-2-1)",s:"5",r:"3",w:"70-75%",rest:"2:00",note:"2s down, 1s pause, 2s up, 1s pause at top. Elbows high throughout."}]},
+  {name:"General Strength",ex:[
+    {n:"Good morning",s:"3",r:"8",w:"Light-moderate",rest:"90s"},
+    {n:"Glute-ham raise",s:"3",r:"8",rest:"90s"},
+    {n:"Strict press",s:"3",r:"6",w:"Moderate",rest:"90s"}]}
+]},
+
+// ═══════════════ HYROX — Web-sourced (PureGym 12-week plan) ═══════════════
+{id:75,title:"HYROX Engine Builder",cat:"hyrox",sub:"Conditioning",dur:35,diff:"hard",
+tags:["ski erg","thrusters","burpees","RDL","4 rounds","engine","PureGym plan"],
+desc:"High-intensity 4-round circuit from PureGym's 12-week HYROX plan. Mimics the sustained effort of a HYROX race. Go max speed each round.",
+gear:["Ski erg","Barbell","Plates"],
+phases:[
+  {name:"4 Rounds — Max Speed",ex:[
+    {n:"Ski erg",s:"4",r:"400m",note:"Aggressive pace — race pace or faster"},
+    {n:"Barbell thrusters",s:"4",r:"20",w:"Moderate",note:"Front squat to push press"},
+    {n:"Over-the-bar burpees",s:"4",r:"20"},
+    {n:"Romanian deadlift",s:"4",r:"20",w:"Moderate",note:"Record total time for all 4 rounds."}]}
+]},
+
+{id:76,title:"HYROX Half-Simulation",cat:"hyrox",sub:"Race Simulation",dur:45,diff:"hard",
+tags:["half sim","4 stations","4 runs","race pace","HYROX"],
+desc:"Race pace 4-station half-simulation from PureGym's plan. Run as if it's race day. Practice transitions. Complete at week 6 of a 12-week cycle.",
+gear:["Sled","Ski erg","Row erg","Wall ball","KB"],
+phases:[
+  {name:"Race Pace — 4 Runs + 4 Stations",ex:[
+    {n:"1km run + 1000m ski erg",s:"1",r:"Round 1",note:"Race pace. Record split."},
+    {n:"1km run + 50m sled push",s:"1",r:"Round 2",note:"Race weight"},
+    {n:"1km run + 50m sled pull",s:"1",r:"Round 3",note:"Race weight"},
+    {n:"1km run + 100 wall balls",s:"1",r:"Round 4",note:"Record total time. Use this as benchmark for race pacing."}]}
+]},
+
+{id:77,title:"HYROX Compromised Run",cat:"hyrox",sub:"Conditioning",dur:50,diff:"hard",
+tags:["compromised run","stations","running","AMRAP","sled","wall balls","HYROX week 1"],
+desc:"45-min AMRAP combining running with HYROX-specific stations. Teaches you to run after stations — the defining skill of HYROX.",
+gear:["Sled","Wall ball","Running track"],
+phases:[
+  {name:"45-min AMRAP",ex:[
+    {n:"Sled push",s:"—",r:"50m"},
+    {n:"Sled pull",s:"—",r:"50m"},
+    {n:"Run",s:"—",r:"50m"},
+    {n:"Wall balls",s:"—",r:"40",note:"Full laps as many times as possible. Record rounds completed."}]}
+]},
+
+{id:78,title:"8×1km Running Intervals",cat:"hyrox",sub:"Running / Intervals",dur:55,diff:"hard",
+tags:["1km intervals","running","HYROX","8 rounds","equal rest","speed"],
+desc:"8 rounds of 1km at race effort with equal rest. Mirrors the run segments of a HYROX race. Builds running-specific engine and pacing discipline.",
+gear:["GPS watch","Running track or 1km loop"],
+phases:[
+  {name:"Warm-Up",ex:[{n:"Easy run + drills",s:"1",r:"10 min"}]},
+  {name:"Intervals",ex:[
+    {n:"1km run",s:"8",r:"1km",rest:"Equal to work time",note:"Race pace or slightly faster. Each rep should feel the same. Record splits."}]},
+  {name:"Cool Down",ex:[{n:"Easy jog",s:"1",r:"10 min"}]}
+]}
+];
+
+// ── Storage ───────────────────────────────────────────────────
+const STORE_KEY = 'wb_v4';
+let DB = (() => {
+  try { const s = localStorage.getItem(STORE_KEY); if(s) return JSON.parse(s); } catch(e){}
+  return DEFAULT_DB.map(w => ({...w}));
+})();
+function persist() { try { localStorage.setItem(STORE_KEY, JSON.stringify(DB)); } catch(e){} }
+
+// ── State ─────────────────────────────────────────────────────
+const S = {cat:'all',diff:'all',dur:'all',search:'',sort:'default'};
+const CTITLE = {all:'All <em>Workouts</em>',strength:'Strength <em>Training</em>',endurance:'Endurance <em>Running</em>',mobility:'Mobility <em>Work</em>',metcon:'MetCon <em>Workouts</em>',weightlifting:'Olympic <em>Weightlifting</em>',hyrox:'HYROX <em>Training</em>'};
+const CLBL = {strength:'STRENGTH',endurance:'ENDURANCE',mobility:'MOBILITY',metcon:'METCON',weightlifting:'OLYMPIC WL',hyrox:'HYROX'};
+const CBADGE = {strength:'bs',endurance:'be',mobility:'bm',metcon:'bc',weightlifting:'bw',hyrox:'bh'};
+const DDOT = {easy:'de',moderate:'dm',hard:'dh','max effort':'dx'};
+const DCLR = {easy:'#22c55e',moderate:'#f59e0b',hard:'#ef4444','max effort':'#ec4899'};
+
+// ── Cursor ────────────────────────────────────────────────────
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function raf(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(raf);})();
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('.card,.nav-item,.chip,.sbtn,.xbtn,.new-btn,button,a,.card-edit')){
+    cur.style.transform='translate(-50%,-50%) scale(1.7)';ring.style.width='52px';ring.style.height='52px';ring.style.opacity='.8';
+  } else {
+    cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='.4';
+  }
+});
+
+// ── Filters ───────────────────────────────────────────────────
+function setCat(c){S.cat=c;document.querySelectorAll('.nav-item').forEach(el=>el.classList.toggle('active',el.dataset.cat===c));document.getElementById('pgTitle').innerHTML=CTITLE[c]||CTITLE.all;render();}
+function setDiff(d){S.diff=d;document.querySelectorAll('.chip[data-diff]').forEach(el=>el.classList.toggle('active',el.dataset.diff===d));render();}
+function setDur(d){S.dur=d;document.querySelectorAll('.chip[data-dur]').forEach(el=>el.classList.toggle('active',el.dataset.dur===d));render();}
+function setSort(s,btn){S.sort=s;document.querySelectorAll('.sbtn').forEach(el=>el.classList.remove('active'));btn.classList.add('active');render();}
+document.getElementById('searchInput').addEventListener('input',e=>{S.search=e.target.value.toLowerCase().trim();render();});
+
+function filtered(){
+  let w=[...DB];
+  if(S.cat!=='all')  w=w.filter(x=>x.cat===S.cat);
+  if(S.diff!=='all') w=w.filter(x=>x.diff===S.diff);
+  if(S.dur!=='all')  w=w.filter(x=>x.dur<=+S.dur);
+  if(S.search) w=w.filter(x=>x.title.toLowerCase().includes(S.search)||x.desc.toLowerCase().includes(S.search)||x.sub.toLowerCase().includes(S.search)||x.tags.some(t=>t.toLowerCase().includes(S.search)));
+  if(S.sort==='dur-asc')  w.sort((a,b)=>a.dur-b.dur);
+  if(S.sort==='dur-desc') w.sort((a,b)=>b.dur-a.dur);
+  if(S.sort==='alpha')    w.sort((a,b)=>a.title.localeCompare(b.title));
+  return w;
+}
+
+// ── Render ────────────────────────────────────────────────────
+function render(){
+  const list=filtered();
+  const grid=document.getElementById('grid');
+  ['all','strength','endurance','mobility','metcon','weightlifting','hyrox'].forEach(c=>{
+    const n=c==='all'?DB.length:DB.filter(x=>x.cat===c).length;
+    document.getElementById('c-'+c).textContent=n;
+  });
+  document.getElementById('totalCount').textContent=DB.length;
+  document.getElementById('pgCount').textContent=list.length+' workout'+(list.length!==1?'s':'');
+  if(!list.length){grid.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><h3>No workouts found</h3><p>Adjust your filters or search term.</p></div>`;return;}
+  grid.innerHTML=list.map(w=>{
+    const exc=w.phases.reduce((s,p)=>s+p.ex.length,0);
+    return`<div class="card" onclick="openView(${w.id})">
+      <button class="card-edit" onclick="event.stopPropagation();openEdit(${w.id})" title="Edit">✏</button>
+      <div class="ctop"><span class="badge ${CBADGE[w.cat]}">${CLBL[w.cat]}</span><div class="ddot ${DDOT[w.diff]}" title="${w.diff}"></div></div>
+      <div class="ctitle">${esc(w.title)}</div>
+      <div class="cdesc">${esc(w.desc)}</div>
+      <div class="cmeta">
+        <div class="cm"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${w.dur} min</div>
+        <div class="cm" style="color:${DCLR[w.diff]}">${w.diff}</div>
+        <div class="cm">${exc} exercises</div>
+      </div>
+      <div class="ctags">${w.tags.slice(0,4).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── View Modal ────────────────────────────────────────────────
+let viewId=null;
+function openView(id){
+  viewId=id;
+  const w=DB.find(x=>x.id===id);
+  if(!w)return;
+  document.getElementById('mTitle').textContent=w.title;
+  document.getElementById('mMeta').innerHTML=`<span class="badge ${CBADGE[w.cat]}">${CLBL[w.cat]}</span><span style="font-size:12px;font-weight:600;color:${DCLR[w.diff]}">${w.diff}</span><span class="dim" style="font-size:12px">⏱ ${w.dur} min</span><span style="font-size:11px;color:var(--muted);background:var(--bg4);padding:2px 8px;border-radius:4px;border:1px solid var(--border)">${esc(w.sub)}</span>`;
+  let html='';
+  if(w.desc)html+=`<p class="mdesc">${esc(w.desc)}</p>`;
+  if(w.gear&&w.gear.length)html+=`<div class="eqb"><div class="eql">Equipment</div><div class="eqi">${w.gear.map(g=>`<span class="eqitem">${esc(g)}</span>`).join('')}</div></div>`;
+  html+=w.phases.map(p=>`<div class="ph"><div class="phn">${esc(p.name)}</div><table class="ext"><thead><tr><th style="width:38%">Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th><th>Rest</th></tr></thead><tbody>${p.ex.map(e=>`<tr><td><div class="exn">${esc(e.n)}</div>${e.note?`<div class="exno">${esc(e.note)}</div>`:''}</td><td><span class="${e.s&&e.s!=='—'?'acc':'dim'}">${esc(e.s||'—')}</span></td><td class="dim">${esc(e.r||'—')}</td><td class="dim">${esc(e.w||'—')}</td><td class="dim">${esc(e.rest||'—')}</td></tr>`).join('')}</tbody></table></div>`).join('');
+  document.getElementById('mBody').innerHTML=html;
+  document.getElementById('viewOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeView(){document.getElementById('viewOverlay').classList.remove('open');document.body.style.overflow='';}
+function maybeCloseView(e){if(e.target===document.getElementById('viewOverlay'))closeView();}
+function editFromViewModal(){const id=viewId;closeView();openEdit(id);}
+
+// ── Edit Modal ────────────────────────────────────────────────
+let editId=null;
+let formPhases=[];
+
+function openNew(){
+  editId=null;
+  document.getElementById('eTitle').textContent='New Workout';
+  document.getElementById('eDelBtn').style.display='none';
+  fillForm({cat:'strength',diff:'moderate',dur:60,tags:[],gear:[],phases:[{name:'Warm-Up',ex:[{n:'',s:'',r:'',w:'',rest:'',note:''}]},{name:'Main Work',ex:[{n:'',s:'3',r:'10',w:'',rest:'2:00',note:''}]}]});
+  document.getElementById('editOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function openEdit(id){
+  editId=id;
+  const w=DB.find(x=>x.id===id);
+  if(!w)return;
+  document.getElementById('eTitle').textContent='Edit Workout';
+  document.getElementById('eDelBtn').style.display='';
+  fillForm(w);
+  document.getElementById('editOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEdit(){document.getElementById('editOverlay').classList.remove('open');document.body.style.overflow='';}
+function maybeCloseEdit(e){if(e.target===document.getElementById('editOverlay'))closeEdit();}
+
+function fillForm(w){
+  document.getElementById('ef-title').value=w.title||'';
+  document.getElementById('ef-cat').value=w.cat||'strength';
+  document.getElementById('ef-dur').value=w.dur||60;
+  document.getElementById('ef-diff').value=w.diff||'moderate';
+  document.getElementById('ef-sub').value=w.sub||'';
+  document.getElementById('ef-tags').value=(w.tags||[]).join(', ');
+  document.getElementById('ef-desc').value=w.desc||'';
+  document.getElementById('ef-gear').value=(w.gear||[]).join(', ');
+  formPhases=JSON.parse(JSON.stringify(w.phases||[]));
+  renderPhases();
+}
+
+function renderPhases(){
+  document.getElementById('ef-phases').innerHTML=formPhases.map((p,pi)=>`
+    <div class="ephase">
+      <div class="ephasehd">
+        <input class="finput inp-pname" data-pi="${pi}" value="${escA(p.name)}" placeholder="Phase name…">
+        <button class="gbtn" onclick="removePhase(${pi})">Remove phase</button>
+      </div>
+      <div class="exrows">
+        <div class="exrow-hdr">
+          <span class="span-name">Exercise</span>
+          <span class="span-sm">Sets</span>
+          <span class="span-sm">Reps</span>
+          <span class="span-sm">Weight</span>
+          <span class="span-sm">Rest</span>
+          <span class="span-note">Notes</span>
+          <span class="span-del"></span>
+        </div>
+        ${p.ex.map((e,ei)=>`
+        <div class="exrow">
+          <input class="finput inp-name" data-pi="${pi}" data-ei="${ei}" value="${escA(e.n)}" placeholder="Exercise name…">
+          <input class="finput inp-sm" data-pi="${pi}" data-ei="${ei}" data-f="s" value="${escA(e.s)}" placeholder="Sets">
+          <input class="finput inp-sm" data-pi="${pi}" data-ei="${ei}" data-f="r" value="${escA(e.r)}" placeholder="Reps">
+          <input class="finput inp-sm" data-pi="${pi}" data-ei="${ei}" data-f="w" value="${escA(e.w||'')}" placeholder="Wt">
+          <input class="finput inp-sm" data-pi="${pi}" data-ei="${ei}" data-f="rest" value="${escA(e.rest||'')}" placeholder="Rest">
+          <input class="finput inp-note" data-pi="${pi}" data-ei="${ei}" data-f="note" value="${escA(e.note||'')}" placeholder="Notes…">
+          <button class="rmbtn" onclick="removeEx(${pi},${ei})">✕</button>
+        </div>`).join('')}
+      </div>
+      <div class="ephaseft">
+        <button class="gbtn" onclick="addEx(${pi})">+ Add exercise</button>
+      </div>
+    </div>`).join('');
+}
+
+function syncFromDOM(){
+  document.querySelectorAll('.inp-pname').forEach(el=>{
+    formPhases[+el.dataset.pi].name=el.value;
+  });
+  document.querySelectorAll('#ef-phases .exrow').forEach(row=>{
+    const pi=+row.querySelector('.inp-name').dataset.pi;
+    const ei=+row.querySelector('.inp-name').dataset.ei;
+    const ex=formPhases[pi].ex[ei];
+    ex.n=row.querySelector('.inp-name').value;
+    row.querySelectorAll('[data-f]').forEach(inp=>{ex[inp.dataset.f]=inp.value;});
+  });
+}
+
+function addPhase(){syncFromDOM();formPhases.push({name:'Phase '+(formPhases.length+1),ex:[{n:'',s:'',r:'',w:'',rest:'',note:''}]});renderPhases();}
+function removePhase(pi){syncFromDOM();formPhases.splice(pi,1);renderPhases();}
+function addEx(pi){syncFromDOM();formPhases[pi].ex.push({n:'',s:'',r:'',w:'',rest:'',note:''});renderPhases();}
+function removeEx(pi,ei){syncFromDOM();formPhases[pi].ex.splice(ei,1);renderPhases();}
+
+function collectForm(){
+  syncFromDOM();
+  return{
+    id:editId||Date.now(),
+    title:document.getElementById('ef-title').value.trim()||'Untitled Workout',
+    cat:document.getElementById('ef-cat').value,
+    sub:document.getElementById('ef-sub').value.trim(),
+    dur:parseInt(document.getElementById('ef-dur').value)||60,
+    diff:document.getElementById('ef-diff').value,
+    desc:document.getElementById('ef-desc').value.trim(),
+    tags:document.getElementById('ef-tags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    gear:document.getElementById('ef-gear').value.split(',').map(g=>g.trim()).filter(Boolean),
+    phases:JSON.parse(JSON.stringify(formPhases)),
+  };
+}
+
+function saveWorkout(){
+  const w=collectForm();
+  if(editId){const i=DB.findIndex(x=>x.id===editId);if(i!==-1)DB[i]=w;}
+  else DB.push(w);
+  persist();
+  closeEdit();
+  render();
+}
+
+function deleteWorkout(){
+  if(!editId)return;
+  if(!confirm('Delete this workout? This cannot be undone.'))return;
+  DB=DB.filter(x=>x.id!==editId);
+  persist();
+  closeEdit();
+  render();
+}
+
+// ── Utils ─────────────────────────────────────────────────────
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function escA(s){return String(s||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeView();closeEdit();}});
+
+// ── Init ──────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>

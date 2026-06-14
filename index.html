@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Atlas — AI Workout Generator</title>
+
+<!-- PWA manifest -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
+<!-- Apple PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Atlas">
+<meta name="theme-color" content="#0C0C0C">
+
+<!-- Apple touch icons -->
+<link rel="apple-touch-icon" sizes="57x57"   href="icons/icon-57.png">
+<link rel="apple-touch-icon" sizes="60x60"   href="icons/icon-60.png">
+<link rel="apple-touch-icon" sizes="72x72"   href="icons/icon-72.png">
+<link rel="apple-touch-icon" sizes="76x76"   href="icons/icon-76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="icons/icon-114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+
+<!-- Apple splash screens -->
+<link rel="apple-touch-startup-image" media="(device-width:320px) and (device-height:568px) and (-webkit-device-pixel-ratio:2)"          href="splash/splash-640x1136.png">
+<link rel="apple-touch-startup-image" media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2)"          href="splash/splash-750x1334.png">
+<link rel="apple-touch-startup-image" media="(device-width:414px) and (device-height:736px) and (-webkit-device-pixel-ratio:3)"          href="splash/splash-1242x2208.png">
+<link rel="apple-touch-startup-image" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3)"          href="splash/splash-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3)"          href="splash/splash-1242x2688.png">
+<link rel="apple-touch-startup-image" media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2)"          href="splash/splash-828x1792.png">
+<link rel="apple-touch-startup-image" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3)"          href="splash/splash-1170x2532.png">
+<link rel="apple-touch-startup-image" media="(device-width:428px) and (device-height:926px) and (-webkit-device-pixel-ratio:3)"          href="splash/splash-1284x2778.png">
+<link rel="apple-touch-startup-image" media="(device-width:393px) and (device-height:852px) and (-webkit-device-pixel-ratio:3)"          href="splash/splash-1179x2556.png">
+<link rel="apple-touch-startup-image" media="(device-width:430px) and (device-height:932px) and (-webkit-device-pixel-ratio:3)"          href="splash/splash-1290x2796.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #AAFF00;
+  --green-dim: rgba(170,255,0,0.08);
+  --green-border: rgba(170,255,0,0.3);
+  --black: #0a0a0a;
+  --gray: #141414;
+  --gray2: #1c1c1c;
+  --gray3: #2a2a2a;
+  --white: #f0f0f0;
+  --muted: #777;
+  --font: 'Inter', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:var(--font);min-height:100vh;cursor:none;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:none;}
+select option{background:var(--gray);}
+
+/* Cursor */
+.cursor{width:8px;height:8px;background:var(--green);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+.cursor-ring{width:34px;height:34px;border:1.5px solid rgba(170,255,0,0.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+
+/* Views */
+.view{display:none;flex-direction:column;min-height:100vh;}
+.view.active{display:flex;}
+
+/* ===================== NAV ===================== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:background 0.3s,backdrop-filter 0.3s;}
+.nav.scrolled{background:rgba(10,10,10,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray3);}
+.nav-logo{font-size:1.3rem;font-weight:900;letter-spacing:-0.03em;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;gap:36px;}
+.nav-links a{font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color 0.2s;}
+.nav-links a:hover{color:var(--white);}
+
+/* ===================== HERO ===================== */
+#hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 40px 80px;position:relative;overflow:hidden;}
+#hero::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(170,255,0,0.05) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';flex:1;max-width:40px;height:1px;background:var(--green);}
+.hero-heading{font-size:clamp(3.2rem,10vw,9rem);font-weight:900;letter-spacing:-0.05em;line-height:0.9;margin-bottom:36px;}
+.hero-heading em{font-style:normal;color:var(--green);}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:480px;line-height:1.65;margin-bottom:52px;}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-cta{background:var(--green);color:var(--black);border:none;padding:17px 48px;font-family:var(--font);font-size:0.85rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;transition:transform 0.2s,box-shadow 0.2s;}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(170,255,0,0.35);}
+.btn-cta.ghost{background:transparent;border:1px solid var(--gray3);color:var(--muted);}
+.btn-cta.ghost:hover{border-color:var(--green);color:var(--green);box-shadow:none;transform:none;}
+
+/* Stats row */
+.stats-row{display:flex;gap:0;margin-top:100px;border-top:1px solid var(--gray3);width:100%;max-width:800px;}
+.stat-item{flex:1;padding:32px 0;text-align:center;border-right:1px solid var(--gray3);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-size:2rem;font-weight:900;letter-spacing:-0.04em;color:var(--white);}
+.stat-num span{color:var(--green);}
+.stat-label{font-size:0.75rem;color:var(--muted);margin-top:4px;letter-spacing:0.05em;}
+
+/* Features */
+.features-section{padding:80px 48px;max-width:1000px;margin:0 auto;width:100%;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray3);}
+.feature-card{background:var(--black);padding:40px 32px;}
+.feature-icon{font-size:1.8rem;margin-bottom:20px;}
+.feature-title{font-size:1rem;font-weight:800;margin-bottom:10px;}
+.feature-desc{font-size:0.85rem;color:var(--muted);line-height:1.65;}
+
+/* ===================== FORM VIEW ===================== */
+#view-form{align-items:center;justify-content:flex-start;padding-top:100px;padding-bottom:60px;}
+.form-wrap{width:100%;max-width:580px;padding:0 24px;}
+
+/* Progress */
+.progress{display:flex;align-items:center;margin-bottom:60px;}
+.p-dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--gray3);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:var(--muted);background:var(--black);flex-shrink:0;transition:all 0.35s;position:relative;}
+.p-dot.active{border-color:var(--green);background:var(--green);color:var(--black);}
+.p-dot.done{border-color:var(--green);color:var(--green);}
+.p-dot.done .p-num{display:none;}
+.p-dot.done::after{content:'✓';font-size:0.75rem;}
+.p-line{flex:1;height:1px;background:var(--gray3);transition:background 0.35s;}
+.p-line.done{background:var(--green);}
+
+/* Step */
+.step{display:none;}
+.step.active{display:block;}
+.step-h{font-size:2rem;font-weight:900;letter-spacing:-0.035em;margin-bottom:6px;}
+.step-sub{color:var(--muted);font-size:0.88rem;margin-bottom:36px;}
+
+/* Fields */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.row.full{grid-template-columns:1fr;}
+.field{display:flex;flex-direction:column;gap:7px;}
+.field label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.field input,.field select,.field textarea{background:var(--gray2);border:1px solid var(--gray3);color:var(--white);padding:13px 15px;font-family:var(--font);font-size:0.92rem;transition:border-color 0.2s;outline:none;-webkit-appearance:none;appearance:none;}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='%23777'%3E%3Cpath d='M5 6L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);}
+.field input::placeholder,.field textarea::placeholder{color:#3a3a3a;}
+.field textarea{resize:vertical;min-height:72px;line-height:1.5;}
+.hint{font-size:0.72rem;color:var(--muted);font-style:italic;}
+
+/* Level selector */
+.level-wrap{margin-bottom:24px;}
+.level-lbl{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.level-btns{display:flex;gap:8px;}
+.lbtn{flex:1;padding:13px 6px;background:var(--gray2);border:2px solid var(--gray3);color:var(--muted);font-family:var(--font);font-size:0.85rem;font-weight:700;text-align:center;transition:all 0.2s;}
+.lbtn:hover{border-color:rgba(170,255,0,0.5);color:var(--white);}
+.lbtn.on{border-color:var(--green);background:var(--green-dim);color:var(--green);}
+.level-names{display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted);margin-top:6px;padding:0 2px;}
+
+/* Goal cards */
+.goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.goal-card{padding:18px;background:var(--gray2);border:2px solid var(--gray3);transition:all 0.2s;}
+.goal-card:hover{border-color:rgba(170,255,0,0.4);}
+.goal-card.on{border-color:var(--green);background:var(--green-dim);}
+.goal-icon{font-size:1.5rem;margin-bottom:8px;}
+.goal-title{font-size:0.88rem;font-weight:700;margin-bottom:3px;}
+.goal-desc{font-size:0.75rem;color:var(--muted);line-height:1.45;}
+.goal-card.on .goal-desc{color:rgba(170,255,0,0.65);}
+
+/* API key step */
+.apikey-box{background:var(--gray2);border:1px solid var(--gray3);padding:24px;margin-bottom:20px;}
+.apikey-box .field input{font-family:monospace;font-size:0.82rem;letter-spacing:0.04em;}
+.remember{display:flex;align-items:center;gap:10px;margin-top:14px;}
+.remember input[type="checkbox"]{width:17px;height:17px;accent-color:var(--green);}
+.remember label{font-size:0.82rem;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;}
+.api-note{font-size:0.75rem;color:var(--muted);margin-top:14px;padding:12px 14px;background:rgba(255,255,255,0.02);border-left:2px solid var(--gray3);line-height:1.55;}
+.api-note a{color:var(--green);}
+
+/* Step nav */
+.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px;}
+.btn-back{background:none;border:1px solid var(--gray3);color:var(--muted);padding:13px 22px;font-family:var(--font);font-size:0.82rem;font-weight:600;letter-spacing:0.06em;transition:all 0.2s;}
+.btn-back:hover{border-color:var(--white);color:var(--white);}
+.btn-next{background:var(--green);border:none;color:var(--black);padding:13px 30px;font-family:var(--font);font-size:0.82rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;transition:transform 0.2s,box-shadow 0.2s;}
+.btn-next:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(170,255,0,0.3);}
+.btn-gen{background:var(--green);border:none;color:var(--black);padding:15px 40px;font-family:var(--font);font-size:0.88rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;transition:transform 0.2s,box-shadow 0.2s;}
+.btn-gen:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(170,255,0,0.4);}
+
+/* Error */
+.err-box{background:rgba(255,70,70,0.07);border:1px solid rgba(255,70,70,0.25);padding:14px 18px;color:#ff9090;font-size:0.85rem;line-height:1.5;margin-bottom:20px;display:none;}
+
+/* ===================== RESULTS ===================== */
+#view-results{align-items:stretch;}
+.r-header{padding:20px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--gray3);position:sticky;top:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);z-index:100;}
+.r-logo{font-size:1.2rem;font-weight:900;letter-spacing:-0.03em;}
+.r-logo span{color:var(--green);}
+.r-actions{display:flex;gap:10px;}
+.btn-r{background:none;border:1px solid var(--gray3);color:var(--muted);padding:8px 18px;font-family:var(--font);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.2s;}
+.btn-r:hover{border-color:var(--white);color:var(--white);}
+.btn-r.p{background:var(--green);border-color:var(--green);color:var(--black);}
+.btn-r.p:hover{background:rgba(170,255,0,0.85);}
+.btn-r:disabled{opacity:0.4;pointer-events:none;}
+
+.r-body{max-width:860px;margin:0 auto;padding:52px 40px 100px;width:100%;}
+
+/* Profile card */
+.profile-card{background:var(--gray2);border:1px solid var(--gray3);padding:24px 28px;margin-bottom:48px;display:flex;flex-wrap:wrap;gap:20px 28px;align-items:flex-start;}
+.pname{font-size:1.05rem;font-weight:800;letter-spacing:-0.02em;min-width:120px;}
+.pname small{display:block;font-size:0.75rem;color:var(--muted);font-weight:400;margin-top:3px;}
+.pstats{display:flex;flex-wrap:wrap;gap:16px 24px;}
+.ps{display:flex;flex-direction:column;gap:2px;}
+.ps-l{font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+.ps-v{font-size:0.88rem;font-weight:700;}
+.ps-v.hi{color:var(--green);}
+.ptags{display:flex;flex-wrap:wrap;gap:7px;width:100%;}
+.ptag{background:var(--green-dim);border:1px solid var(--green-border);color:var(--green);padding:4px 12px;font-size:0.7rem;font-weight:700;letter-spacing:0.05em;}
+
+/* Loading */
+#prog-loading{text-align:center;padding:80px 0;}
+.spinner{width:44px;height:44px;border:3px solid var(--gray3);border-top-color:var(--green);border-radius:50%;animation:spin 0.75s linear infinite;margin:0 auto 20px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#prog-loading p{color:var(--muted);font-size:0.88rem;}
+
+/* Markdown output */
+#prog-out h1{font-size:1.9rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:14px;}
+#prog-out h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin:44px 0 14px;padding-bottom:12px;border-bottom:1px solid var(--gray3);}
+#prog-out h2::before{content:'';display:inline-block;width:4px;height:0.9em;background:var(--green);margin-right:12px;vertical-align:middle;}
+#prog-out h3{font-size:1rem;font-weight:700;color:var(--green);margin:28px 0 10px;}
+#prog-out h4{font-size:0.9rem;font-weight:700;color:var(--white);margin:20px 0 8px;}
+#prog-out p{font-size:0.92rem;line-height:1.72;color:#c8c8c8;margin-bottom:14px;}
+#prog-out strong{color:var(--white);font-weight:700;}
+#prog-out em{color:rgba(170,255,0,0.85);font-style:normal;}
+#prog-out ul,#prog-out ol{padding-left:22px;margin-bottom:14px;}
+#prog-out li{font-size:0.9rem;line-height:1.65;color:#bbb;margin-bottom:5px;}
+#prog-out table{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:0.85rem;}
+#prog-out th{background:var(--gray3);padding:9px 13px;text-align:left;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid rgba(255,255,255,0.06);}
+#prog-out td{padding:9px 13px;border-bottom:1px solid rgba(255,255,255,0.05);color:#c0c0c0;vertical-align:top;line-height:1.5;}
+#prog-out tr:last-child td{border-bottom:none;}
+#prog-out tr:hover td{background:rgba(255,255,255,0.02);}
+#prog-out hr{border:none;border-top:1px solid var(--gray3);margin:36px 0;}
+#prog-out blockquote{border-left:3px solid var(--green);padding:10px 20px;background:var(--gray2);margin:18px 0;color:#bbb;font-size:0.88rem;line-height:1.6;}
+#prog-out code{background:var(--gray3);padding:2px 7px;font-size:0.84em;color:var(--green);}
+.stream-cur{display:inline-block;width:2px;height:1em;background:var(--green);animation:blink 0.65s step-end infinite;vertical-align:middle;margin-left:2px;}
+@keyframes blink{50%{opacity:0;}}
+
+.err-result{background:rgba(255,70,70,0.06);border:1px solid rgba(255,70,70,0.2);padding:20px 24px;color:#ff8080;font-size:0.88rem;line-height:1.6;}
+.err-result strong{color:#ffaaaa;}
+
+/* ===================== OPTIONS VIEW ===================== */
+#view-options{align-items:stretch;}
+.opts-body{max-width:980px;margin:0 auto;padding:52px 40px 100px;width:100%;}
+.opts-heading{margin-bottom:44px;}
+.opts-heading h2{font-size:1.9rem;font-weight:900;letter-spacing:-0.04em;margin-bottom:8px;}
+.opts-heading p{color:var(--muted);font-size:0.9rem;}
+.opts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:40px;}
+.opt-card{background:var(--gray2);border:2px solid var(--gray3);padding:26px 24px;cursor:none;transition:border-color 0.25s,background 0.25s;display:flex;flex-direction:column;gap:14px;}
+.opt-card:hover{border-color:rgba(170,255,0,0.35);}
+.opt-card.selected{border-color:var(--green);background:rgba(170,255,0,0.04);}
+.opt-badge{font-size:0.65rem;font-weight:800;letter-spacing:0.22em;color:var(--muted);text-transform:uppercase;}
+.opt-card.selected .opt-badge{color:var(--green);}
+.opt-title{font-size:1.1rem;font-weight:900;letter-spacing:-0.025em;line-height:1.2;}
+.opt-tagline{font-size:0.82rem;color:var(--muted);line-height:1.5;}
+.opt-divider{height:1px;background:var(--gray3);}
+.opt-sessions{display:flex;flex-wrap:wrap;gap:5px;}
+.opt-tag{font-size:0.67rem;font-weight:700;letter-spacing:0.04em;padding:4px 9px;}
+.opt-tag.t-str{color:#7da4ff;background:rgba(125,164,255,0.1);}
+.opt-tag.t-oly{color:#ffc94d;background:rgba(255,201,77,0.1);}
+.opt-tag.t-cond{color:#ff8c6b;background:rgba(255,140,107,0.1);}
+.opt-tag.t-mob{color:#6bffcc;background:rgba(107,255,204,0.1);}
+.opt-tag.t-met{color:var(--green);background:var(--green-dim);}
+.opt-methods{display:flex;flex-wrap:wrap;gap:5px;}
+.opt-method{font-size:0.68rem;color:var(--muted);padding:3px 8px;border:1px solid var(--gray3);}
+.opt-why{background:rgba(255,255,255,0.015);border-left:2px solid var(--gray3);padding:10px 13px;font-size:0.78rem;color:#999;line-height:1.55;margin-top:auto;}
+.opt-card.selected .opt-why{border-left-color:var(--green-border);color:#c0c0c0;}
+.opt-select-btn{width:100%;padding:11px;background:transparent;border:1px solid var(--gray3);color:var(--muted);font-family:var(--font);font-size:0.72rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.2s;cursor:none;}
+.opt-select-btn:hover{border-color:rgba(170,255,0,0.5);color:var(--green);}
+.opt-card.selected .opt-select-btn{background:var(--green);border-color:var(--green);color:var(--black);}
+.opts-notes-wrap{margin-bottom:28px;}
+.opts-notes-lbl{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.opts-notes-lbl span{font-weight:400;text-transform:none;letter-spacing:0;color:#444;}
+#coach-notes{width:100%;background:var(--gray2);border:1px solid var(--gray3);color:var(--white);padding:14px 16px;font-family:var(--font);font-size:0.88rem;resize:vertical;min-height:80px;outline:none;line-height:1.55;display:block;}
+#coach-notes:focus{border-color:var(--green);}
+#coach-notes::placeholder{color:#363636;}
+.opts-footer{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+#opts-loading{text-align:center;padding:80px 0;}
+.opt-profile-bar{background:var(--gray2);border:1px solid var(--gray3);padding:18px 24px;margin-bottom:36px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;}
+.op-name{font-size:1rem;font-weight:800;letter-spacing:-0.02em;}
+.op-stat{font-size:0.8rem;color:var(--muted);}
+.op-stat b{color:var(--white);font-weight:600;}
+.op-tag{background:var(--green-dim);border:1px solid var(--green-border);color:var(--green);padding:3px 10px;font-size:0.67rem;font-weight:700;letter-spacing:0.05em;}
+#opts-err{width:100%;}
+
+/* Responsive */
+@media(max-width:680px){
+  .nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  #hero{padding:110px 20px 60px;}
+  .hero-heading{font-size:3.4rem;}
+  .stats-row{flex-direction:column;}
+  .stat-item{border-right:none;border-bottom:1px solid var(--gray3);padding:20px 0;}
+  .features-grid{grid-template-columns:1fr;}
+  #view-form{padding-top:80px;padding-bottom:40px;}
+  .form-wrap{padding:0 16px;}
+  .row{grid-template-columns:1fr;}
+  .goals-grid{grid-template-columns:1fr;}
+  .r-body{padding:32px 20px 80px;}
+  .r-header{padding:14px 20px;}
+  .r-actions .btn-r:first-child{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<!-- ============================================================ LANDING -->
+<div id="view-landing" class="view active">
+  <nav class="nav" id="nav">
+    <div class="nav-logo">Atlas<span>.</span></div>
+    <div class="nav-links">
+      <a href="#features">Programs</a>
+      <a href="#" id="nav-gen">Generate</a>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-eyebrow">Coach-First AI Programming</div>
+    <h1 class="hero-heading">Your client.<br><em>Your</em><br>decision.</h1>
+    <p class="hero-sub">Enter client data. Get three distinct program proposals. Pick the best fit, add coach notes, and generate a complete 4-week prescription — instantly.</p>
+    <div class="cta-row">
+      <button class="btn-cta" id="hero-cta">Start Client Program</button>
+      <button class="btn-cta ghost" id="hero-scroll">See How It Works ↓</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="stat-num">3<span>×</span></div><div class="stat-label">Program Options</div></div>
+      <div class="stat-item"><div class="stat-num"><span>Opus</span></div><div class="stat-label">AI Model</div></div>
+      <div class="stat-item"><div class="stat-num">4<span>-week</span></div><div class="stat-label">Full Program</div></div>
+      <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-label">Coach-Controlled</div></div>
+    </div>
+  </section>
+
+  <div id="features" class="features-section">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Coach in the Loop</div>
+        <div class="feature-desc">Atlas proposes three distinct program approaches. You choose the one that fits, add your overrides, then generate — you're always in control.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏋️</div>
+        <div class="feature-title">Hybrid Programming</div>
+        <div class="feature-desc">Strength, Olympic lifting, endurance, CrossFit metcons, and Torokhtiy mobility — all structured into a periodized weekly split.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Full Prescription</div>
+        <div class="feature-desc">Every session: exercise tables with sets, reps, load, rest, and cues. AM/PM splits for dual-session days. 4-week progression built in.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ FORM -->
+<div id="view-form" class="view">
+  <div class="form-wrap">
+
+    <!-- Progress -->
+    <div class="progress">
+      <div class="p-dot active" id="pd1"><span class="p-num">1</span></div>
+      <div class="p-line" id="pl1"></div>
+      <div class="p-dot" id="pd2"><span class="p-num">2</span></div>
+      <div class="p-line" id="pl2"></div>
+      <div class="p-dot" id="pd3"><span class="p-num">3</span></div>
+      <div class="p-line" id="pl3"></div>
+      <div class="p-dot" id="pd4"><span class="p-num">4</span></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+      <h2 class="step-h">Who are you?</h2>
+      <p class="step-sub">Basic data to calibrate load and volume</p>
+      <div class="row full">
+        <div class="field">
+          <label>Name <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <input type="text" id="f-name" placeholder="Your name" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Age</label>
+          <input type="number" id="f-age" placeholder="23" min="14" max="80" value="23" />
+        </div>
+        <div class="field">
+          <label>Biological Sex</label>
+          <select id="f-sex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="unspecified">Prefer not to say</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Height (cm)</label>
+          <input type="number" id="f-height" placeholder="167" min="100" max="250" value="167" />
+        </div>
+        <div class="field">
+          <label>Body Weight (kg)</label>
+          <input type="number" id="f-weight" placeholder="70" min="30" max="300" step="0.5" value="70" />
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="toLanding()">← Back</button>
+        <button class="btn-next" onclick="goStep(2)">Next →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+      <h2 class="step-h">Your fitness.</h2>
+      <p class="step-sub">Advanced data to fine-tune intensity and periodization</p>
+      <div class="row">
+        <div class="field">
+          <label>Resting HR (bpm) <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <input type="number" id="f-rhr" placeholder="49" min="30" max="100" value="49" />
+          <span class="hint">Below 60 = strong aerobic base</span>
+        </div>
+        <div class="field">
+          <label>Training Days / Week</label>
+          <input type="number" id="f-days" placeholder="5" min="1" max="7" value="5" />
+        </div>
+      </div>
+      <div class="row full">
+        <div class="field">
+          <label>Session Length (min)</label>
+          <input type="number" id="f-dur" placeholder="75" min="20" max="180" value="75" />
+        </div>
+      </div>
+      <div class="level-wrap">
+        <div class="level-lbl">Fitness Level</div>
+        <div class="level-btns">
+          <button class="lbtn" data-l="1" onclick="setLevel(1)">1</button>
+          <button class="lbtn" data-l="2" onclick="setLevel(2)">2</button>
+          <button class="lbtn" data-l="3" onclick="setLevel(3)">3</button>
+          <button class="lbtn on" data-l="4" onclick="setLevel(4)">4</button>
+          <button class="lbtn" data-l="5" onclick="setLevel(5)">5</button>
+        </div>
+        <div class="level-names"><span>Beginner</span><span>Novice</span><span>Intermediate</span><span>Advanced</span><span>Elite</span></div>
+      </div>
+      <div class="row full">
+        <div class="field">
+          <label>Injuries / Limitations <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <textarea id="f-injuries" placeholder="e.g. mild lower back sensitivity, right shoulder impingement…"></textarea>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goStep(1)">← Back</button>
+        <button class="btn-next" onclick="goStep(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+      <h2 class="step-h">Your goals.</h2>
+      <p class="step-sub">Select all that apply — program prioritizes accordingly</p>
+      <div class="goals-grid">
+        <div class="goal-card on" data-g="strength" onclick="toggleGoal(this)">
+          <div class="goal-icon">💪</div>
+          <div class="goal-title">Maximal Strength</div>
+          <div class="goal-desc">Deadlift, squat, bench press, weighted pull-up</div>
+        </div>
+        <div class="goal-card on" data-g="cardio" onclick="toggleGoal(this)">
+          <div class="goal-icon">🏃</div>
+          <div class="goal-title">Cardiovascular Endurance</div>
+          <div class="goal-desc">3km run, Zone 2 base, VO₂ max development</div>
+        </div>
+        <div class="goal-card on" data-g="olympic" onclick="toggleGoal(this)">
+          <div class="goal-icon">🏋️</div>
+          <div class="goal-title">Olympic Lifting</div>
+          <div class="goal-desc">Snatch and clean &amp; jerk technique and power</div>
+        </div>
+        <div class="goal-card on" data-g="mobility" onclick="toggleGoal(this)">
+          <div class="goal-icon">🧘</div>
+          <div class="goal-title">Mobility &amp; Accessories</div>
+          <div class="goal-desc">Flexibility, joint health, targeted accessory work</div>
+        </div>
+        <div class="goal-card" data-g="power" onclick="toggleGoal(this)">
+          <div class="goal-icon">⚡</div>
+          <div class="goal-title">Power &amp; Speed</div>
+          <div class="goal-desc">Explosive strength, plyometrics, athleticism</div>
+        </div>
+        <div class="goal-card" data-g="composition" onclick="toggleGoal(this)">
+          <div class="goal-icon">🎯</div>
+          <div class="goal-title">Body Composition</div>
+          <div class="goal-desc">Muscle gain and fat loss through periodization</div>
+        </div>
+      </div>
+      <div class="row full">
+        <div class="field">
+          <label>Custom goals / context <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <textarea id="f-extra" placeholder="e.g. compete in powerlifting, first 10km race in 3 months…"></textarea>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goStep(2)">← Back</button>
+        <button class="btn-next" onclick="goStep(4)">Next →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" id="step4">
+      <h2 class="step-h">Almost there.</h2>
+      <p class="step-sub">Your Anthropic API key to run the generator</p>
+      <div class="apikey-box">
+        <div class="field">
+          <label>Anthropic API Key</label>
+          <input type="password" id="f-apikey" placeholder="sk-ant-api03-…" autocomplete="off" />
+        </div>
+        <div class="remember">
+          <input type="checkbox" id="f-remember" checked />
+          <label for="f-remember">Remember key in this browser (localStorage)</label>
+        </div>
+        <div class="api-note">
+          Your key is used <strong>only in your browser</strong> — never sent to any server.
+          Get yours at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>.
+          Requires <strong>claude-opus-4-8</strong> access.
+        </div>
+      </div>
+      <div class="err-box" id="gen-err"></div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goStep(3)">← Back</button>
+        <button class="btn-gen" id="btn-gen" onclick="startGenerate()">Propose Program Options →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ OPTIONS -->
+<div id="view-options" class="view">
+  <div class="r-header">
+    <div class="r-logo">Atlas<span>.</span></div>
+    <div class="r-actions">
+      <button class="btn-r" onclick="showForm()">← Edit Client</button>
+    </div>
+  </div>
+  <div class="opts-body">
+    <div id="opt-profile-bar" class="opt-profile-bar"></div>
+    <div id="opts-loading"><div class="spinner"></div><p>Analyzing client profile…</p></div>
+    <div id="opts-content" style="display:none">
+      <div class="opts-heading">
+        <h2>Choose a Program Approach</h2>
+        <p>Select the option that best fits your client. Add coach notes before generating.</p>
+      </div>
+      <div class="opts-grid" id="opts-grid"></div>
+      <div class="opts-notes-wrap">
+        <div class="opts-notes-lbl">Coach Notes <span>(optional — adjustments, restrictions, focus areas)</span></div>
+        <textarea id="coach-notes" placeholder="e.g. Avoid heavy deadlifts this week, prioritize snatch technique, reduce metcon intensity…"></textarea>
+      </div>
+      <div class="opts-footer">
+        <div id="opts-err" class="err-box"></div>
+        <button class="btn-gen" id="btn-gen-full" onclick="generateFromOption()" disabled>Generate Full Program →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ RESULTS -->
+<div id="view-results" class="view">
+  <div class="r-header">
+    <div class="r-logo">Atlas<span>.</span></div>
+    <div class="r-actions">
+      <button class="btn-r" onclick="showForm()">Edit Client</button>
+      <button class="btn-r" onclick="backToOptions()">← Options</button>
+      <button class="btn-r" id="btn-regen" onclick="regenerate()">↺ Regenerate</button>
+      <button class="btn-r p" id="btn-copy" onclick="copyProg()">Copy</button>
+    </div>
+  </div>
+  <div class="r-body">
+    <div class="profile-card" id="profile-card"></div>
+    <div id="prog-loading"><div class="spinner"></div><p>Claude is designing your program…</p></div>
+    <div id="prog-out"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+/* ---- cursor ---- */
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+let rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  rx+=(e.clientX-rx)*0.12;ry+=(e.clientY-ry)*0.12;
+});
+(function af(){ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(af);})();
+
+/* ---- nav scroll ---- */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+/* ---- state ---- */
+let lvl=4,step=1,streaming=false,fullText='',lastData=null,selectedOptIdx=null,optionsArr=[],lastCoachNotes='';
+const LVLS={1:'Beginner',2:'Novice',3:'Intermediate',4:'Advanced',5:'Elite'};
+
+/* restore key */
+const saved=localStorage.getItem('atlas_apikey');
+if(saved) document.getElementById('f-apikey').value=saved;
+
+/* ---- view helpers ---- */
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function toLanding(){showView('view-landing');}
+function showForm(){showView('view-form');}
+
+document.getElementById('hero-cta').onclick=()=>{showView('view-form');goStep(1);};
+document.getElementById('nav-gen').onclick=e=>{e.preventDefault();showView('view-form');goStep(1);};
+document.getElementById('hero-scroll').onclick=()=>{
+  document.getElementById('features').scrollIntoView({behavior:'smooth'});
+};
+
+/* ---- step navigation ---- */
+function goStep(n){
+  if(n>step){const e=validate(step);if(e){alert(e);return;}}
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  for(let i=1;i<=4;i++){
+    const d=document.getElementById('pd'+i);
+    d.classList.remove('active','done');
+    if(i<n) d.classList.add('done');
+    else if(i===n) d.classList.add('active');
+    if(i<4) document.getElementById('pl'+i).classList.toggle('done',i<n);
+  }
+  step=n;
+  window.scrollTo(0,0);
+}
+
+function validate(s){
+  if(s===1){
+    const age=+document.getElementById('f-age').value;
+    const h=+document.getElementById('f-height').value;
+    const w=+document.getElementById('f-weight').value;
+    if(!age||age<14||age>80) return 'Please enter a valid age (14–80).';
+    if(!h||h<100||h>250) return 'Please enter a valid height in cm.';
+    if(!w||w<30||w>300) return 'Please enter a valid body weight in kg.';
+  }
+  if(s===3){
+    if(!document.querySelectorAll('.goal-card.on').length) return 'Please select at least one goal.';
+  }
+  return null;
+}
+
+/* ---- form interactions ---- */
+function setLevel(n){
+  lvl=n;
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.toggle('on',+b.dataset.l===n));
+}
+function toggleGoal(el){el.classList.toggle('on');}
+
+/* ---- collect data ---- */
+function collectData(){
+  const goals=[];
+  document.querySelectorAll('.goal-card.on').forEach(c=>goals.push(c.querySelector('.goal-title').textContent.trim()));
+  const rhrVal=document.getElementById('f-rhr').value;
+  const h=+document.getElementById('f-height').value;
+  const w=+document.getElementById('f-weight').value;
+  return {
+    name:document.getElementById('f-name').value.trim()||'Athlete',
+    age:+document.getElementById('f-age').value,
+    sex:document.getElementById('f-sex').value,
+    height:h, weight:w,
+    bmi:(w/Math.pow(h/100,2)).toFixed(1),
+    rhr:rhrVal?+rhrVal:null,
+    days:+document.getElementById('f-days').value||5,
+    dur:+document.getElementById('f-dur').value||75,
+    lvl, lvlName:LVLS[lvl],
+    injuries:document.getElementById('f-injuries').value.trim(),
+    extra:document.getElementById('f-extra').value.trim(),
+    goals
+  };
+}
+
+/* ---- profile card ---- */
+function renderProfile(d){
+  document.getElementById('profile-card').innerHTML=`
+    <div class="pname">${esc(d.name)}<small>${d.age}yo &middot; ${d.sex}</small></div>
+    <div class="pstats">
+      <div class="ps"><span class="ps-l">Height</span><span class="ps-v">${d.height} cm</span></div>
+      <div class="ps"><span class="ps-l">Weight</span><span class="ps-v">${d.weight} kg</span></div>
+      <div class="ps"><span class="ps-l">BMI</span><span class="ps-v">${d.bmi}</span></div>
+      ${d.rhr?`<div class="ps"><span class="ps-l">Resting HR</span><span class="ps-v hi">${d.rhr} bpm</span></div>`:''}
+      <div class="ps"><span class="ps-l">Level</span><span class="ps-v hi">${d.lvlName} (${d.lvl}/5)</span></div>
+      <div class="ps"><span class="ps-l">Schedule</span><span class="ps-v">${d.days}&times;/wk &middot; ${d.dur} min</span></div>
+    </div>
+    <div class="ptags">${d.goals.map(g=>`<span class="ptag">${esc(g)}</span>`).join('')}</div>
+  `;
+}
+
+/* ---- prompts ---- */
+function sysPrompt(){
+  return `You are an elite strength and conditioning coach specializing in hybrid training: powerlifting, Olympic weightlifting, endurance, mobility, and CrossFit-style conditioning. You program based on a proven exercise library and structural principles drawn from elite training systems.
+
+## YOUR EXERCISE LIBRARY — use these specific exercises
+
+**Mobility (standalone/warm-up):** squat sit, toe stretch, dead hang, world's greatest stretch + knee push, 90/90 hip flow, ATG stretch, couch stretch, toes + knees, back roll + splits, banded lats contraction, shoulder broom stick
+
+**Mobility Strength (loaded mobility):** weighted pigeon pose, weighted single-leg deadlift, kozak squat + hip rotation, dragon squat, barbell ATG split squat, barbell seated good morning, external rotator (4-sec eccentric), powell rise (4-sec eccentric), trap 3 (4-sec eccentric)
+
+**Olympic Weightlifting:** Power clean, Squat clean, Hang power clean, Hang squat clean, Power snatch, Hang squat snatch, Snatch balance, OHS (overhead squat), Clean & Jerk, Tall muscle clean
+
+**Strength Lower Body:** Deadlift, Back squat, Front squat, Bulgarian split squat, BB ATG split squat, Barbell seated good morning, Zercher squat, Pistol squat, Dragon squat
+
+**Strength Upper Body:** Incline bench press, Bench press, Weighted pull-ups, Weighted dips, Barbell row, Overhead press, Roman chair, Handstand push-ups
+
+**Zone 2 Cardio:** Jogging, Cycling, Rucking/Nadav, Barefoot intervals
+
+**Threshold Cardio:** Tempo run, Running intervals, Fartlek training, Hill climbs
+
+**Plyometrics:** Jump rope, Lateral bounds, Depth jumps, Box jumps, Elevated box lunge, Broad jumps, Sprints, Seated box jumps
+
+**CrossFit/MetCon pool:** thrusters, wall balls, KB swings, burpees, double-unders, toes-to-bar, rowing (cal), air squats, push-ups, ring rows, push press, hang power cleans, box jumps, farmer carries
+
+---
+
+## WEEKLY TEMPLATE (base structure — adapt to athlete's training days)
+
+| Day | AM Session | PM Session |
+|---|---|---|
+| Sunday | Morning Mobility — 20 min | Lower Body Strength — 90 min |
+| Monday | Easy Zone 2 — 30 min | Upper Body Strength — 90 min |
+| Tuesday | Morning Mobility — 20 min | Weightlifting — 60 min |
+| Wednesday | Long Zone 2 — 50 min | REST |
+| Thursday | REST | Upper Body Strength — 90 min |
+| Friday | Threshold Run — 40 min | Plyometrics + MetCon — 60 min |
+| Saturday | REST | Mobility — 30 min |
+
+**CRITICAL RULE:** Any day with BOTH a strength/weightlifting session AND an endurance session MUST be written as two separate blocks: **Morning Session** and **Evening Session** with at least 4 hours separation noted.
+
+---
+
+## SESSION STRUCTURES
+
+### Lower Body Strength Template
+**Warm-up (~10 min):** Erg 5 min → squat sit 2 min → toe stretch 1 min → world's greatest stretch 10 reps → 90/90 10 reps → ATG stretch 10 reps
+
+Main work table — Phase | Exercise | Sets | Reps | Weight | Rest | Notes:
+1. Deadlift — 4×5 — ~130 kg for 70 kg advanced
+2. Back squat or Front squat — 4×5 — ~120 kg
+3. Bulgarian split squat — 4×6-10 — ~60 kg
+4. BB ATG split squat — 3×8-10 — ~30–40 kg
+5. BB seated good morning — 3×8-10 — ~30–40 kg
+6. Dragon squat or kozak squat — 2×8-10 — ~10 kg DB
+7. Depth jumps — 2×5 → Box jumps — 2×5 → Seated box jumps — 2×5
+
+### Upper Body Strength Template
+**Warm-up (~7 min):** Erg 5 min → light mobility + active stretch 2 min
+
+Main work — Phase | Exercise | Sets | Reps | Weight | Rest | Notes:
+1. Incline bench press — 5×6-8 — ~80 kg
+2. Weighted pull-ups — 5×5-6 — +30 kg
+3. Weighted dips — 4×6-8 — +30 kg
+4. Barbell row — 4×6-8 — ~60 kg
+5. Roman chair — 3×8-10
+6. Overhead press — 4×6 — ~55 kg
+7. External rotator — 3×6-8 — ~6 kg — **4-sec eccentric**
+8. Powell rise — 3×6-8 — ~4 kg — **4-sec eccentric**
+9. Trap 3 — 3×6-8 — ~4 kg — **4-sec eccentric**
+
+### Weightlifting Session Template
+**Warm-up (~10 min):** Erg 5 min → light mobility 5 min → barbell complex (deadlift, front squat, OH press, snatch balance) at empty bar
+
+Main work:
+1. Clean complex: Power clean + Squat clean + Hang power clean + Hang squat clean — 5×e3min EMOM at ~70 kg
+2. Snatch balance + OHS — 3×3 at ~60 kg — 2 min rest
+3. Snatch complex: Power snatch + Hang squat snatch — 5×e3min EMOM at ~50 kg
+Format complexes as: "e3min EMOM — 1 rep each movement" with technique focus note.
+
+### Mobility Session — Torokhtiy 3-Block Method (20-30 min)
+
+**BLOCK 1 — MOBILIZATION** (warm up connective tissue, 5-8 min):
+Passive and light rhythmic movements: PVC sole mobilization / foam roll calves, knee mobilization, floor ankle stretch, deep squat stretch, squat toes rolls, quad + hamstring stretch
+
+**BLOCK 2 — ACTIVATION** (target muscles and stabilizers, 8-10 min):
+Active loaded movements: capsular ankle rotations, 90/90 hip flow, sciatic nerve glide, quadrupled hip rotations, seated leg barrier raises, banded lats contraction, kozak squat + hip rotation, weighted pigeon pose
+
+**BLOCK 3 — INTEGRATION** (transfer to sport, 5-8 min):
+Full compound movements: prisoner squat 15 reps, ATG squat pulses, duck walk 10 m, OHS with dowel 10 reps, forward + backward walking lunge
+Overhead/front rack sessions substitute: shoulder broom stick, wall slides, wrist circles, rack elbow rotations, thruster with empty bar
+
+Format mobility as: Phase | Exercise | Sets/Duration | Tempo | Notes
+
+### Zone 2 / Threshold Cardio
+Zone 2: 60–70% HRmax. Conversational pace. Can be jogging, cycling, rucking.
+Threshold: 80–88% HRmax. "Comfortably hard." Tempo run = sustained effort 20–30 min; intervals = 5–8 × 3–5 min at threshold pace with 1:1 rest.
+Always provide: target HR range in bpm (based on athlete's max HR = 220 − age, adjusted by RHR if available).
+
+### CrossFit-Style MetCons (program on Fridays or as session finishers)
+Include one of these formats per MetCon session:
+
+**AMRAP** (As Many Rounds As Possible):
+"AMRAP 12 min: 10 thrusters @40 kg | 12 box jumps | 10 pull-ups — Score: total rounds + reps"
+
+**For Time (rounds for time):**
+"5 rounds for time: 400 m run | 15 KB swings @24 kg | 10 burpees — Time cap: 20 min"
+
+**EMOM** (Every Minute on the Minute):
+"EMOM 10 min: odd = 5 hang power cleans @60 kg | even = 12 wall balls @9 kg"
+
+**Chipper:**
+"For time: 50 double-unders | 40 air squats | 30 KB swings | 20 hang cleans @40 kg | 10 thrusters"
+
+MetCon duration: 8–15 min for fitness level 4+. Scale weights for the athlete's profile.
+
+---
+
+## OUTPUT FORMAT RULES
+- **ALWAYS use tables** for exercise prescriptions: | Phase | Exercise | Sets | Reps/Duration | Weight | Rest | Notes |
+- For same-day AM/PM: clearly label **🌅 Morning Session** and **🌙 Evening Session**
+- Phase labels: Warm-Up / Primary / Accessory / Finisher / MetCon / Cool-Down
+- Include HR zones as bpm ranges, not just percentages
+- Include coaching cues in the Notes column (1 phrase max)
+- Scale weights to the athlete's body weight and fitness level — always give kg numbers
+- Be specific about e3min EMOM format for Olympic complexes`;
+}
+
+function userPrompt(d,option,coachNotes){
+  const age=d.age;
+  const maxHR=220-age;
+  const rhrLine=d.rhr?`- Resting HR: **${d.rhr} bpm**${d.rhr<50?' *(elite aerobic base)*':d.rhr<55?' *(excellent aerobic capacity)*':''}`:'';
+  const hrZones=d.rhr
+    ? `- Zone 2 target: **${Math.round(d.rhr+(maxHR-d.rhr)*0.6)}–${Math.round(d.rhr+(maxHR-d.rhr)*0.7)} bpm** (Karvonen 60–70%)\n- Threshold target: **${Math.round(d.rhr+(maxHR-d.rhr)*0.8)}–${Math.round(d.rhr+(maxHR-d.rhr)*0.88)} bpm** (Karvonen 80–88%)`
+    : `- Zone 2 target: **${Math.round(maxHR*0.62)}–${Math.round(maxHR*0.70)} bpm**\n- Threshold target: **${Math.round(maxHR*0.80)}–${Math.round(maxHR*0.88)} bpm**`;
+  const injLine=d.injuries?`\n**Injuries/Limitations:** ${d.injuries}`:'';
+  const extraLine=d.extra?`\n**Additional Context:** ${d.extra}`:'';
+  const goalList=d.goals.map((g,i)=>`${i+1}. ${g}`).join('\n');
+  const wRatio=(d.weight/70).toFixed(2);
+  const base=`Generate a complete personalized 4-week training program for this athlete.
+
+## Athlete Profile
+- **Name:** ${d.name} | **Age:** ${d.age} | **Sex:** ${d.sex}
+- **Height:** ${d.height} cm | **Weight:** ${d.weight} kg | **BMI:** ${d.bmi}
+${rhrLine}
+- **Est. Max HR:** ${maxHR} bpm
+${hrZones}
+- **Fitness Level:** ${d.lvl}/5 — ${d.lvlName}
+- **Training Days:** ${d.days} per week | **Preferred Session Length:** ${d.dur} min${injLine}${extraLine}
+
+**Weight scaling note:** Reference weights in your system are for a 70 kg athlete. This athlete is ${d.weight} kg (ratio ${wRatio}×). Scale all barbell loads proportionally and round to nearest 2.5 kg.
+
+## Priority Goals
+${goalList}
+
+---
+
+Build this program using the exact weekly template and session structures from your coaching system. Adapt the 7-day structure to fit ${d.days} training days by selecting the most relevant sessions for the stated goals.
+
+## Required Output Structure
+
+### 1. Athlete Assessment
+2–3 sentences on this athlete's profile, readiness, and overall programming philosophy for their specific goals.
+
+### 2. Weekly Schedule Overview
+Table: Day | Time | Session Type | Duration | Primary Focus
+
+### 3. Week 1 — Full Session Details
+
+Write every training session in full. For EACH session:
+- Label clearly: **Day X — [Session Name]** (e.g., **Day 1 — Lower Body Strength**)
+- If the day has TWO sessions (endurance + strength), write both: **🌅 Morning Session** then **🌙 Evening Session**
+- Use the exact table format: | Phase | Exercise | Sets | Reps/Duration | Weight | Rest | Notes |
+- Phases: Warm-Up → Primary → Accessory → Finisher (MetCon if applicable) → Cool-Down
+- For Zone 2 / threshold: give target HR in bpm, distance or time, pace notes
+- For weightlifting: use e3min EMOM format for complexes
+- For mobility: use 3-block Torokhtiy structure (Mobilization → Activation → Integration)
+- Include at least ONE CrossFit-style MetCon this week (AMRAP, For Time, or EMOM)
+
+### 4. Weeks 2–4 Progression
+Specific week-by-week adjustments:
+- Week 2: volume increase (+1 set or +5% load)
+- Week 3: intensity peak (reduce volume, increase load)
+- Week 4: deload (60–70% volume, maintain skill work)
+
+### 5. Benchmark Targets
+Concrete performance targets to hit by end of Week 4:
+- Strength: target lift numbers in kg
+- Endurance: target 3 km run time or HRmax improvement
+- Olympic lifting: technical milestone (e.g., "consistent catch position on squat clean at 75 kg")
+- Mobility: specific ROM target
+
+Be maximally specific — this athlete trains with this program starting tomorrow.`;
+
+  const optCtx=option?`\n\n---\n\n## Selected Program Approach: "${option.title}"\n**Philosophy:** ${option.tagline}\n**Session structure:** ${(option.sessions||[]).map(s=>s.label).join(' | ')}\n**Key methods:** ${(option.methods||[]).join(', ')}\n**Coach rationale:** ${option.bestFor}\n\nBuild the entire 4-week program strictly following this approach. Honor the session balance, emphasis, and methods described above. Do not deviate from this programmatic philosophy.`:'';
+
+  const notesCtx=coachNotes?`\n\n## Coach Directives (apply throughout the program)\n${coachNotes}`:'';
+
+  return base+optCtx+notesCtx;
+}
+
+/* ---- generate ---- */
+async function startGenerate(){
+  const key=document.getElementById('f-apikey').value.trim();
+  if(!key||!key.startsWith('sk-')){
+    showErr('Enter a valid Anthropic API key (starts with sk-).');
+    return;
+  }
+  if(document.getElementById('f-remember').checked){
+    localStorage.setItem('atlas_apikey',key);
+  } else {
+    localStorage.removeItem('atlas_apikey');
+  }
+  hideErr();
+  lastData=collectData();
+  selectedOptIdx=null;
+  optionsArr=[];
+  await fetchOptions(key,lastData);
+}
+
+async function regenerate(){
+  if(streaming||!lastData) return;
+  const key=document.getElementById('f-apikey').value.trim()||localStorage.getItem('atlas_apikey')||'';
+  if(!key){alert('API key not found. Please go back to step 4.');return;}
+  const option=selectedOptIdx!==null?optionsArr[selectedOptIdx]:null;
+  await runGenerate(key,lastData,option,lastCoachNotes);
+}
+
+async function generateFromOption(){
+  if(selectedOptIdx===null){
+    const el=document.getElementById('opts-err');
+    el.textContent='Please select a program option first.';el.style.display='block';
+    return;
+  }
+  document.getElementById('opts-err').style.display='none';
+  const key=document.getElementById('f-apikey').value.trim()||localStorage.getItem('atlas_apikey')||'';
+  if(!key){alert('API key not found. Please go back to step 4.');return;}
+  lastCoachNotes=document.getElementById('coach-notes').value.trim();
+  await runGenerate(key,lastData,optionsArr[selectedOptIdx],lastCoachNotes);
+}
+
+/* ---- options flow ---- */
+function optionsSysPrompt(){
+  return `You are an elite S&C coach. Given a client profile and goals, return EXACTLY 3 distinct programming approaches as raw JSON — no prose, no markdown, no code fences. Just the JSON object.
+
+The 3 options must have genuinely different philosophical emphases (e.g., strength-dominant vs. hybrid vs. conditioning/Olympic-focused). All 3 must address the client's stated goals but with different priorities and session structures.
+
+Return this exact structure:
+{"options":[{"title":"3-4 word name","tagline":"one sentence philosophy under 85 chars","sessions":[{"label":"Session Type ×N","type":"str|oly|cond|mob|met"}],"methods":["method 1","method 2","method 3"],"bestFor":"Why this approach suits this specific client. 2 sentences."}]}
+
+Session type keys: str=strength, oly=olympic lifting, cond=cardio/endurance, mob=mobility, met=metcon/crossfit
+Return ONLY the raw JSON. Nothing else.`;
+}
+
+function optionsUserPrompt(d){
+  const goals=d.goals.join(', ');
+  return `Client: ${d.name}, ${d.age}yo ${d.sex}, ${d.height}cm / ${d.weight}kg, Fitness Level ${d.lvl}/5
+RHR: ${d.rhr||'N/A'} bpm | Training: ${d.days}×/week | Session length: ${d.dur} min
+Goals: ${goals}${d.injuries?'\nLimitations: '+d.injuries:''}
+
+Generate 3 distinct program options as JSON.`;
+}
+
+async function fetchOptions(key,data){
+  showView('view-options');
+  renderOptProfileBar(data);
+  document.getElementById('opts-loading').style.display='block';
+  document.getElementById('opts-content').style.display='none';
+  document.getElementById('opts-err').style.display='none';
+  document.getElementById('coach-notes').value='';
+  document.getElementById('btn-gen-full').disabled=true;
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':key,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-opus-4-8',
+        max_tokens:2000,
+        stream:false,
+        system:optionsSysPrompt(),
+        messages:[{role:'user',content:optionsUserPrompt(data)}]
+      })
+    });
+    if(!resp.ok){
+      let msg=`API Error ${resp.status}`;
+      try{const b=await resp.json();msg=b.error?.message||msg;}catch{}
+      throw new Error(msg);
+    }
+    const result=await resp.json();
+    const text=(result.content[0]?.text||'').trim();
+    let parsed;
+    try{parsed=JSON.parse(text);}catch{
+      const m=text.match(/\{[\s\S]*\}/);
+      if(m) parsed=JSON.parse(m[0]);
+      else throw new Error('Could not parse options response.');
+    }
+    optionsArr=parsed.options||[];
+    if(!optionsArr.length) throw new Error('No options returned.');
+    renderOptions(optionsArr);
+    document.getElementById('opts-loading').style.display='none';
+    document.getElementById('opts-content').style.display='block';
+  }catch(e){
+    document.getElementById('opts-loading').style.display='none';
+    document.getElementById('opts-content').style.display='block';
+    const el=document.getElementById('opts-err');
+    el.textContent='Failed to load options: '+e.message;
+    el.style.display='block';
+  }
+}
+
+function renderOptProfileBar(d){
+  const tags=d.goals.map(g=>`<span class="op-tag">${esc(g)}</span>`).join('');
+  document.getElementById('opt-profile-bar').innerHTML=`
+    <span class="op-name">${esc(d.name)}</span>
+    <span class="op-stat"><b>${d.age}</b> yo</span>
+    <span class="op-stat"><b>${d.sex}</b></span>
+    <span class="op-stat"><b>${d.weight}</b> kg / <b>${d.height}</b> cm</span>
+    ${d.rhr?`<span class="op-stat">RHR <b>${d.rhr}</b> bpm</span>`:''}
+    <span class="op-stat">Level <b>${d.lvl}/5</b></span>
+    <span class="op-stat">${d.days}×/wk</span>
+    ${tags}
+  `;
+}
+
+function renderOptions(options){
+  const grid=document.getElementById('opts-grid');
+  grid.innerHTML='';
+  const letters=['A','B','C'];
+  options.forEach((opt,i)=>{
+    const sessHtml=(opt.sessions||[]).map(s=>`<span class="opt-tag t-${s.type||'str'}">${esc(s.label)}</span>`).join('');
+    const methHtml=(opt.methods||[]).map(m=>`<span class="opt-method">${esc(m)}</span>`).join('');
+    const card=document.createElement('div');
+    card.className='opt-card';
+    card.id=`opt-card-${i}`;
+    card.innerHTML=`
+      <div class="opt-badge">Option ${letters[i]||i+1}</div>
+      <div class="opt-title">${esc(opt.title)}</div>
+      <div class="opt-tagline">${esc(opt.tagline)}</div>
+      <div class="opt-divider"></div>
+      <div class="opt-sessions">${sessHtml}</div>
+      <div class="opt-methods">${methHtml}</div>
+      <div class="opt-why">${esc(opt.bestFor)}</div>
+      <button class="opt-select-btn" onclick="selectOption(${i})">Select</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function selectOption(idx){
+  selectedOptIdx=idx;
+  document.querySelectorAll('.opt-card').forEach((c,i)=>{
+    c.classList.toggle('selected',i===idx);
+    c.querySelector('.opt-select-btn').textContent=i===idx?'✓ Selected':'Select';
+  });
+  document.getElementById('btn-gen-full').disabled=false;
+}
+
+let renderTimer=null;
+
+async function runGenerate(key,data,option,coachNotes){
+  streaming=true;
+  fullText='';
+  document.getElementById('btn-regen').disabled=true;
+  document.getElementById('btn-copy').disabled=true;
+  showView('view-results');
+  renderProfile(data);
+  document.getElementById('prog-out').innerHTML='';
+  document.getElementById('prog-loading').style.display='block';
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':key,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-opus-4-8',
+        max_tokens:12000,
+        stream:true,
+        system:sysPrompt(),
+        messages:[{role:'user',content:userPrompt(data,option,coachNotes)}]
+      })
+    });
+
+    if(!resp.ok){
+      let msg=`API Error ${resp.status}`;
+      try{const b=await resp.json();msg=b.error?.message||msg;}catch{}
+      throw new Error(msg);
+    }
+
+    document.getElementById('prog-loading').style.display='none';
+
+    const reader=resp.body.getReader(),dec=new TextDecoder();
+    let buf='';
+    while(true){
+      const{done,value}=await reader.read();
+      if(done) break;
+      buf+=dec.decode(value,{stream:true});
+      const lines=buf.split('\n');
+      buf=lines.pop()||'';
+      for(const ln of lines){
+        if(!ln.startsWith('data: ')) continue;
+        const raw=ln.slice(6).trim();
+        if(raw==='[DONE]') continue;
+        try{
+          const p=JSON.parse(raw);
+          if(p.type==='content_block_delta'&&p.delta?.type==='text_delta'){
+            fullText+=p.delta.text;
+            schedRender();
+          }
+        }catch{}
+      }
+    }
+    if(renderTimer){clearTimeout(renderTimer);renderTimer=null;}
+    document.getElementById('prog-out').innerHTML=marked.parse(fullText);
+
+  }catch(e){
+    document.getElementById('prog-loading').style.display='none';
+    document.getElementById('prog-out').innerHTML=`<div class="err-result">
+      <strong>Generation failed:</strong> ${esc(e.message)}<br><br>
+      Check your API key and make sure you have access to <strong>claude-opus-4-8</strong>.<br>
+      <small>CORS error? Try opening this file with a local server: <code>npx serve .</code></small>
+    </div>`;
+  }finally{
+    streaming=false;
+    document.getElementById('btn-regen').disabled=false;
+    document.getElementById('btn-copy').disabled=false;
+  }
+}
+
+function schedRender(){
+  if(renderTimer) return;
+  renderTimer=setTimeout(()=>{
+    renderTimer=null;
+    document.getElementById('prog-out').innerHTML=
+      marked.parse(fullText)+'<span class="stream-cur"></span>';
+  },70);
+}
+
+/* ---- actions ---- */
+async function copyProg(){
+  if(!fullText) return;
+  try{
+    await navigator.clipboard.writeText(fullText);
+    const b=document.getElementById('btn-copy');
+    const orig=b.textContent;
+    b.textContent='Copied!';
+    setTimeout(()=>b.textContent=orig,2000);
+  }catch{alert('Copy failed — please select and copy manually.');}
+}
+
+function backToOptions(){
+  if(optionsArr.length) showView('view-options');
+  else showForm();
+}
+
+function showErr(msg){
+  const el=document.getElementById('gen-err');
+  el.textContent=msg;el.style.display='block';
+}
+function hideErr(){document.getElementById('gen-err').style.display='none';}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ---- marked ---- */
+marked.setOptions({breaks:true,gfm:true});
+</script>
+<script>
+(function(){
+  'use strict';
+  if (!('serviceWorker' in navigator)) return;
+  navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(()=>{});
+})();
+</script>
+</body>
+</html>

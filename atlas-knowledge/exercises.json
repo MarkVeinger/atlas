@@ -1,0 +1,4972 @@
+[
+  {
+    "id": 1,
+    "name": "Barbell Bench Press",
+    "muscle": "chest",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Classic horizontal push. Set shoulder blades back and down, drive feet into floor. Bar touches lower chest.",
+    "notes": "Arch is fine; don't let elbows flare past 75\u00b0."
+  },
+  {
+    "id": 2,
+    "name": "Incline Dumbbell Press",
+    "muscle": "chest",
+    "equip": "dumbbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "30\u201345\u00b0 incline. Emphasises upper pec. Control descent 2\u20133s.",
+    "notes": ""
+  },
+  {
+    "id": 3,
+    "name": "Cable Fly",
+    "muscle": "chest",
+    "equip": "cable",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "High-to-low or mid-cable fly. Maintain soft elbow through full ROM.",
+    "notes": "Squeeze at the cross-over point."
+  },
+  {
+    "id": 4,
+    "name": "Push-Up",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Hands at shoulder width. Hollow body. Full ROM chin-to-floor.",
+    "notes": ""
+  },
+  {
+    "id": 5,
+    "name": "Dumbbell Pullover",
+    "muscle": "chest",
+    "equip": "dumbbell",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Targets serratus and chest. Keep slight bend in elbows throughout.",
+    "notes": ""
+  },
+  {
+    "id": 6,
+    "name": "Decline Barbell Press",
+    "muscle": "chest",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Lower chest emphasis. Feet secured. Keep tight arch.",
+    "notes": ""
+  },
+  {
+    "id": 7,
+    "name": "Barbell Deadlift",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "advanced",
+    "desc": "Hip-hinge pulling from the floor. Neutral spine, lat engagement before the pull.",
+    "notes": "Push the floor away, don't just pull the bar."
+  },
+  {
+    "id": 8,
+    "name": "Pull-Up",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Full ROM from dead hang to chin over bar. Scapular retraction before pulling.",
+    "notes": ""
+  },
+  {
+    "id": 9,
+    "name": "Barbell Row",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Hip hinge, bar dragged to lower sternum. Keep lower back neutral.",
+    "notes": ""
+  },
+  {
+    "id": 10,
+    "name": "Dumbbell Row",
+    "muscle": "back",
+    "equip": "dumbbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Brace core, row to hip. Retract scapula at top.",
+    "notes": ""
+  },
+  {
+    "id": 11,
+    "name": "Lat Pulldown",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Full overhead stretch at top, drive elbows to hips at bottom.",
+    "notes": ""
+  },
+  {
+    "id": 12,
+    "name": "Seated Cable Row",
+    "muscle": "back",
+    "equip": "cable",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Tall spine, row to abdomen, retract scapulae.",
+    "notes": ""
+  },
+  {
+    "id": 13,
+    "name": "T-Bar Row",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Chest pad or v-handle. Neutral spine, heavy loading.",
+    "notes": ""
+  },
+  {
+    "id": 14,
+    "name": "Face Pull",
+    "muscle": "back",
+    "equip": "cable",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Rope to forehead, external rotation at top. Rear delt and rotator cuff.",
+    "notes": ""
+  },
+  {
+    "id": 15,
+    "name": "Overhead Press",
+    "muscle": "shoulders",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Bar rests on front delts, press to lockout. Squeeze glutes to protect lower back.",
+    "notes": ""
+  },
+  {
+    "id": 16,
+    "name": "Dumbbell Lateral Raise",
+    "muscle": "shoulders",
+    "equip": "dumbbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Lead with elbows, slight forward lean. Stop at shoulder height.",
+    "notes": "Pinky slightly higher than thumb."
+  },
+  {
+    "id": 17,
+    "name": "Arnold Press",
+    "muscle": "shoulders",
+    "equip": "dumbbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Rotating DB press from neutral to pronated. Full overhead ROM.",
+    "notes": ""
+  },
+  {
+    "id": 18,
+    "name": "Cable Lateral Raise",
+    "muscle": "shoulders",
+    "equip": "cable",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Consistent tension throughout. Cross-body or same-side attachment.",
+    "notes": ""
+  },
+  {
+    "id": 19,
+    "name": "Rear Delt Fly",
+    "muscle": "shoulders",
+    "equip": "dumbbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Hinge at hips, DB arcs to shoulder height. Pinch at top.",
+    "notes": ""
+  },
+  {
+    "id": 20,
+    "name": "Bradford Press",
+    "muscle": "shoulders",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Alternate pressing in front of and behind head without lockout. Shoulder mobility drill.",
+    "notes": ""
+  },
+  {
+    "id": 21,
+    "name": "Barbell Curl",
+    "muscle": "arms",
+    "equip": "barbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Strict curl, no swing. Squeeze bicep at top. Slow eccentric.",
+    "notes": ""
+  },
+  {
+    "id": 22,
+    "name": "Hammer Curl",
+    "muscle": "arms",
+    "equip": "dumbbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Neutral grip targets brachialis and brachioradialis.",
+    "notes": ""
+  },
+  {
+    "id": 23,
+    "name": "Tricep Dip",
+    "muscle": "arms",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Upright torso for tricep focus. Full lockout at top.",
+    "notes": ""
+  },
+  {
+    "id": 24,
+    "name": "Skull Crusher",
+    "muscle": "arms",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "EZ bar to forehead. Tricep long head priority. Control descent.",
+    "notes": ""
+  },
+  {
+    "id": 25,
+    "name": "Incline Dumbbell Curl",
+    "muscle": "arms",
+    "equip": "dumbbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Full stretch at bottom with incline. Targets long head of bicep.",
+    "notes": ""
+  },
+  {
+    "id": 26,
+    "name": "Tricep Pushdown",
+    "muscle": "arms",
+    "equip": "cable",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Elbows pinned at sides. Full extension, squeeze.",
+    "notes": ""
+  },
+  {
+    "id": 27,
+    "name": "Preacher Curl",
+    "muscle": "arms",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Arm supported on pad. Isolates short head. Strict form only.",
+    "notes": ""
+  },
+  {
+    "id": 28,
+    "name": "Plank",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Forearm or hand plank. Hollow body: ribs down, glutes tight, neutral spine.",
+    "notes": ""
+  },
+  {
+    "id": 29,
+    "name": "Ab Wheel Rollout",
+    "muscle": "core",
+    "equip": "other",
+    "movement": "pull",
+    "diff": "advanced",
+    "desc": "From knees or toes, rollout to full extension maintaining hollow body.",
+    "notes": ""
+  },
+  {
+    "id": 30,
+    "name": "Hanging Leg Raise",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Dead hang, raise legs to parallel or higher. Control descent.",
+    "notes": ""
+  },
+  {
+    "id": 31,
+    "name": "Cable Crunch",
+    "muscle": "core",
+    "equip": "cable",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Kneel, pull rope to floor, crunch through full ROM.",
+    "notes": ""
+  },
+  {
+    "id": 32,
+    "name": "Pallof Press",
+    "muscle": "core",
+    "equip": "cable",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Anti-rotation press. Brace against cable pull. Critical for spine health.",
+    "notes": ""
+  },
+  {
+    "id": 33,
+    "name": "Dead Bug",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Opposite arm-leg lower. Lower back pressed to floor throughout.",
+    "notes": ""
+  },
+  {
+    "id": 34,
+    "name": "Copenhagen Plank",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "advanced",
+    "desc": "Side plank with top foot on bench. Adductor and core loading.",
+    "notes": ""
+  },
+  {
+    "id": 35,
+    "name": "Back Squat",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "High or low bar. Hip crease below parallel. Knees tracking toes.",
+    "notes": ""
+  },
+  {
+    "id": 36,
+    "name": "Front Squat",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Bar racked on front delts. Upright torso, deep squat. Wrist mobility required.",
+    "notes": ""
+  },
+  {
+    "id": 37,
+    "name": "Romanian Deadlift",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Hip hinge with soft knees. Bar stays close to legs. Deep hamstring stretch.",
+    "notes": ""
+  },
+  {
+    "id": 38,
+    "name": "Bulgarian Split Squat",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Rear foot elevated. Front shin vertical. Glute dominant loading.",
+    "notes": ""
+  },
+  {
+    "id": 39,
+    "name": "Leg Press",
+    "muscle": "legs",
+    "equip": "machine",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Full ROM, do not lock knees at top. Foot placement changes emphasis.",
+    "notes": ""
+  },
+  {
+    "id": 40,
+    "name": "Leg Curl",
+    "muscle": "legs",
+    "equip": "machine",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Lying or seated. Full ROM. Hamstring isolation.",
+    "notes": ""
+  },
+  {
+    "id": 41,
+    "name": "Leg Extension",
+    "muscle": "legs",
+    "equip": "machine",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Quad isolation. Control descent. Avoid hyperextension.",
+    "notes": ""
+  },
+  {
+    "id": 42,
+    "name": "Hip Thrust",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Bench at mid-scapula. Drive hips to full extension. Glute primary.",
+    "notes": ""
+  },
+  {
+    "id": 43,
+    "name": "Walking Lunge",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Knee just above floor. Torso upright. Alternate legs.",
+    "notes": ""
+  },
+  {
+    "id": 44,
+    "name": "Calf Raise",
+    "muscle": "legs",
+    "equip": "machine",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Full plantarflexion. Pause at top and bottom. Single-leg for progression.",
+    "notes": ""
+  },
+  {
+    "id": 45,
+    "name": "Good Morning",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Bar on traps. Hip hinge until torso parallel. Hamstring tension.",
+    "notes": ""
+  },
+  {
+    "id": 46,
+    "name": "Hack Squat",
+    "muscle": "legs",
+    "equip": "machine",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Pad on shoulders. Full depth. Quad dominant.",
+    "notes": ""
+  },
+  {
+    "id": 47,
+    "name": "Thruster",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Front squat into overhead press in one fluid movement. Used in CrossFit/Metcon.",
+    "notes": ""
+  },
+  {
+    "id": 48,
+    "name": "Kettlebell Swing",
+    "muscle": "full body",
+    "equip": "kettlebell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Hip hinge explosive drive. Bell to chest height. Lat engagement at top.",
+    "notes": ""
+  },
+  {
+    "id": 49,
+    "name": "Turkish Get-Up",
+    "muscle": "full body",
+    "equip": "kettlebell",
+    "movement": "rotation",
+    "diff": "advanced",
+    "desc": "From lying to standing with KB overhead. Systematic 6-step movement.",
+    "notes": ""
+  },
+  {
+    "id": 50,
+    "name": "Man Maker",
+    "muscle": "full body",
+    "equip": "dumbbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Push-up \u2192 row \u00d7 2 \u2192 clean \u2192 press. Complex movement.",
+    "notes": ""
+  },
+  {
+    "id": 51,
+    "name": "Box Jump",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Triple extension, land softly. Step down, don't jump down.",
+    "notes": ""
+  },
+  {
+    "id": 52,
+    "name": "Burpee",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Plank \u2192 push-up \u2192 jump. Full extension at top.",
+    "notes": ""
+  },
+  {
+    "id": 53,
+    "name": "Sled Push",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Drive through legs. Maintain forward lean. Loaded conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 54,
+    "name": "Farmer's Carry",
+    "muscle": "full body",
+    "equip": "dumbbell",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Heavy DBs, tall spine, tight core. Walk for distance or time.",
+    "notes": ""
+  },
+  {
+    "id": 55,
+    "name": "Battle Ropes",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Alternating or simultaneous waves. Upper body power endurance.",
+    "notes": ""
+  },
+  {
+    "id": 56,
+    "name": "Snatch",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "One-movement pull from floor to overhead. Requires extensive mobility and timing.",
+    "notes": ""
+  },
+  {
+    "id": 57,
+    "name": "Clean and Jerk",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Two-part lift: clean to front rack, then split jerk overhead.",
+    "notes": ""
+  },
+  {
+    "id": 58,
+    "name": "Power Clean",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Clean caught above parallel. Athletic development exercise.",
+    "notes": ""
+  },
+  {
+    "id": 59,
+    "name": "Hang Power Snatch",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Snatch from hang position. Emphasises the second pull.",
+    "notes": ""
+  },
+  {
+    "id": 60,
+    "name": "Clean Pull",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "intermediate",
+    "desc": "Full extension pull without the catch. Builds pulling strength.",
+    "notes": ""
+  },
+  {
+    "id": 61,
+    "name": "Snatch Balance",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Drop under bar from behind neck. Develops receiving position.",
+    "notes": ""
+  },
+  {
+    "id": 62,
+    "name": "Row Erg",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Drive with legs 60%, lean back 20%, arms 20%. Maintain 18\u201324 SPM for endurance.",
+    "notes": ""
+  },
+  {
+    "id": 63,
+    "name": "Assault Bike",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Full body cycling. Excellent for HIIT. RPE 8\u201310 for sprints.",
+    "notes": ""
+  },
+  {
+    "id": 64,
+    "name": "Ski Erg",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Lat-dominant pulling machine. Pull to hip, not below.",
+    "notes": ""
+  },
+  {
+    "id": 65,
+    "name": "Running",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Varies by pace. Zone 2 for aerobic base. Tempo for threshold.",
+    "notes": ""
+  },
+  {
+    "id": 66,
+    "name": "Jump Rope",
+    "muscle": "cardio",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Double-unders or singles. Timing and rhythm training.",
+    "notes": ""
+  },
+  {
+    "id": 67,
+    "name": "World's Greatest Stretch",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Lunge \u2192 thoracic rotation \u2192 hamstring stretch in one flow. Excellent warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 68,
+    "name": "Hip 90/90",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Internal and external hip rotation in seated 90/90 position. Hip health.",
+    "notes": ""
+  },
+  {
+    "id": 69,
+    "name": "Couch Stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Hip flexor stretch with rear leg against wall. Quad and hip flexor.",
+    "notes": ""
+  },
+  {
+    "id": 70,
+    "name": "Jefferson Curl",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Segmental spinal flexion with load. Builds spinal erector strength and flexibility.",
+    "notes": "Keep load very light."
+  },
+  {
+    "id": 71,
+    "name": "Ankle Circles",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Full ROM ankle mobility. Seated or standing.",
+    "notes": ""
+  },
+  {
+    "id": 72,
+    "name": "Cat-Cow",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Spinal flexion and extension. Quadruped. Breathing driven.",
+    "notes": ""
+  },
+  {
+    "id": 73,
+    "name": "Pigeon Pose",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Deep glute and hip external rotator stretch.",
+    "notes": ""
+  },
+  {
+    "id": 74,
+    "name": "Thoracic Extension on Foam Roller",
+    "muscle": "back",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Place roller at mid-back, extend over it. Counters kyphosis.",
+    "notes": ""
+  },
+  {
+    "id": 75,
+    "name": "Banded Pull-Apart",
+    "muscle": "back",
+    "equip": "band",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Band held at chest height, pull to full extension. Rear delt and rotator cuff warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 76,
+    "name": "Sled Pull",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Rope pull of weighted sled. Upper body and core loaded pull.",
+    "notes": ""
+  },
+  {
+    "id": 77,
+    "name": "Wall Ball",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Squat, throw ball to target, catch and repeat. CrossFit / Hyrox staple.",
+    "notes": ""
+  },
+  {
+    "id": 78,
+    "name": "Sandbag Carry",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "intermediate",
+    "desc": "Bear hug or shoulder carry of sandbag for distance.",
+    "notes": ""
+  },
+  {
+    "id": 79,
+    "name": "SkiErg Intervals",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Repeated SkiErg sprints. Common in Hyrox and functional fitness.",
+    "notes": ""
+  },
+  {
+    "id": 80,
+    "name": "Rowing Machine Intervals",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Interval rowing: 30s hard / 30s easy. Builds aerobic and power.",
+    "notes": ""
+  },
+  {
+    "id": 81,
+    "name": "Banded Squat",
+    "muscle": "legs",
+    "equip": "band",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Band around knees adds abductor demand. Forces knee tracking.",
+    "notes": ""
+  },
+  {
+    "id": 82,
+    "name": "Band Pull-Through",
+    "muscle": "legs",
+    "equip": "band",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Hip hinge with band resistance. Glute and hamstring activation.",
+    "notes": ""
+  },
+  {
+    "id": 83,
+    "name": "Glute Bridge",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Lying hip thrust without bench. Glute activation exercise.",
+    "notes": ""
+  },
+  {
+    "id": 84,
+    "name": "Single-Leg Deadlift",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Balance, proprioception, hamstring. Keep hips square.",
+    "notes": ""
+  },
+  {
+    "id": 85,
+    "name": "Nordic Curl",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "hinge",
+    "diff": "advanced",
+    "desc": "Eccentric hamstring curl. Feet anchored, lower under control.",
+    "notes": "Highest hamstring injury prevention exercise."
+  },
+  {
+    "id": 86,
+    "name": "Sissy Squat",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Knee dominant quad exercise. Lean back as knees travel forward.",
+    "notes": ""
+  },
+  {
+    "id": 87,
+    "name": "Step-Up",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Weighted step-up to box. Drive through heel of working leg.",
+    "notes": ""
+  },
+  {
+    "id": 88,
+    "name": "Goblet Squat",
+    "muscle": "legs",
+    "equip": "kettlebell",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Kettlebell or dumbbell at chest. Great learning tool for squat pattern.",
+    "notes": ""
+  },
+  {
+    "id": 89,
+    "name": "Ring Row",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Inverted row on rings. Adjust angle for difficulty.",
+    "notes": ""
+  },
+  {
+    "id": 90,
+    "name": "Dips (Chest)",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Slight forward lean emphasises chest. Full ROM at bottom.",
+    "notes": ""
+  },
+  {
+    "id": 91,
+    "name": "Close-Grip Bench Press",
+    "muscle": "arms",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Narrow grip bench for tricep emphasis. Elbows stay close.",
+    "notes": ""
+  },
+  {
+    "id": 92,
+    "name": "Concentration Curl",
+    "muscle": "arms",
+    "equip": "dumbbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Elbow braced on inner thigh. Maximum bicep isolation.",
+    "notes": ""
+  },
+  {
+    "id": 93,
+    "name": "Zottman Curl",
+    "muscle": "arms",
+    "equip": "dumbbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Supinated up, pronated down. Trains both bicep and brachioradialis.",
+    "notes": ""
+  },
+  {
+    "id": 94,
+    "name": "Wrist Roller",
+    "muscle": "arms",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Forearm and wrist extensor/flexor endurance.",
+    "notes": ""
+  },
+  {
+    "id": 95,
+    "name": "1 min hard / 1 min easy",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "1 minute high effort, 1 minute easy. Interval conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 96,
+    "name": "1-mile cool-down run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "1-mile easy cool-down after main session.",
+    "notes": ""
+  },
+  {
+    "id": 97,
+    "name": "1-mile run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "1-mile time trial or training run. Aerobic performance benchmark.",
+    "notes": ""
+  },
+  {
+    "id": 98,
+    "name": "1-mile time trial",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "intermediate",
+    "desc": "1-mile max effort test. Benchmark aerobic and VO2 fitness.",
+    "notes": ""
+  },
+  {
+    "id": 99,
+    "name": "100 double unders",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "100 consecutive double unders. Jump rope skill and coordination.",
+    "notes": ""
+  },
+  {
+    "id": 100,
+    "name": "100 wall balls",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "100 wall balls for time. HYROX simulation. Squat and throw endurance.",
+    "notes": ""
+  },
+  {
+    "id": 101,
+    "name": "100 wall balls for time",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "100 wall ball shots for time. Classic HYROX training benchmark.",
+    "notes": ""
+  },
+  {
+    "id": 102,
+    "name": "1000m row or ski",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "1000m rowing or ski erg. Aerobic threshold pace.",
+    "notes": ""
+  },
+  {
+    "id": 103,
+    "name": "100m burpee broad jump",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "100m covered via burpee broad jumps. Full body conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 104,
+    "name": "100m walking lunge",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "100m walking lunge. Leg and glute endurance. HYROX prep.",
+    "notes": ""
+  },
+  {
+    "id": 105,
+    "name": "1km run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "1km run. Warm-up, training, or HYROX benchmark distance.",
+    "notes": ""
+  },
+  {
+    "id": 106,
+    "name": "1km run + 100 Wall balls",
+    "muscle": "cardio",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 100 wall balls. Cardio + leg endurance.",
+    "notes": ""
+  },
+  {
+    "id": 107,
+    "name": "1km run + 1000m Row",
+    "muscle": "cardio",
+    "equip": "machine",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 1000m row. Running + upper body pull.",
+    "notes": ""
+  },
+  {
+    "id": 108,
+    "name": "1km run + 1000m Ski erg",
+    "muscle": "cardio",
+    "equip": "machine",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 1000m ski erg. Running + upper pull.",
+    "notes": ""
+  },
+  {
+    "id": 109,
+    "name": "1km run + 100m Sandbag lunges",
+    "muscle": "cardio",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 100m sandbag lunge. Total conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 110,
+    "name": "1km run + 200m Farmer carry",
+    "muscle": "cardio",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 200m farmer carry. Total body conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 111,
+    "name": "1km run + 50m Sled pull",
+    "muscle": "cardio",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 50m sled pull. Classic race simulation.",
+    "notes": ""
+  },
+  {
+    "id": 112,
+    "name": "1km run + 50m Sled push",
+    "muscle": "cardio",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 50m sled push. Classic race simulation.",
+    "notes": ""
+  },
+  {
+    "id": 113,
+    "name": "1km run + 80m Burpee broad jump",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "HYROX pair: 1km run + 80m burpee broad jump. Explosive conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 114,
+    "name": "2 x 100m strides",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Two 100m strides. Build to race pace, relaxed form.",
+    "notes": ""
+  },
+  {
+    "id": 115,
+    "name": "2 x easy hill run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Two easy hill reps. Hill-specific conditioning without max effort.",
+    "notes": ""
+  },
+  {
+    "id": 116,
+    "name": "2-arm 2-leg dead bug",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Full dead bug: both arms and legs lower. Maximum core demand.",
+    "notes": ""
+  },
+  {
+    "id": 117,
+    "name": "200m run after each carry",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "200m run following each carry set. Aerobic + strength combo.",
+    "notes": ""
+  },
+  {
+    "id": 118,
+    "name": "20s acceleration stride",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Short 20-second build from easy to near-max speed.",
+    "notes": ""
+  },
+  {
+    "id": 119,
+    "name": "21s (curl variation)",
+    "muscle": "arms",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "7 reps lower half + 7 upper half + 7 full ROM curls. Bicep pump technique.",
+    "notes": ""
+  },
+  {
+    "id": 120,
+    "name": "3-position arm abduction in quadrangle",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Arm abduction in three positions in quadruped. Shoulder stability.",
+    "notes": ""
+  },
+  {
+    "id": 121,
+    "name": "3-position arm abduction in tripod",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Arm abduction from tripod position. Rotator cuff and deltoid.",
+    "notes": ""
+  },
+  {
+    "id": 122,
+    "name": "3-rep max bench press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "3-rep max bench press. Pushing movement exercise.",
+    "notes": ""
+  },
+  {
+    "id": 123,
+    "name": "3-rep max deadlift",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "3-rep max deadlift. Hip hinge pulling exercise.",
+    "notes": ""
+  },
+  {
+    "id": 124,
+    "name": "3-round warm-up circuit",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Three-round general warm-up circuit. Body temp and mobility.",
+    "notes": ""
+  },
+  {
+    "id": 125,
+    "name": "30-min easy run or 60-min hike",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Low intensity session: 30-min run or 60-min hike. Active recovery.",
+    "notes": ""
+  },
+  {
+    "id": 126,
+    "name": "30s max row / 30s complete rest",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Max effort 30s row sprint, complete rest 30s. Anaerobic power.",
+    "notes": ""
+  },
+  {
+    "id": 127,
+    "name": "4-point kneeling shoulder rotation",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Quadruped shoulder rotation. Shoulder health.",
+    "notes": ""
+  },
+  {
+    "id": 128,
+    "name": "400m repeat",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "400m run repeated with recovery. Lactate threshold and VO2 training.",
+    "notes": ""
+  },
+  {
+    "id": 129,
+    "name": "400m run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "400m interval run. Track sprint or conditioning effort.",
+    "notes": ""
+  },
+  {
+    "id": 130,
+    "name": "400m run after sets 2 and 4",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "400m run after sets 2 and 4. Compromised strength training.",
+    "notes": ""
+  },
+  {
+    "id": 131,
+    "name": "5-min max rep bar-facing burpees",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "5-min max effort bar-facing burpees. Conditioning benchmark.",
+    "notes": ""
+  },
+  {
+    "id": 132,
+    "name": "50 burpee broad jumps",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "50 burpee broad jumps. Total body power endurance test.",
+    "notes": ""
+  },
+  {
+    "id": 133,
+    "name": "500m row or ski",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "500m at working pace on row erg or ski erg.",
+    "notes": ""
+  },
+  {
+    "id": 134,
+    "name": "500m row or ski intervals",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Repeated 500m efforts. Build endurance across sets.",
+    "notes": ""
+  },
+  {
+    "id": 135,
+    "name": "5k ski or row test",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "5km time trial on ski erg or rowing machine. Aerobic benchmark.",
+    "notes": ""
+  },
+  {
+    "id": 136,
+    "name": "800m run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "800m run. Middle distance. Combines aerobic and anaerobic systems.",
+    "notes": ""
+  },
+  {
+    "id": 137,
+    "name": "90/90 good mornings",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Good morning in 90/90 hip position. Hip flexor and hamstring.",
+    "notes": ""
+  },
+  {
+    "id": 138,
+    "name": "90/90 heel taps",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Heel taps in 90/90 position. Hip mobility and control.",
+    "notes": ""
+  },
+  {
+    "id": 139,
+    "name": "90/90 hip + good morning",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Combination of 90/90 hip rotation and good morning movement.",
+    "notes": ""
+  },
+  {
+    "id": 140,
+    "name": "90/90 hip flow",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Hip mobility flow in 90/90 position. Internal and external rotation.",
+    "notes": ""
+  },
+  {
+    "id": 141,
+    "name": "90/90 Hip Rotation",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Hip rotation drill in 90/90. Great for hip health.",
+    "notes": ""
+  },
+  {
+    "id": 142,
+    "name": "90/90 Hip Rotation Recovery",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Gentle 90/90 hip rotation for recovery sessions.",
+    "notes": ""
+  },
+  {
+    "id": 143,
+    "name": "90/90 to spread hip flow",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Transition from 90/90 to spread position. Hip mobility flow.",
+    "notes": ""
+  },
+  {
+    "id": 144,
+    "name": "90/90 wall internal rotation",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Wall-supported hip internal rotation in 90/90.",
+    "notes": ""
+  },
+  {
+    "id": 145,
+    "name": "A-skips",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "High knee drive with active foot strike. Running mechanics drill.",
+    "notes": ""
+  },
+  {
+    "id": 146,
+    "name": "Ab rollout",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "From knees or toes, rollout to full extension maintaining hollow body.",
+    "notes": ""
+  },
+  {
+    "id": 147,
+    "name": "Acceleration strides",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Short acceleration runs (80\u2013100m). Neuromuscular activation pre-session.",
+    "notes": ""
+  },
+  {
+    "id": 148,
+    "name": "Adams thing",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Specific drill or exercise. Ask coach for precise movement description.",
+    "notes": ""
+  },
+  {
+    "id": 149,
+    "name": "Air overhead squats",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Overhead squat with no load. Mobility and position drill.",
+    "notes": ""
+  },
+  {
+    "id": 150,
+    "name": "Air squats",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Bodyweight squat. Hip crease below parallel. Knees track toes.",
+    "notes": ""
+  },
+  {
+    "id": 151,
+    "name": "Alternating reverse Zercher lunges",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Zercher-loaded reverse lunges. Bar in elbow crooks, elbows high.",
+    "notes": ""
+  },
+  {
+    "id": 152,
+    "name": "Assault bike calories",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Assault bike calorie effort. Full-body cycling. Intense conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 153,
+    "name": "ATG stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Ass-to-Grass stretch hold. Full depth squat. Ankle and hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 154,
+    "name": "B-skips",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "High knee + leg extension. Running form development drill.",
+    "notes": ""
+  },
+  {
+    "id": 155,
+    "name": "Back squat / Front squat",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Either bar position. Full depth, knees tracking toes.",
+    "notes": ""
+  },
+  {
+    "id": 156,
+    "name": "Back squat \u2014 bar",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Back squat with empty bar. Technique and position practice.",
+    "notes": ""
+  },
+  {
+    "id": 157,
+    "name": "Backbone mobilization",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Spinal mobility exercises. Flexion, extension, rotation.",
+    "notes": ""
+  },
+  {
+    "id": 158,
+    "name": "Band pull-aparts",
+    "muscle": "full body",
+    "equip": "band",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Band pull-apart. Rear delt and rotator cuff warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 159,
+    "name": "Banded birddog",
+    "muscle": "full body",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Birddog with band resistance. Core stability and anti-rotation.",
+    "notes": ""
+  },
+  {
+    "id": 160,
+    "name": "Banded glute bridge",
+    "muscle": "legs",
+    "equip": "band",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Glute bridge with band above knees. Abductor activation.",
+    "notes": ""
+  },
+  {
+    "id": 161,
+    "name": "Banded good mornings",
+    "muscle": "legs",
+    "equip": "band",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Banded good mornings. Functional exercise used in strength and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 162,
+    "name": "Banded overhead squats",
+    "muscle": "legs",
+    "equip": "band",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Overhead squats with band assistance. Shoulder and squat positions.",
+    "notes": ""
+  },
+  {
+    "id": 163,
+    "name": "Bar elbow stretch",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Elbow stretch using barbell. Warm-up for pressing.",
+    "notes": ""
+  },
+  {
+    "id": 164,
+    "name": "Bar triceps stretch",
+    "muscle": "arms",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Triceps stretch over barbell. Pre-press warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 165,
+    "name": "Barbell Ankle STRETCH",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Leverage barbell for ankle dorsiflexion stretch.",
+    "notes": ""
+  },
+  {
+    "id": 166,
+    "name": "Barbell row (pronated grip)",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Overhand barbell row. Pronated grip shifts emphasis to upper back.",
+    "notes": ""
+  },
+  {
+    "id": 167,
+    "name": "Barbell Tall Clean",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Barbell tall clean. Drop under from standing. Speed under bar drill.",
+    "notes": ""
+  },
+  {
+    "id": 168,
+    "name": "Barbell thrusters",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Barbell front squat into overhead press. CrossFit/HYROX conditioning staple.",
+    "notes": ""
+  },
+  {
+    "id": 169,
+    "name": "BB ATG split squat",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Barbell ATG split squat. Extreme depth. Knee and hip flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 170,
+    "name": "BB row",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Hip hinge, bar dragged to lower sternum. Keep lower back neutral.",
+    "notes": ""
+  },
+  {
+    "id": 171,
+    "name": "BB Seated good morning",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Barbell seated good morning. Strict hip hinge without leg drive.",
+    "notes": ""
+  },
+  {
+    "id": 172,
+    "name": "Behind Back Shoulder Band STRETCH",
+    "muscle": "back",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Banded stretch behind back. Anterior shoulder and chest.",
+    "notes": ""
+  },
+  {
+    "id": 173,
+    "name": "Behind-the-neck split jerk",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Jerk from behind-the-neck position. Extreme shoulder flexibility drill.",
+    "notes": ""
+  },
+  {
+    "id": 174,
+    "name": "Belt squat or Leg press",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Belt squat or leg press. Quad and glute loading. Spares the spine.",
+    "notes": ""
+  },
+  {
+    "id": 175,
+    "name": "Bench press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Horizontal push. Set shoulder blades back and down, bar touches lower chest.",
+    "notes": ""
+  },
+  {
+    "id": 176,
+    "name": "Bench press (3s pause at bottom)",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Pause bench. 3-second pause at chest. Eliminates bounce.",
+    "notes": ""
+  },
+  {
+    "id": 177,
+    "name": "Bench press build-up",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Progressive warm-up sets for bench press.",
+    "notes": ""
+  },
+  {
+    "id": 178,
+    "name": "Bench press \u2014 bar only",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Bench press with empty bar. Technique and activation warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 179,
+    "name": "Body Weight Ankle STRETCH",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Bodyweight ankle dorsiflexion stretch. Knee-over-toe position.",
+    "notes": ""
+  },
+  {
+    "id": 180,
+    "name": "Box Front Squat",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Front squat to box. Builds strength out of the hole. No bounce.",
+    "notes": ""
+  },
+  {
+    "id": 181,
+    "name": "Box jumps",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Triple extension \u2014 ankles, knees, hips. Land softly. Step down.",
+    "notes": ""
+  },
+  {
+    "id": 182,
+    "name": "Box step over with sandbag",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Step over box with sandbag. Coordination, strength, and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 183,
+    "name": "BTN press (behind-the-neck)",
+    "muscle": "shoulders",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "BTN press (behind-the-neck). Pushing movement exercise.",
+    "notes": ""
+  },
+  {
+    "id": 184,
+    "name": "Build-up 250m",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "250m erg build-up. Start easy, increase power each 50m.",
+    "notes": ""
+  },
+  {
+    "id": 185,
+    "name": "Build-up set",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Warm-up set building toward working weight. Groove pattern before loading.",
+    "notes": ""
+  },
+  {
+    "id": 186,
+    "name": "Burpee broad jump",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Burpee ending in broad jump forward. Combines hip power and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 187,
+    "name": "Burpees",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Plank to push-up to jump. Full extension at top.",
+    "notes": ""
+  },
+  {
+    "id": 188,
+    "name": "Cable pull-through",
+    "muscle": "full body",
+    "equip": "cable",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Hip hinge with cable between legs. Glute and hamstring activation.",
+    "notes": ""
+  },
+  {
+    "id": 189,
+    "name": "Cable pushdown",
+    "muscle": "arms",
+    "equip": "cable",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Cable tricep pushdown. Elbows pinned. Full extension and squeeze.",
+    "notes": ""
+  },
+  {
+    "id": 190,
+    "name": "Cal ski erg",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Ski erg for calorie target. Power output focused.",
+    "notes": ""
+  },
+  {
+    "id": 191,
+    "name": "Calf raise + ankle circles",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Calf raises followed by ankle circles. Lower leg warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 192,
+    "name": "Calf stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Wall calf stretch. Full ROM. Hold 30s each side.",
+    "notes": ""
+  },
+  {
+    "id": 193,
+    "name": "Calf stretch against wall",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Wall calf stretch. Gastrocnemius and soleus. Hold 30s.",
+    "notes": ""
+  },
+  {
+    "id": 194,
+    "name": "Capsular ankle rotations",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Deep ankle mobility circles for joint capsule warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 195,
+    "name": "Chest massage with plate",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Self-myofascial release on chest with plate. Pec release.",
+    "notes": ""
+  },
+  {
+    "id": 196,
+    "name": "Chest stretch & activation",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Chest stretch with activation drills. Pre-bench warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 197,
+    "name": "Clean & Jerk",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "beginner",
+    "desc": "Two-part lift: clean to front rack, then jerk overhead.",
+    "notes": ""
+  },
+  {
+    "id": 198,
+    "name": "Clean deadlift",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Controlled deadlift with clean grip. Builds positions and leg drive.",
+    "notes": ""
+  },
+  {
+    "id": 199,
+    "name": "Clean good morning",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Good morning with clean grip. Hip hinge and posterior chain.",
+    "notes": ""
+  },
+  {
+    "id": 200,
+    "name": "Clean good morning sitting",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Seated good morning with clean grip. Strict isolation drill.",
+    "notes": ""
+  },
+  {
+    "id": 201,
+    "name": "Clean high pull",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Clean pull with shrug and high elbow. Transition to catch position.",
+    "notes": ""
+  },
+  {
+    "id": 202,
+    "name": "Clean Sots Press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Clean-grip Sotts press in deep squat. Mobility and stability.",
+    "notes": ""
+  },
+  {
+    "id": 203,
+    "name": "Clean-grip overhead squat",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Clean grip overhead squat. Shoulder flexibility drill.",
+    "notes": ""
+  },
+  {
+    "id": 204,
+    "name": "Conversational run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Run at pace where conversation is easy. Zone 2 aerobic work.",
+    "notes": ""
+  },
+  {
+    "id": 205,
+    "name": "Cool-down jog",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Post-workout easy jog. Reduce HR gradually.",
+    "notes": ""
+  },
+  {
+    "id": 206,
+    "name": "Cool-down run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Easy post-workout jog. Reduce HR, promote recovery.",
+    "notes": ""
+  },
+  {
+    "id": 207,
+    "name": "DB Bulgarian split squat",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Dumbbell Bulgarian split squat. Rear foot elevated. Unilateral strength.",
+    "notes": ""
+  },
+  {
+    "id": 208,
+    "name": "DB curl (strict)",
+    "muscle": "arms",
+    "equip": "dumbbell",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Strict dumbbell curl. No swing. Squeeze at top. Slow eccentric.",
+    "notes": ""
+  },
+  {
+    "id": 209,
+    "name": "DB deadlift",
+    "muscle": "back",
+    "equip": "dumbbell",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Dumbbell deadlift. Hip hinge, neutral spine. Good entry-level hinge.",
+    "notes": ""
+  },
+  {
+    "id": 210,
+    "name": "DB Dragon squat",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Dragon squat with dumbbells. Knee-dominant mobility strength exercise.",
+    "notes": ""
+  },
+  {
+    "id": 211,
+    "name": "DB hang clean",
+    "muscle": "full body",
+    "equip": "dumbbell",
+    "movement": "olympic",
+    "diff": "intermediate",
+    "desc": "Dumbbell hang clean. Hip drive pulls DB to shoulder height.",
+    "notes": ""
+  },
+  {
+    "id": 212,
+    "name": "DB hip thrust",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Hip thrust with dumbbell on lap. Glute strength, full hip extension.",
+    "notes": ""
+  },
+  {
+    "id": 213,
+    "name": "DB Kozak squat + hip rotation",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Kozak squat with DB and hip rotation. Adductor mobility and strength.",
+    "notes": ""
+  },
+  {
+    "id": 214,
+    "name": "DB push press",
+    "muscle": "full body",
+    "equip": "dumbbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Dumbbell push press. Leg drive assists press.",
+    "notes": ""
+  },
+  {
+    "id": 215,
+    "name": "DB step-up",
+    "muscle": "legs",
+    "equip": "dumbbell",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Weighted step-up. Drive through heel of working leg.",
+    "notes": ""
+  },
+  {
+    "id": 216,
+    "name": "Dead hang",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Passive hang from bar. Shoulder decompression and grip strength.",
+    "notes": ""
+  },
+  {
+    "id": 217,
+    "name": "Deadlift",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Hip-hinge pulling from the floor. Neutral spine, lat engagement. Drive the floor away.",
+    "notes": ""
+  },
+  {
+    "id": 218,
+    "name": "Deadlift 5-5-3-3-1",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Wave-loaded deadlift: 5/5/3/3/1. Increase weight each set.",
+    "notes": ""
+  },
+  {
+    "id": 219,
+    "name": "Deadlift build-up",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Progressive warm-up sets for deadlift. Build to working weight.",
+    "notes": ""
+  },
+  {
+    "id": 220,
+    "name": "Deadlift \u2014 bar only",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "beginner",
+    "desc": "Deadlift technique with empty bar. Groove hinge pattern.",
+    "notes": ""
+  },
+  {
+    "id": 221,
+    "name": "Deep squat stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Hold bottom of squat. Hip, ankle, and thoracic mobility.",
+    "notes": ""
+  },
+  {
+    "id": 222,
+    "name": "Deficit calf raises",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "advanced",
+    "desc": "Calf raise from raised surface. Greater stretch and ROM.",
+    "notes": ""
+  },
+  {
+    "id": 223,
+    "name": "Depth jumps",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Step off box, land, immediately jump as high as possible. Plyometric reactive.",
+    "notes": ""
+  },
+  {
+    "id": 224,
+    "name": "Diagonal child pose",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Child pose with diagonal reach. Lateral thoracic and lat stretch.",
+    "notes": ""
+  },
+  {
+    "id": 225,
+    "name": "Double-unders",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Jump rope passes under twice per jump. Coordination and timing.",
+    "notes": ""
+  },
+  {
+    "id": 226,
+    "name": "Dowel internal rotation lunge",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Lunge with dowel for hip internal rotation. Hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 227,
+    "name": "Duck walk",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Walk in deep squat position. Hip, ankle, and knee mobility.",
+    "notes": ""
+  },
+  {
+    "id": 228,
+    "name": "Dynamic calf stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Dynamic calf stretch. Mobility and flexibility work.",
+    "notes": ""
+  },
+  {
+    "id": 229,
+    "name": "Dynamic hip flexor stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Dynamic hip flexor stretch. Mobility and flexibility work.",
+    "notes": ""
+  },
+  {
+    "id": 230,
+    "name": "Dynamic quad stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Dynamic quad stretch. Mobility and flexibility work.",
+    "notes": ""
+  },
+  {
+    "id": 231,
+    "name": "Easy cool-down run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Easy cool-down jog. Helps clear lactate and promote recovery.",
+    "notes": ""
+  },
+  {
+    "id": 232,
+    "name": "Easy erg or row",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Easy rowing on erg. Warm-up or cool-down. Low intensity.",
+    "notes": ""
+  },
+  {
+    "id": 233,
+    "name": "Easy flat jog",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Easy flat jog. Warm-up or recovery. Low HR.",
+    "notes": ""
+  },
+  {
+    "id": 234,
+    "name": "Easy flat run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Easy run on flat terrain. 60\u201365% max HR.",
+    "notes": ""
+  },
+  {
+    "id": 235,
+    "name": "Easy jog",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Very easy jogging pace. Warm-up or cool-down.",
+    "notes": ""
+  },
+  {
+    "id": 236,
+    "name": "Easy long run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Long duration easy run. Zone 2. Builds aerobic capacity.",
+    "notes": ""
+  },
+  {
+    "id": 237,
+    "name": "Easy recovery run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Very easy run for recovery. 50\u201360% max HR.",
+    "notes": ""
+  },
+  {
+    "id": 238,
+    "name": "Easy row",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Easy pace rowing. Warm-up or cool-down. Sub 65% effort.",
+    "notes": ""
+  },
+  {
+    "id": 239,
+    "name": "Easy row or bike",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Easy rowing or cycling. Zone 1\u20132. Warm-up or recovery.",
+    "notes": ""
+  },
+  {
+    "id": 240,
+    "name": "Easy row or ski",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Easy rowing or ski erg. Low intensity warm-up or cool-down.",
+    "notes": ""
+  },
+  {
+    "id": 241,
+    "name": "Easy run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Conversational pace aerobic run. Zone 2. Builds aerobic base.",
+    "notes": ""
+  },
+  {
+    "id": 242,
+    "name": "Easy spin \u2014 light resistance",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Easy cycling spin. Very light resistance. Warm-up or recovery.",
+    "notes": ""
+  },
+  {
+    "id": 243,
+    "name": "Easy spin \u2014 minimal resistance",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Near-zero resistance cycling. Active recovery or warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 244,
+    "name": "Easy walk",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Very easy walking. Recovery, cool-down, or active rest.",
+    "notes": ""
+  },
+  {
+    "id": 245,
+    "name": "Easy walk or jog",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Flexible easy cool-down: walk or light jog based on fatigue.",
+    "notes": ""
+  },
+  {
+    "id": 246,
+    "name": "Easy warm-up run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Easy 5\u201310 min warm-up run before main session.",
+    "notes": ""
+  },
+  {
+    "id": 247,
+    "name": "Elbow Band STRETCH",
+    "muscle": "full body",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Banded stretch for elbow flexors/extensors.",
+    "notes": ""
+  },
+  {
+    "id": 248,
+    "name": "Elbow Rotation",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Elbow joint rotation drill. Warm-up for pressing or curling.",
+    "notes": ""
+  },
+  {
+    "id": 249,
+    "name": "Empty bar: Deadlift + Front squat + OH press + Snatch balance",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Barbell complex warm-up: deadlift, front squat, OH press, snatch balance.",
+    "notes": ""
+  },
+  {
+    "id": 250,
+    "name": "Empty bar: Front squat + Hang squat clean + Split jerk + Push press",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Clean and jerk warm-up complex with empty bar.",
+    "notes": ""
+  },
+  {
+    "id": 251,
+    "name": "Empty bar: Snatch RDL + High pull + Muscle snatch + OHS",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Snatch warm-up complex with empty bar.",
+    "notes": ""
+  },
+  {
+    "id": 252,
+    "name": "Erg / heart rate",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Rowing erg to target heart rate. Structured warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 253,
+    "name": "Erg machine",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Rowing ergometer. Drive: legs 60%, lean back 20%, arms 20%.",
+    "notes": ""
+  },
+  {
+    "id": 254,
+    "name": "Erg machine or bike",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Rowing erg or stationary bike. Warm-up to working HR.",
+    "notes": ""
+  },
+  {
+    "id": 255,
+    "name": "Erg or bike",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Rowing erg or stationary bike. Interchangeable warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 256,
+    "name": "Erg or bike \u2014 easy",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Easy effort on erg or bike. Zone 1 warm-up or cool-down.",
+    "notes": ""
+  },
+  {
+    "id": 257,
+    "name": "Ergs / heart rate",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Multiple erg options to hit target HR. Warm-up session.",
+    "notes": ""
+  },
+  {
+    "id": 258,
+    "name": "External rotation with band",
+    "muscle": "full body",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Band external rotation. Rotator cuff activation.",
+    "notes": ""
+  },
+  {
+    "id": 259,
+    "name": "External rotator",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Side-lying or cable external rotation. Rotator cuff. Slow eccentric.",
+    "notes": ""
+  },
+  {
+    "id": 260,
+    "name": "Face down leg barrier raise",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Prone leg raises over barrier. Hip extension mobility.",
+    "notes": ""
+  },
+  {
+    "id": 261,
+    "name": "Farmer carry",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Heavy load in both hands. Tall spine, tight core. Walk for distance or time.",
+    "notes": ""
+  },
+  {
+    "id": 262,
+    "name": "Final mile \u2014 max effort",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Final mile at maximum effort. Race simulation finish.",
+    "notes": ""
+  },
+  {
+    "id": 263,
+    "name": "Flat bench press",
+    "muscle": "chest",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Classic horizontal push. Bar touches lower chest.",
+    "notes": ""
+  },
+  {
+    "id": 264,
+    "name": "Floor ankle stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Seated floor stretch for ankle dorsiflexion.",
+    "notes": ""
+  },
+  {
+    "id": 265,
+    "name": "Floor seated press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Floor seated press. Pushing movement exercise.",
+    "notes": ""
+  },
+  {
+    "id": 266,
+    "name": "Floor seated PVC press",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Floor seated PVC press. PVC pipe mobility or technique drill.",
+    "notes": ""
+  },
+  {
+    "id": 267,
+    "name": "Frog Stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Wide-kneed kneeling stretch. Groin and adductor flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 268,
+    "name": "Front Squat with straps",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Front squat using wrist straps. Helps with front rack grip limitations.",
+    "notes": ""
+  },
+  {
+    "id": 269,
+    "name": "Full lower body stretch",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Complete lower body stretch: quads, hamstrings, hip flexors, calves.",
+    "notes": ""
+  },
+  {
+    "id": 270,
+    "name": "Full squat upper back activation",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Upper back activation in squat position. Posture and pulling prep.",
+    "notes": ""
+  },
+  {
+    "id": 271,
+    "name": "Glute-ham raise",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Full range hamstring and glute contraction. Foot anchored at GHD.",
+    "notes": ""
+  },
+  {
+    "id": 272,
+    "name": "Half kneeling glides",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Half-kneeling hip flexor oscillations. Active hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 273,
+    "name": "Half middle split",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Half split stretch. Adductor, hamstring, and hip flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 274,
+    "name": "Halo",
+    "muscle": "full body",
+    "equip": "kettlebell",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Circle kettlebell or plate around head. Shoulder and thoracic mobility.",
+    "notes": ""
+  },
+  {
+    "id": 275,
+    "name": "Hamstring + calf stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Combined posterior chain stretch. Hamstring and calf.",
+    "notes": ""
+  },
+  {
+    "id": 276,
+    "name": "Hamstring + hip flexor stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Combined stretch targeting key running muscles.",
+    "notes": ""
+  },
+  {
+    "id": 277,
+    "name": "Hamstring stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Standing, lying, or seated hamstring lengthening.",
+    "notes": ""
+  },
+  {
+    "id": 278,
+    "name": "Hamstring/Hip flexor stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Combined stretch for squat and run muscles.",
+    "notes": ""
+  },
+  {
+    "id": 279,
+    "name": "Handstand push-ups",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "advanced",
+    "desc": "Inverted push-up. Shoulder pressing strength and balance.",
+    "notes": ""
+  },
+  {
+    "id": 280,
+    "name": "Hang power clean",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "intermediate",
+    "desc": "Power clean from hang. Bar starts above knees. Teaches aggressive pull.",
+    "notes": ""
+  },
+  {
+    "id": 281,
+    "name": "Hang squat clean (above knee)",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Full squat clean from above knee. Builds positioning.",
+    "notes": ""
+  },
+  {
+    "id": 282,
+    "name": "Hard uphill sprint",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Max effort uphill sprint. Power, strength, and anaerobic conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 283,
+    "name": "Heavy front load carry",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "intermediate",
+    "desc": "Heavy object front-loaded carry. Core and anterior chain challenge.",
+    "notes": ""
+  },
+  {
+    "id": 284,
+    "name": "High knees",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Running in place with high knee drive. Dynamic warm-up and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 285,
+    "name": "High-hang squat clean (power pos)",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Squat clean from high hang (power position). Develops explosiveness.",
+    "notes": ""
+  },
+  {
+    "id": 286,
+    "name": "High-hang squat snatch (power pos)",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Squat snatch from high hang. Explosiveness drill.",
+    "notes": ""
+  },
+  {
+    "id": 287,
+    "name": "Hip circles",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Standing hip circles. Mobility and activation for hips.",
+    "notes": ""
+  },
+  {
+    "id": 288,
+    "name": "Hip circles + shoulder circles",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Hip and shoulder circles combined. Full warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 289,
+    "name": "Hip circles + shoulder rolls",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Hip circles with shoulder rolls. Full body warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 290,
+    "name": "Hip external rotation lift overs",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Lying hip external rotation movements. Hip joint mobility.",
+    "notes": ""
+  },
+  {
+    "id": 291,
+    "name": "Hip flexor kneeling stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Deep lunge stretch for hip flexors. 30+ seconds each side.",
+    "notes": ""
+  },
+  {
+    "id": 292,
+    "name": "Hip flexor stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Kneeling or standing stretch. Lengthens hip flexors for squat and run.",
+    "notes": ""
+  },
+  {
+    "id": 293,
+    "name": "Hollow hold",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Supine hollow body \u2014 lower back to floor, arms and legs extended.",
+    "notes": ""
+  },
+  {
+    "id": 294,
+    "name": "Horizontal banded deep squat press",
+    "muscle": "legs",
+    "equip": "band",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Banded press in deep squat. Shoulder mobility + squat.",
+    "notes": ""
+  },
+  {
+    "id": 295,
+    "name": "Horizontal banded sitting press",
+    "muscle": "full body",
+    "equip": "band",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Seated banded horizontal press. Shoulder and chest activation.",
+    "notes": ""
+  },
+  {
+    "id": 296,
+    "name": "I-Y-T lead springs lying",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Lying I, Y, T raises with springs/bands. Scapular strength.",
+    "notes": ""
+  },
+  {
+    "id": 297,
+    "name": "Inchworm + hamstring reach",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Walk hands out to plank, reach back to hamstrings. Full chain warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 298,
+    "name": "Incline behind-the-neck press",
+    "muscle": "shoulders",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Incline press from behind neck. Upper trap and rear delt focus.",
+    "notes": ""
+  },
+  {
+    "id": 299,
+    "name": "Incline bench press",
+    "muscle": "chest",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "30\u201345\u00b0 incline. Upper pec emphasis. Control the descent.",
+    "notes": ""
+  },
+  {
+    "id": 300,
+    "name": "Incline DB curl",
+    "muscle": "arms",
+    "equip": "dumbbell",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Incline curls. Full stretch at bottom. Targets long head of bicep.",
+    "notes": ""
+  },
+  {
+    "id": 301,
+    "name": "Incline DB press",
+    "muscle": "chest",
+    "equip": "dumbbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "30\u201345\u00b0 incline dumbbell press. Upper chest. Control 2\u20133s descent.",
+    "notes": ""
+  },
+  {
+    "id": 302,
+    "name": "Incline toe raises",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Stand on incline with heels elevated. Shin and ankle mobility.",
+    "notes": ""
+  },
+  {
+    "id": 303,
+    "name": "Inside band OHS",
+    "muscle": "full body",
+    "equip": "band",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Overhead squat with band inside arms. Lat and shoulder activation.",
+    "notes": ""
+  },
+  {
+    "id": 304,
+    "name": "Jerk balance",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Split jerk footwork drill. Land in split, drive back leg to catch.",
+    "notes": ""
+  },
+  {
+    "id": 305,
+    "name": "Jerk recovery",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Recover from jerk split position to standing. Technique drill.",
+    "notes": ""
+  },
+  {
+    "id": 306,
+    "name": "KB clean and jerk",
+    "muscle": "full body",
+    "equip": "kettlebell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Kettlebell clean to shoulder then jerk overhead. Power conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 307,
+    "name": "KB swings",
+    "muscle": "full body",
+    "equip": "kettlebell",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Hip-hinge explosive drive. Bell to chest height. Lat engagement at top.",
+    "notes": ""
+  },
+  {
+    "id": 308,
+    "name": "Knee mobilization",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Knee joint mobility exercises. Circles and range of motion.",
+    "notes": ""
+  },
+  {
+    "id": 309,
+    "name": "Kneeling Chest Mobilization",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Kneeling chest stretch and mobilization. Anterior chain opening.",
+    "notes": ""
+  },
+  {
+    "id": 310,
+    "name": "Kneeling Chest Opener",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Kneeling chest opening stretch. Pec and anterior shoulder.",
+    "notes": ""
+  },
+  {
+    "id": 311,
+    "name": "Kneeling Deep Chest Opener",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Deep kneeling chest stretch. Pec and shoulder flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 312,
+    "name": "Kneeling leg cross lift",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Kneeling cross-body leg lift. Hip and glute activation.",
+    "notes": ""
+  },
+  {
+    "id": 313,
+    "name": "Kneeling scapula activation",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Kneeling scapula depression and retraction. Shoulder health.",
+    "notes": ""
+  },
+  {
+    "id": 314,
+    "name": "Kneeling triceps PVC stretch",
+    "muscle": "arms",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Kneeling triceps PVC stretch. Mobility and flexibility work.",
+    "notes": ""
+  },
+  {
+    "id": 315,
+    "name": "Kneeling wrists mobilization",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Wrist circles and extensions in kneeling. Wrist warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 316,
+    "name": "Kneeling wrists mobilization with bar",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Wrist mobilization with bar assistance. Pre-press warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 317,
+    "name": "Knees & backbone mobilization",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Combined knee and spinal mobility work.",
+    "notes": ""
+  },
+  {
+    "id": 318,
+    "name": "Knees and backbone mobilization",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Knee and back mobility sequence. Warm-up for squatting.",
+    "notes": ""
+  },
+  {
+    "id": 319,
+    "name": "Kosak squat shifts",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Side-to-side Cossack squat. Adductor and hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 320,
+    "name": "L-sit",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "advanced",
+    "desc": "Support on parallettes/floor, legs held parallel. Core and hip flexor strength.",
+    "notes": ""
+  },
+  {
+    "id": 321,
+    "name": "Last mile \u2014 max effort (optional)",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Optional final mile at max effort. Simulate race finish.",
+    "notes": ""
+  },
+  {
+    "id": 322,
+    "name": "Lat Band STRETCH",
+    "muscle": "back",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Banded lat stretch. Thoracic and shoulder mobility.",
+    "notes": ""
+  },
+  {
+    "id": 323,
+    "name": "Lat pulldown (close grip)",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Close-grip pulldown. Lower lat emphasis. Full overhead stretch.",
+    "notes": ""
+  },
+  {
+    "id": 324,
+    "name": "Lateral raise",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "DB or cable. Lead with elbows. Medial delt. Stop at shoulder height.",
+    "notes": ""
+  },
+  {
+    "id": 325,
+    "name": "Laying barrier Y's and T's",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Prone Y and T raises over box. Lower trap and rear delt.",
+    "notes": ""
+  },
+  {
+    "id": 326,
+    "name": "Leg circles off bike (optional)",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Lying leg circles after cycling. Hip flexor and hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 327,
+    "name": "Leg swings",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Dynamic front/back and lateral leg swings. Hip mobility warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 328,
+    "name": "Leg swings \u2014 front/back",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Sagittal plane leg swings. Hamstring and hip flexor activation.",
+    "notes": ""
+  },
+  {
+    "id": 329,
+    "name": "Leg swings \u2014 lateral",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Frontal plane leg swings. Adductor and abductor activation.",
+    "notes": ""
+  },
+  {
+    "id": 330,
+    "name": "Legs dead bug",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Dead bug legs only. Core stability. Lower back pressed to floor.",
+    "notes": ""
+  },
+  {
+    "id": 331,
+    "name": "Legs up the wall",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Supine legs-up-the-wall. Passive hamstring and recovery.",
+    "notes": ""
+  },
+  {
+    "id": 332,
+    "name": "Light band curls",
+    "muscle": "arms",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Resistance band curls. Bicep warm-up or finisher.",
+    "notes": ""
+  },
+  {
+    "id": 333,
+    "name": "Light mobility + active stretch",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Low-intensity mobility and active stretching. Warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 334,
+    "name": "Long hike or bike",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Extended low-intensity. Active recovery or Zone 1\u20132 cardio.",
+    "notes": ""
+  },
+  {
+    "id": 335,
+    "name": "Long run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Extended aerobic run. 60\u2013120 min at easy to moderate effort.",
+    "notes": ""
+  },
+  {
+    "id": 336,
+    "name": "Lying leg curl",
+    "muscle": "arms",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Prone leg curl. Hamstring isolation. Full ROM.",
+    "notes": ""
+  },
+  {
+    "id": 337,
+    "name": "Max chin-ups + Max dips",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Max chin-ups and max dips back to back. Upper body endurance test.",
+    "notes": ""
+  },
+  {
+    "id": 338,
+    "name": "Max distance farmer carry",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "intermediate",
+    "desc": "Farmer carry for maximum distance. Grip and full-body endurance test.",
+    "notes": ""
+  },
+  {
+    "id": 339,
+    "name": "Max distance run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "intermediate",
+    "desc": "Run for maximum distance in given time. Aerobic capacity test.",
+    "notes": ""
+  },
+  {
+    "id": 340,
+    "name": "Max KB clean and jerk",
+    "muscle": "full body",
+    "equip": "kettlebell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "AMRAP kettlebell clean and jerks. Strength-endurance test.",
+    "notes": ""
+  },
+  {
+    "id": 341,
+    "name": "Max push-ups",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Max rep push-up test. Measure upper body pushing endurance.",
+    "notes": ""
+  },
+  {
+    "id": 342,
+    "name": "Max strict pull-up test",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Max strict pull-up test. Pulling strength benchmark.",
+    "notes": ""
+  },
+  {
+    "id": 343,
+    "name": "Max TRX rows",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Max reps on TRX row. Horizontal pulling endurance.",
+    "notes": ""
+  },
+  {
+    "id": 344,
+    "name": "Mini band plank walk",
+    "muscle": "core",
+    "equip": "band",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Plank walks with mini band. Core and shoulder stability.",
+    "notes": ""
+  },
+  {
+    "id": 345,
+    "name": "Muscle clean from power position",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "intermediate",
+    "desc": "Clean without catching in squat. Pure upper body pull and power.",
+    "notes": ""
+  },
+  {
+    "id": 346,
+    "name": "Muscle snatch from power position",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Snatch without catching in squat. Pure pulling power drill.",
+    "notes": ""
+  },
+  {
+    "id": 347,
+    "name": "Muscle-ups",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "advanced",
+    "desc": "Pull-up transitioning above bar into dip. Demanding shoulder and tricep.",
+    "notes": ""
+  },
+  {
+    "id": 348,
+    "name": "Narrow squat toes rolls",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Narrow stance squat toes roll. Ankle dorsiflexion mobility.",
+    "notes": ""
+  },
+  {
+    "id": 349,
+    "name": "Neck mobilization with plate",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Gentle neck mobility with light plate. Cervical range of motion.",
+    "notes": ""
+  },
+  {
+    "id": 350,
+    "name": "Negative split run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "intermediate",
+    "desc": "Run second half faster than first. Race tactics and pacing development.",
+    "notes": ""
+  },
+  {
+    "id": 351,
+    "name": "OH press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Overhead press. Bar from front rack to full lockout overhead.",
+    "notes": ""
+  },
+  {
+    "id": 352,
+    "name": "Over-the-bar burpees",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Burpee jumping over barbell. Conditioning drill.",
+    "notes": ""
+  },
+  {
+    "id": 353,
+    "name": "Overhead squat",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Barbell locked out overhead, full depth squat. Extreme mobility demand.",
+    "notes": ""
+  },
+  {
+    "id": 354,
+    "name": "Overhead squats with plate",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Overhead squats with plate. Squat pattern exercise.",
+    "notes": ""
+  },
+  {
+    "id": 355,
+    "name": "Overhead tricep extension",
+    "muscle": "arms",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "DB or cable overhead. Long head of tricep. Full ROM.",
+    "notes": ""
+  },
+  {
+    "id": 356,
+    "name": "Pause front squat (3s bottom)",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Front squat paused 3 seconds at bottom. Builds strength and position.",
+    "notes": ""
+  },
+  {
+    "id": 357,
+    "name": "Pause front squat (3s)",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Front squat paused 3 seconds at bottom. Eliminates bounce.",
+    "notes": ""
+  },
+  {
+    "id": 358,
+    "name": "Pause squat (3s hold)",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Back squat with 3-second pause at bottom. Builds out-of-the-hole strength.",
+    "notes": ""
+  },
+  {
+    "id": 359,
+    "name": "Pause squat clean (2s below knee)",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Squat clean paused 2 seconds below knee. Builds patience and position.",
+    "notes": ""
+  },
+  {
+    "id": 360,
+    "name": "Pigeon rotation",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Pigeon pose with thoracic rotation. Hip and spine mobility.",
+    "notes": ""
+  },
+  {
+    "id": 361,
+    "name": "Plank hold",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Static plank. Hollow body position: ribs down, glutes on, neutral spine.",
+    "notes": ""
+  },
+  {
+    "id": 362,
+    "name": "Plate Good Mornings",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Plate Good Mornings. Functional exercise used in strength and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 363,
+    "name": "Plie back to wall",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Plie squat with back against wall. Adductor and inner thigh.",
+    "notes": ""
+  },
+  {
+    "id": 364,
+    "name": "Plie chest to wall",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Plie squat facing wall. Knees out depth drill.",
+    "notes": ""
+  },
+  {
+    "id": 365,
+    "name": "Powell rise",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Lying side raise for rear delt. 4-sec eccentric. Shoulder health.",
+    "notes": ""
+  },
+  {
+    "id": 366,
+    "name": "Power clean + squat clean",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Clean complex: power clean followed by squat clean.",
+    "notes": ""
+  },
+  {
+    "id": 367,
+    "name": "Power clean + Squat clean + Hang power clean + Hang squat clean",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Full clean complex from hang to squat catch.",
+    "notes": ""
+  },
+  {
+    "id": 368,
+    "name": "Power snatch + Hang squat snatch",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Snatch complex: power snatch followed by hang squat snatch.",
+    "notes": ""
+  },
+  {
+    "id": 369,
+    "name": "Prisoner squat",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Squat with hands behind head. Tests hip and thoracic mobility.",
+    "notes": ""
+  },
+  {
+    "id": 370,
+    "name": "Pull-ups",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Full ROM dead hang to chin over bar. Scapular depression before pulling.",
+    "notes": ""
+  },
+  {
+    "id": 371,
+    "name": "Push jerk",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Dip and drive, lock out overhead. Feet stay in place.",
+    "notes": ""
+  },
+  {
+    "id": 372,
+    "name": "Push press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Dip and drive with legs, press with arms. More load than strict press.",
+    "notes": ""
+  },
+  {
+    "id": 373,
+    "name": "Push press + Push jerk (2+2)",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Complex: 2 push press then 2 push jerks. Jerk technique builder.",
+    "notes": ""
+  },
+  {
+    "id": 374,
+    "name": "Push press \u2014 bar only",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Push press with empty bar. Learn the dip-drive-lockout pattern.",
+    "notes": ""
+  },
+  {
+    "id": 375,
+    "name": "Push-ups",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Hollow body. Chest to floor. Full lockout at top.",
+    "notes": ""
+  },
+  {
+    "id": 376,
+    "name": "PVC 1/2 Tall Clean",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Half tall clean with PVC. Learning the pull-under movement.",
+    "notes": ""
+  },
+  {
+    "id": 377,
+    "name": "PVC Front Rack Duck Walk",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Walk in squat with PVC in front rack. Clean position mobility.",
+    "notes": ""
+  },
+  {
+    "id": 378,
+    "name": "PVC frontal rotation",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "PVC frontal plane rotation. Shoulder and thoracic mobility.",
+    "notes": ""
+  },
+  {
+    "id": 379,
+    "name": "PVC lats mobilization",
+    "muscle": "back",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "PVC lat mobilization. Overhead reaching and lat flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 380,
+    "name": "PVC lats rotation stretching",
+    "muscle": "back",
+    "equip": "other",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "PVC rotation for lat stretch. Thoracic and shoulder.",
+    "notes": ""
+  },
+  {
+    "id": 381,
+    "name": "PVC lunge position rotation",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "PVC rotation in lunge position. Hip and thoracic mobility.",
+    "notes": ""
+  },
+  {
+    "id": 382,
+    "name": "PVC Overhead Duck Walk",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Walk in squat with PVC overhead. Ankle, hip, and shoulder mobility.",
+    "notes": ""
+  },
+  {
+    "id": 383,
+    "name": "PVC overhead squats",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Overhead squat with PVC pipe. Mobility and technique drill.",
+    "notes": ""
+  },
+  {
+    "id": 384,
+    "name": "PVC press behind neck laying",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "PVC behind-the-neck press lying. Shoulder mobility drill.",
+    "notes": ""
+  },
+  {
+    "id": 385,
+    "name": "PVC Rack Hip Muscle Clean + Front Squat",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Muscle clean + front squat complex with PVC.",
+    "notes": ""
+  },
+  {
+    "id": 386,
+    "name": "PVC raise laying",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "PVC raise while lying. Shoulder mobility assessment.",
+    "notes": ""
+  },
+  {
+    "id": 387,
+    "name": "PVC shoulder circle up",
+    "muscle": "shoulders",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "PVC shoulder circles. Warm-up for overhead movements.",
+    "notes": ""
+  },
+  {
+    "id": 388,
+    "name": "PVC shoulder rotators stretch",
+    "muscle": "shoulders",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Shoulder rotator stretch using PVC. Pre-press mobility.",
+    "notes": ""
+  },
+  {
+    "id": 389,
+    "name": "PVC shoulders mobilization",
+    "muscle": "shoulders",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "PVC shoulder mobilization series. Overhead flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 390,
+    "name": "PVC sole mobilization",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "PVC foot/ankle mobilization. Plantar fascia and arch.",
+    "notes": ""
+  },
+  {
+    "id": 391,
+    "name": "PVC Tall Clean",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Tall clean with PVC. Drop under from standing. Speed drill.",
+    "notes": ""
+  },
+  {
+    "id": 392,
+    "name": "PVC Tall Muscle Clean",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "olympic",
+    "diff": "intermediate",
+    "desc": "Tall muscle clean with PVC. Upper body clean technique.",
+    "notes": ""
+  },
+  {
+    "id": 393,
+    "name": "PVC upper body stretch",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Upper body stretch using PVC. Shoulder and thoracic.",
+    "notes": ""
+  },
+  {
+    "id": 394,
+    "name": "Quad + hamstring stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Standing quad stretch and hamstring stretch sequence.",
+    "notes": ""
+  },
+  {
+    "id": 395,
+    "name": "Quadruped hip rotations",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Quadruped hip circles. Hip joint mobility and activation.",
+    "notes": ""
+  },
+  {
+    "id": 396,
+    "name": "Quadruped hip side flexion",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Quadruped lateral hip flexion. Hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 397,
+    "name": "Rack chest stretch",
+    "muscle": "chest",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Chest stretch using rack. Anterior shoulder and pec opener.",
+    "notes": ""
+  },
+  {
+    "id": 398,
+    "name": "Rack elbows rotation",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Shoulder/elbow rotation drill using rack. Warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 399,
+    "name": "Rack elbows rotation + Front Rack hold",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Rack rotation into front rack hold. Clean position prep.",
+    "notes": ""
+  },
+  {
+    "id": 400,
+    "name": "Rack lats stretch",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Lat stretch using rack. Thoracic and lat mobility.",
+    "notes": ""
+  },
+  {
+    "id": 401,
+    "name": "Rack triceps stretch",
+    "muscle": "arms",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Triceps stretch using rack. Elbow flexion ROM.",
+    "notes": ""
+  },
+  {
+    "id": 402,
+    "name": "Recovery run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Active recovery run. Very easy effort. Sub 65% max HR.",
+    "notes": ""
+  },
+  {
+    "id": 403,
+    "name": "Roman chair",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Hyperextension on GHD or Roman chair. Erector spinae and glute strength.",
+    "notes": ""
+  },
+  {
+    "id": 404,
+    "name": "Row",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Rowing ergometer. Drive with legs, lean, arms. Distance or calorie target.",
+    "notes": ""
+  },
+  {
+    "id": 405,
+    "name": "Row (calories)",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Row for calorie target. Higher intensity rowing. HYROX/CrossFit.",
+    "notes": ""
+  },
+  {
+    "id": 406,
+    "name": "Row or Bike easy",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Easy row or bike. Warm-up or recovery. Low to moderate effort.",
+    "notes": ""
+  },
+  {
+    "id": 407,
+    "name": "Row or ski intervals",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Alternating rowing and ski erg intervals. Mixed upper body endurance.",
+    "notes": ""
+  },
+  {
+    "id": 408,
+    "name": "Row or ski \u2014 1000m intervals",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "1000m intervals on row erg or ski erg. Aerobic threshold work.",
+    "notes": ""
+  },
+  {
+    "id": 409,
+    "name": "Row or ski \u2014 500m intervals",
+    "muscle": "back",
+    "equip": "machine",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "500m intervals on row erg or ski erg. Above-threshold conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 410,
+    "name": "Rubber band rack lat pull",
+    "muscle": "back",
+    "equip": "band",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Banded lat pull from rack. Lat warm-up and activation.",
+    "notes": ""
+  },
+  {
+    "id": 411,
+    "name": "Run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Running at prescribed pace. Cardio and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 412,
+    "name": "Run 200m \u2192 station \u2192 run 200m",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Running bracket: 200m run, complete station, 200m run back.",
+    "notes": ""
+  },
+  {
+    "id": 413,
+    "name": "Sandbag front rack lunge",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Sandbag in front rack. Lunge forward or reverse. Core challenged.",
+    "notes": ""
+  },
+  {
+    "id": 414,
+    "name": "Sandbag over shoulder",
+    "muscle": "shoulders",
+    "equip": "other",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Pick sandbag from floor and toss over one shoulder. Total body power.",
+    "notes": ""
+  },
+  {
+    "id": 415,
+    "name": "Sandbag squat",
+    "muscle": "legs",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Sandbag bear-hugged or front-racked. Squat to full depth.",
+    "notes": ""
+  },
+  {
+    "id": 416,
+    "name": "Scapular pull-ups",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Dead hang with scapular depression. Shoulder health and lat activation.",
+    "notes": ""
+  },
+  {
+    "id": 417,
+    "name": "Sciatic nerve glide",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Sciatic nerve mobilization. Nerve health and lower back.",
+    "notes": ""
+  },
+  {
+    "id": 418,
+    "name": "Seated box jumps",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Box jump from seated position. Eliminates stretch-shortening cycle.",
+    "notes": ""
+  },
+  {
+    "id": 419,
+    "name": "Seated cable row (wide grip)",
+    "muscle": "back",
+    "equip": "cable",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Wide grip cable row. Mid-back and rear delts. Retract scapulae.",
+    "notes": ""
+  },
+  {
+    "id": 420,
+    "name": "Seated leg barrier raise",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Seated leg raises over barrier. Hip flexion mobility.",
+    "notes": ""
+  },
+  {
+    "id": 421,
+    "name": "Shoulder Band STRETCH",
+    "muscle": "shoulders",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Banded shoulder stretch. Anterior and posterior shoulder capsule.",
+    "notes": ""
+  },
+  {
+    "id": 422,
+    "name": "Shoulder circles",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Arm circles for shoulder warm-up. Forward and backward.",
+    "notes": ""
+  },
+  {
+    "id": 423,
+    "name": "Shoulder circles (arm circles)",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Arm circles to warm up shoulder joint. Dynamic shoulder prep.",
+    "notes": ""
+  },
+  {
+    "id": 424,
+    "name": "Shoulder circles + hip circles",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Combined shoulder and hip circles. Full body warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 425,
+    "name": "Shoulder rotation outside lying",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Lying external shoulder rotation. Rotator cuff activation.",
+    "notes": ""
+  },
+  {
+    "id": 426,
+    "name": "Shoulder spins with rubber bands",
+    "muscle": "shoulders",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Band shoulder circles and rotations. Dynamic shoulder warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 427,
+    "name": "Side banded butterfly",
+    "muscle": "full body",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Side-lying banded butterfly. Hip external rotation activation.",
+    "notes": ""
+  },
+  {
+    "id": 428,
+    "name": "Side lunge mobilization",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Side lunge for adductor and hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 429,
+    "name": "Single leg bench squat",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Bulgarian-style single-leg squat to bench. Strength and balance.",
+    "notes": ""
+  },
+  {
+    "id": 430,
+    "name": "Single-leg standing calf raise",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Unilateral calf raise. Full ROM. Balance and stability.",
+    "notes": ""
+  },
+  {
+    "id": 431,
+    "name": "Sit-ups",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Full range sit-up. Hip flexors and abs.",
+    "notes": ""
+  },
+  {
+    "id": 432,
+    "name": "Sitting good morning",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Sitting good morning. Functional exercise used in strength and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 433,
+    "name": "Sitting press on 3 plates",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Sitting press on 3 plates. Pushing movement exercise.",
+    "notes": ""
+  },
+  {
+    "id": 434,
+    "name": "Sitting press on 4 plates",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Sitting press on 4 plates. Pushing movement exercise.",
+    "notes": ""
+  },
+  {
+    "id": 435,
+    "name": "Sitting press on 5 plates",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Sitting press on 5 plates. Pushing movement exercise.",
+    "notes": ""
+  },
+  {
+    "id": 436,
+    "name": "Sleeping armwrestler",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Side-lying external rotation. Rotator cuff strength.",
+    "notes": ""
+  },
+  {
+    "id": 437,
+    "name": "Slow resisted squats",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Band-resisted squats performed slowly. Control and activation.",
+    "notes": ""
+  },
+  {
+    "id": 438,
+    "name": "Snatch balance + OHS",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Snatch balance into overhead squat. Position and stability drill.",
+    "notes": ""
+  },
+  {
+    "id": 439,
+    "name": "Snatch deadlift from blocks",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "advanced",
+    "desc": "Slow snatch deadlift from blocks. Builds leg drive for snatch.",
+    "notes": ""
+  },
+  {
+    "id": 440,
+    "name": "Snatch from blocks (mid-shin)",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Snatch from mid-shin blocks. Eliminates leg fatigue.",
+    "notes": ""
+  },
+  {
+    "id": 441,
+    "name": "Snatch high pull",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "intermediate",
+    "desc": "Snatch pull + high elbow pull. Transition drill to snatch catch.",
+    "notes": ""
+  },
+  {
+    "id": 442,
+    "name": "Snatch lift off + Slow-pull squat snatch + Squat snatch",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Snatch complex: lift off + tempo snatch + full snatch.",
+    "notes": ""
+  },
+  {
+    "id": 443,
+    "name": "Snatch pull",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "intermediate",
+    "desc": "Full extension snatch pull without catch. Builds position and power.",
+    "notes": ""
+  },
+  {
+    "id": 444,
+    "name": "Snatch-grip deadlift to power pos + shrug",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Snatch-grip deadlift to power pos + shrug. Hip hinge pulling exercise.",
+    "notes": ""
+  },
+  {
+    "id": 445,
+    "name": "Snatch-grip RDL (tempo 3-1-1)",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Snatch-grip RDL with 3-sec eccentric. Builds posterior chain.",
+    "notes": ""
+  },
+  {
+    "id": 446,
+    "name": "Snatch-grip Romanian deadlift",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Wide snatch grip RDL. Builds pulling strength and positions.",
+    "notes": ""
+  },
+  {
+    "id": 447,
+    "name": "Soleus squat",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Squat targeting the soleus. Knee over toe, heel stays down.",
+    "notes": ""
+  },
+  {
+    "id": 448,
+    "name": "Sotts press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "advanced",
+    "desc": "Overhead press from deep squat. Extreme shoulder and hip mobility.",
+    "notes": ""
+  },
+  {
+    "id": 449,
+    "name": "Squat clean",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Clean caught in full squat position. Maximum pulling efficiency.",
+    "notes": ""
+  },
+  {
+    "id": 450,
+    "name": "Squat clean + Hang squat clean + Jerk",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Complex: squat clean + hang squat clean + jerk. Olympic volume.",
+    "notes": ""
+  },
+  {
+    "id": 451,
+    "name": "Squat knee touches",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Squat with hands touching knees. Mobility and body awareness.",
+    "notes": ""
+  },
+  {
+    "id": 452,
+    "name": "Squat sit",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Passive deep squat hold. Hip, ankle, and groin mobility.",
+    "notes": ""
+  },
+  {
+    "id": 453,
+    "name": "Squat toes rolls",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Squat while rolling on toes. Ankle and arch mobility.",
+    "notes": ""
+  },
+  {
+    "id": 454,
+    "name": "Squat with rotation",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Squat with thoracic rotation at bottom. Hip and spine mobility.",
+    "notes": ""
+  },
+  {
+    "id": 455,
+    "name": "Standing hamstring stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Standing forward fold or single-leg hamstring stretch.",
+    "notes": ""
+  },
+  {
+    "id": 456,
+    "name": "Standing KB marches",
+    "muscle": "legs",
+    "equip": "kettlebell",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Standing KB marches. Functional exercise used in strength and conditioning.",
+    "notes": ""
+  },
+  {
+    "id": 457,
+    "name": "Standing quad stretch",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Standing quad stretch. 30s each side. Good post-run.",
+    "notes": ""
+  },
+  {
+    "id": 458,
+    "name": "Steady-state cycling",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Sustained cycling at constant pace. Zone 2\u20133 aerobic work.",
+    "notes": ""
+  },
+  {
+    "id": 459,
+    "name": "Steady-state ski erg",
+    "muscle": "full body",
+    "equip": "machine",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Extended ski erg at consistent pace. Zone 2\u20133 upper body endurance.",
+    "notes": ""
+  },
+  {
+    "id": 460,
+    "name": "Steady-state tempo run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Sustained threshold effort. Lactate threshold development.",
+    "notes": ""
+  },
+  {
+    "id": 461,
+    "name": "Strict press",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Overhead press with no leg drive. Pure shoulder strength.",
+    "notes": ""
+  },
+  {
+    "id": 462,
+    "name": "Strict pull-ups (C2B optional)",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Strict pull-ups. Chest to bar option. Pure pulling strength.",
+    "notes": ""
+  },
+  {
+    "id": 463,
+    "name": "Strides",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Short acceleration runs (80\u2013100m). Pre-workout neuromuscular activation.",
+    "notes": ""
+  },
+  {
+    "id": 464,
+    "name": "Sumo deadlift",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Wide stance, grip inside legs. Hip and groin dominant. Vertical bar path.",
+    "notes": ""
+  },
+  {
+    "id": 465,
+    "name": "Sumo deadlift high-pull",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "hinge",
+    "diff": "intermediate",
+    "desc": "Sumo deadlift explodes into upright row. Olympic accessory exercise.",
+    "notes": ""
+  },
+  {
+    "id": 466,
+    "name": "Support 90/90 Hip Rotation",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Supported 90/90 hip rotation. Hands assist movement.",
+    "notes": ""
+  },
+  {
+    "id": 467,
+    "name": "Supported barrier hip rotations",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Hip rotations with support. Hip joint mobility.",
+    "notes": ""
+  },
+  {
+    "id": 468,
+    "name": "Supported leg kick with hip rotation",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Supported leg kicks with hip rotation. Hip mobility warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 469,
+    "name": "Supported step forward",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Supported forward step. Hip mobility and balance drill.",
+    "notes": ""
+  },
+  {
+    "id": 470,
+    "name": "Tall clean (from standing, no knee bend)",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Tall clean from standing. Purely upper body pull and drop.",
+    "notes": ""
+  },
+  {
+    "id": 471,
+    "name": "Tall snatch",
+    "muscle": "full body",
+    "equip": "barbell",
+    "movement": "olympic",
+    "diff": "advanced",
+    "desc": "Tall snatch from standing. No knee bend. Speed under bar drill.",
+    "notes": ""
+  },
+  {
+    "id": 472,
+    "name": "Tempo front squat (2-1-2-1)",
+    "muscle": "legs",
+    "equip": "barbell",
+    "movement": "squat",
+    "diff": "advanced",
+    "desc": "Front squat: 2s down, 1s pause, 2s up, 1s top. Control-focused.",
+    "notes": ""
+  },
+  {
+    "id": 473,
+    "name": "Thrusters",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Front squat into overhead press. Full-body compound movement.",
+    "notes": ""
+  },
+  {
+    "id": 474,
+    "name": "Toe extension lunges",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Lunge with toe extended. Ankle and foot mobility.",
+    "notes": ""
+  },
+  {
+    "id": 475,
+    "name": "Toe touch to squat",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Touch toes then flow into deep squat. Full posterior chain warm-up.",
+    "notes": ""
+  },
+  {
+    "id": 476,
+    "name": "Trap 3",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Prone Y-raise or incline trap 3 raise. Lower trap activation.",
+    "notes": ""
+  },
+  {
+    "id": 477,
+    "name": "Triceps Band STRETCH",
+    "muscle": "arms",
+    "equip": "band",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Banded triceps stretch. Elbow extension and shoulder flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 478,
+    "name": "Upper back activation",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Upper back activation drills. Prepares rear chain for pulling.",
+    "notes": ""
+  },
+  {
+    "id": 479,
+    "name": "Upright row",
+    "muscle": "back",
+    "equip": "barbell",
+    "movement": "pull",
+    "diff": "beginner",
+    "desc": "Narrow grip, pull bar to chin. Traps and lateral delts. Keep elbows high.",
+    "notes": ""
+  },
+  {
+    "id": 480,
+    "name": "Vertex press laying",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Lying overhead press variation. Shoulder position drill.",
+    "notes": ""
+  },
+  {
+    "id": 481,
+    "name": "Walking cool-down",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Walk to cool down after hard effort. Reduces HR progressively.",
+    "notes": ""
+  },
+  {
+    "id": 482,
+    "name": "Wall ball shots",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Squat with medball, throw to target height, catch and repeat.",
+    "notes": ""
+  },
+  {
+    "id": 483,
+    "name": "Wall balls",
+    "muscle": "full body",
+    "equip": "other",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Squat with medball, throw to target, catch and repeat. HYROX staple.",
+    "notes": ""
+  },
+  {
+    "id": 484,
+    "name": "Wall sit calf raise",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Wall sit position with calf raises. Isometric hold + calf work.",
+    "notes": ""
+  },
+  {
+    "id": 485,
+    "name": "Wall slide",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Wall slide for shoulder mobility. Arms slide up wall. Thoracic extension.",
+    "notes": ""
+  },
+  {
+    "id": 486,
+    "name": "Wall slide four",
+    "muscle": "shoulders",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "beginner",
+    "desc": "Advanced wall slide variation. Four-point contact shoulder mobility.",
+    "notes": ""
+  },
+  {
+    "id": 487,
+    "name": "Weighted alternating dead bug",
+    "muscle": "core",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Dead bug with added weight. Increased core challenge.",
+    "notes": ""
+  },
+  {
+    "id": 488,
+    "name": "Weighted butterfly",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "rotation",
+    "diff": "intermediate",
+    "desc": "Groin stretch with weight on knees. Adductor flexibility.",
+    "notes": ""
+  },
+  {
+    "id": 489,
+    "name": "Weighted chin-ups",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Chin-up with added load (supinated grip). Bicep-dominant pulling.",
+    "notes": ""
+  },
+  {
+    "id": 490,
+    "name": "Weighted Deep Squat STRETCH",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Hold weight in deep squat. Increases depth and mobility.",
+    "notes": ""
+  },
+  {
+    "id": 491,
+    "name": "Weighted dips",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "intermediate",
+    "desc": "Dip with added load. Chest/tricep strength. Forward lean for chest.",
+    "notes": ""
+  },
+  {
+    "id": 492,
+    "name": "Weighted pull-ups",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Pull-up with added load. Builds maximum pulling strength.",
+    "notes": ""
+  },
+  {
+    "id": 493,
+    "name": "Weighted pull-ups (neutral grip)",
+    "muscle": "back",
+    "equip": "bodyweight",
+    "movement": "pull",
+    "diff": "intermediate",
+    "desc": "Weighted pull-ups (neutral grip). Pulling movement exercise.",
+    "notes": ""
+  },
+  {
+    "id": 494,
+    "name": "Weighted squat knee touches",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "intermediate",
+    "desc": "Squat with weighted knee touches. Mobility drill.",
+    "notes": ""
+  },
+  {
+    "id": 495,
+    "name": "Wide squat push aways",
+    "muscle": "legs",
+    "equip": "bodyweight",
+    "movement": "squat",
+    "diff": "beginner",
+    "desc": "Wide squat pushing knees out with elbows. Groin opener.",
+    "notes": ""
+  },
+  {
+    "id": 496,
+    "name": "World's greatest stretch + knee push",
+    "muscle": "full body",
+    "equip": "bodyweight",
+    "movement": "push",
+    "diff": "beginner",
+    "desc": "Lunge + thoracic rotation + hamstring stretch + knee push.",
+    "notes": ""
+  },
+  {
+    "id": 497,
+    "name": "Zone 2 run",
+    "muscle": "cardio",
+    "equip": "bodyweight",
+    "movement": "carry",
+    "diff": "beginner",
+    "desc": "Run at 65\u201375% max HR. Primary aerobic development zone.",
+    "notes": ""
+  }
+]
